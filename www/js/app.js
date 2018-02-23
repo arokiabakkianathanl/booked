@@ -46,3 +46,5 @@ var swiper = app.swiper.create('.swiper-container', {
     // noSwipingClass: 'swiper-slide',
     // effect: 'fade'
 });
+
+  
