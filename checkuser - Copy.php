@@ -49,23 +49,14 @@ $dob = $data['dob'];
 
 
 
-$userresult = mysqli_query($link, "SELECT `MemberID`, `PhoneNumber`, `Gender`, `SeekingGender`, `DOB`, `Accountstatus`, `PhoneSerialNumber`, `icloudAccount`, `DateCreated`, `DateUpdated` FROM `Member` WHERE `PhoneNumber`='$phone' AND `DOB`='$dob'") or die(mysql_error());
+$rs_duplicate = mysqli_query($link, "SELECT count(*) FROM `Member` WHERE `PhoneNumber`='$phone' AND `DOB`='$dob'") or die(mysql_error());
 
+list($total) = mysqli_fetch_row($rs_duplicate);
 
-			$total = mysqli_num_rows($userresult);
-					
-			$userres[] = array();
-
-			while (($userrow = mysqli_fetch_assoc($userresult)) != false) 
-			{
-				$userres[] = $userrow;
-			}
-
-			
 if ($total > 0)
 {
 	header('Content-Type: application/json');				
-	echo json_encode($userres);
+	echo json_encode($failres);
 }
 else
 {

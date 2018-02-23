@@ -42,7 +42,7 @@
                                                         <p class="m-none">I was born on</p>
                                                     </div>
                                                     <div class="item-input-wrap">
-                                                        <input type="text" onblur="checkdob();" class="form-control input-sm" id="dob" placeholder="yyyy-mm-dd" />
+                                                        <input type="text" onblur="checkdob();" class="form-control input-sm" id="dob" placeholder="MM / DD / YYYY" />
                                                         <input type="text" class="form-control input-sm" id="dob-dummy" />
                                                     </div>
                                                     <div class="f7-demo-icon" id="dobicon"><i class="f7-icons">calendar</i></div>
@@ -139,7 +139,15 @@
         if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
             dob = "";
         } else {
-            dob = document.getElementById("dob").value;
+            //dob = document.getElementById("dob").value;
+			
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;
         }
 
         if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
@@ -210,6 +218,14 @@
 
     function checkdob() {
         var dateString = document.getElementById('dob').value;
+					
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;		
+		
+		
         var myDate = new Date(dateString);
         var today = new Date();
 
@@ -236,6 +252,10 @@
         }
 
         dobstatus = 0;
+		
+		var a = document.getElementById('mem1'); //or grab it by tagname etc
+		a.href = "/already-member2/"
+		
         return true;
     }
 
@@ -260,7 +280,15 @@
         if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
             dob = "";
         } else {
-            dob = document.getElementById("dob").value;
+            //dob = document.getElementById("dob").value;
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;			
+			
         }
 
         $.ajax({
@@ -281,15 +309,20 @@
                     result = jsonobject[i].result;
                 }
 
-                if (result == "FAIL") {
-
-
-                } else {
-
+                if (result == "PASS") 
+				{
                     if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
                         dob = "";
                     } else {
-                        dob = document.getElementById("dob").value;
+                        //dob = document.getElementById("dob").value;
+						
+						var dateString = document.getElementById('dob').value;
+						
+						var newdate = dateString.split("/");
+						
+						dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+						dob = dateString;						
                     }
 
                     if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
@@ -303,6 +336,25 @@
 
                     mobilestatus = 1;
                     return false;
+
+                } 
+				else 
+				{
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        i_memberid = jsonobject[i].MemberID;
+                        i_PhoneNumber = jsonobject[i].PhoneNumber;
+                        i_Gender = jsonobject[i].Gender;
+                        i_SeekingGender = jsonobject[i].SeekingGender;
+                        i_DOB = jsonobject[i].DOB;
+                    }
+
+                    window.sessionStorage.setItem("memberid", i_memberid);
+                    window.sessionStorage.setItem("PhoneNumber", i_PhoneNumber);
+                    window.sessionStorage.setItem("Gender", i_Gender);
+                    window.sessionStorage.setItem("SeekingGender", i_SeekingGender);
+                    window.sessionStorage.setItem("DOB", i_DOB);
+
                 }
 
             },
@@ -312,9 +364,8 @@
             }
         });
 
-
-
     }
+
 
     function gonext() {
         if (dobstatus == "0" && mobilestatus == "0") {
@@ -330,7 +381,7 @@
     //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     // });
     $("#phone").inputmask({"mask": "(999) 999-9999"});
-    
+	$('#dob').inputmask({"mask": "99/99/9999"});    
    
 
     </script>

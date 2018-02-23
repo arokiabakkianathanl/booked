@@ -9,8 +9,14 @@ $err = array();
 $data = json_decode(file_get_contents('php://input'), true);
 
 
-$phone = $data['phone'];
-$dob = $data['dob'];
+
+$firstname = $data['firstname'];
+$occupation = $data['occupation'];
+$area = $data['area'];
+$headline = $data['headline'];
+$prime = $data['prime'];
+$memberid = $data['memberid'];
+
 			
 			// Pass
 			$pass = "SELECT result FROM result where id=1";
@@ -48,8 +54,10 @@ $dob = $data['dob'];
 
 
 
+	$total=0;
 
-$userresult = mysqli_query($link, "SELECT `MemberID`, `PhoneNumber`, `Gender`, `SeekingGender`, `DOB`, `Accountstatus`, `PhoneSerialNumber`, `icloudAccount`, `DateCreated`, `DateUpdated` FROM `Member` WHERE `PhoneNumber`='$phone' AND `DOB`='$dob'") or die(mysql_error());
+
+			$userresult = mysqli_query($link, "SELECT `MemberID` FROM `MemberProfile` WHERE `MemberID`='$memberid'") or die(mysql_error());
 
 
 			$total = mysqli_num_rows($userresult);
@@ -61,15 +69,28 @@ $userresult = mysqli_query($link, "SELECT `MemberID`, `PhoneNumber`, `Gender`, `
 				$userres[] = $userrow;
 			}
 
-			
 if ($total > 0)
 {
-	header('Content-Type: application/json');				
-	echo json_encode($userres);
+	$sql_update = "update MemberProfile set Name = '$firstname', Neighborhood = '$area', Occupation = '$occupation', Headline='$headline' WHERE `MemberID`='$memberid'";
+
+	$result = mysqli_query($link ,$sql_update) 
+								or die (mysqli_error()); 		
+								
+	$id = mysqli_insert_id($link);  
+
+	header('Content-Type: application/json');
+	echo json_encode($passres);		
 }
 else
 {
+	$sql_insert = "INSERT INTO `MemberProfile`(`MemberID`, `Name`, `Neighborhood`, `Occupation`, `Headline`) VALUES ($memberid ,'$firstname','$area','$occupation','$headline')";
+
+	$result = mysqli_query($link ,$sql_insert) 
+								or die (mysqli_error()); 		
+								
+	$id = mysqli_insert_id($link);  
+
 	header('Content-Type: application/json');
-	echo json_encode($passres);
-}	
+	echo json_encode($passres);		
+}
 ?>
