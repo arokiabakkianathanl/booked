@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Booked</title>
+  <link rel="stylesheet" href="dist/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png
+
+  
+  
+</head>
+
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner sliding ">
+            <div class="left header-section">
+              <img src="img/booked_logo.jpg" class="navbar-logo">
+              <div><b>My Account Information...</b></div>
+            </div>
+            <div class="right my-profile-navabar" onclick="goedit();">
+              <a href="#">
+                <img src="img/avatar.jpg" class="img-circle">
+              <span>Edit</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
+          <div class="block p-none">
+            <div class="block mb-xs">
+              <p><b>Edit: About Me</b> </p>
+            </div>
+            <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+			<div class="list inline-labels no-hairlines-md mt-sm mb-xs">
+              <ul>
+                <li class="item-content item-input">
+                  <div class="item-inner">
+                    <div class="item-title item-label">My First Name:</div>
+                    <div class="item-input-wrap">
+                      <input id="firstname" type="text" placeholder="Sara">
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="list no-hairlines-md mt-xs">
+			
+              <ul>
+                <li class="item-content item-input mt-xs">
+                  <div class="item-inner">
+                    <div class="item-title item-label">My Occupation</div>
+                    <div class="item-input-wrap">
+                      <input id="occupation" type="text" placeholder="Engineering Student at Georgia Tech">
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content item-input mt-xs">
+                  <div class="item-inner">
+                    <div class="item-title item-label">The Area/Neighborhood where I live</div>
+                    <div class="item-input-wrap">
+                      <input id="area" type="text" placeholder="Alpharetta (OTP)">
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <p class="m-xs"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
+                </li>
+                <li class="item-content item-input mt-xs">
+                  <div class="item-inner">
+                    <div class="item-title item-label">My Headline</div>
+                    <div class="item-input-wrap">
+                      <textarea id="headline" placeholder="Iowa farm girl masquerading as a Southern Intellectual"></textarea>
+                    </div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <p class="m-xs"><small>Headlines are never easy!  We need a few words that sum you up.  Feel free to use quotes as well.</small></p>
+                </li>
+              </ul>
+            </div>
+			</div>
+			<div class="block mt-xs mb-xs white-bg">
+              <p><b>Edit: My Photos</b> </p>
+            </div>
+            <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+			<div class="block mt-sm mb-sm">
+              <div class="row">
+                <div class="col-33">
+                  <label class="uploaded-image">
+                    <img id="image1" onclick="loadimage();" src="img/avatar.jpg" class="img-responsive">
+                    <span><i class="icon material-icons">mode_edit</i>Edit</span>
+                  </label>
+                    <input id="prime" type="radio" name="photo" value="1" checked>
+                    Set as Primary				  
+                </div>
+                <div class="col-33">
+                  <label class="uploaded-image">
+                    <img id="image2" onclick="loadimage();" src="img/avatar.jpg" class="img-responsive">
+                    <span><i class="icon material-icons">mode_edit</i>Edit</span>
+                  </label>
+                    <input id="prime" type="radio" name="photo" value="2">
+                    Set as Primary				  
+                </div>
+                <div class="col-33">
+                  <label>
+                    <img id="image3" onclick="loadimage();" src="img/addimage.png" class="img-responsive">
+                  </label>
+					<input id="prime" type="radio" name="photo" value="3">
+                    Set as Primary				  
+                </div>
+              </div>
+            </div>
+          
+          </div>
+		  <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>  
+		  </div>
+        </div>
+        <div class="toolbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/framework7.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript">
+    $('.library-alert').on('click', function() {
+      app.dialog.confirm('Allow "Booked" to access your photo library?');
+   });
+    
+
+	function finddates()
+	{
+		window.location.href = "empty-dashboard.html";
+	}
+	
+	function chat()
+	{
+		window.location.href = "rsvp.html";
+	}
+
+	function goedit()
+	{
+		window.location.href = "edit-profile.html";
+	}
+		
+	function gosettings()
+	{
+		window.location.href = "settings.html";
+	}
+  	
+  </script>
+  
+  
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript">
+    var allowstatus = 0;
+	
+    var firstname;
+    var occupation;
+    var area;
+    var headline;
+	var prime;
+	var memberid;
+
+	var i_memberid;
+    var i_PhoneNumber;
+    var i_Gender;
+    var i_SeekingGender;
+	var i_DOB;	
+	
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        console.log("On Device Ready is Called...................");
+		
+        i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
+        i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
+        i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
+        i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
+        i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
+
+    }
+
+	function saveprofile()
+	{
+			
+        firstname = $("#firstname").val();
+		occupation = $("#occupation").val();
+		area = $("#area").val();
+		headline = $("#headline").val();
+		image1 = document.getElementById("image1");
+		image2 = document.getElementById("image2");
+		image3 = document.getElementById("image3");
+		prime = document.getElementById("prime").value;
+		
+
+		//alert(firstname +  " - "  + occupation +  " - "  + area +  " - "  + headline +  " - "  + memberid);
+		
+        $.ajax({
+            url: "http://18.219.77.161/api/saveprofile.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"firstname":"' + firstname + '","occupation":"' + occupation + '","area":"' + area + '","headline":"' + headline + '","prime":"' + prime + '","memberid":"' + i_memberid + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+				
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "PASS") 
+				{
+					app.dialog.alert('<br>Profile has been updated!');
+					
+                } 
+				else 
+				{
+					app.dialog.alert('<br>Profile not updated!');
+				}
+
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+
+		
+		
+	}
+	
+	function loadimage()
+	{
+		window.location.href = "camera.html";
+	}
+
+    </script>    
+  
+  
+</body>
+
+</html>

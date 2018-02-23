@@ -1,0 +1,379 @@
+@import 'custom';
+@import 'mixin';
+.input {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin: 1em;
+    margin-bottom: 0; // max-width: 350px;
+    width: calc(100% - 2em);
+    vertical-align: top;
+}
+
+.input__field {
+    position: relative;
+    display: block;
+    float: right;
+    padding: 0.8em;
+    width: 60%;
+    border: none;
+    border-radius: 0;
+    background: #f0f0f0;
+    color: #aaa;
+    font-weight: 400;
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-appearance: none;
+    /* for box shadows to show on iOS */
+}
+
+.input__field:focus {
+    outline: none;
+}
+
+.input__label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 40%;
+    color: #696969;
+    font-weight: bold;
+    font-size: 70.25%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.input__label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+
+.graphic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    fill: none;
+}
+
+.icon {
+    color: #ddd;
+    font-size: 150%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Individual styles */
+
+
+/* Kozakura */
+
+.input--kozakura {
+    overflow: hidden;
+    padding-bottom: 1em;
+}
+
+.input__field--kozakura {
+    padding: 0.25em 0.5em;
+    margin-top: 1.25em;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.26);
+    color: #2F3238;
+    font-size: 1.55em;
+    opacity: 0;
+}
+
+.input__label--kozakura {
+    width: 100%;
+    text-align: left;
+    position: absolute;
+    top: 1em;
+    pointer-events: none;
+    overflow: hidden;
+    padding: 0 0.25em;
+    -webkit-transform: translate3d(1em, 2.75em, 0);
+    transform: translate3d(1em, 2.75em, 0);
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.input__label-content--kozakura {
+    color: #A4A5A6;
+    padding: 0.4em 0 0.25em;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+
+.input__label-content--kozakura::after {
+    content: attr(data-content);
+    position: absolute;
+    font-weight: 800;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: #494e57;
+    padding: 0.25em 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85em;
+}
+
+.graphic--kozakura {
+    fill: #222222;
+    pointer-events: none;
+    top: 1em;
+    bottom: 0px;
+    height: 4.5em;
+    z-index: -1;
+    -webkit-transition: -webkit-transform 0.7s, fill 0.7s;
+    transition: transform 0.7s, fill 0.7s;
+    -webkit-transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 0.25, 0.5, 1);
+}
+
+.input__field--kozakura:focus,
+.input--filled .input__field--kozakura {
+    -webkit-transition: opacity 0s 0.35s;
+    transition: opacity 0s 0.35s;
+    opacity: 1;
+    background: #fff;
+}
+
+.input__field--kozakura:focus+.input__label--kozakura,
+.input--filled .input__label--kozakura {
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.input__field--kozakura:focus+.input__label--kozakura .input__label-content--kozakura,
+.input--filled .input__label-content--kozakura {
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+}
+
+.input__field--kozakura:focus~.graphic--kozakura,
+.input--filled .graphic--kozakura {
+    fill: #fff;
+    -webkit-transform: translate3d(-66.6%, 0, 0);
+    transform: translate3d(-66.6%, 0, 0);
+}
+
+.form-width {
+    max-width: 350px;
+    min-width: 350px;
+    max-height: 600px;
+    flex-wrap: wrap;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    height: 100vh;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    .form-logo {
+        width: 200px;
+        display: block;
+        margin: auto;
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    .btn {
+        border-radius: 50px;
+        padding: 15px 30px;
+    }
+}
+
+body {
+    &.gradient-bg {
+        height: 100vh;
+        @include bg-gradient;
+    }
+}
+
+.full-tab {
+    width: 100%;
+
+    .tab-pane {
+        width: 100%;
+    }
+    .tab-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        flex-direction: row;
+        width: 100%;
+        box-shadow: 0px -5px 12px 0px rgba(0, 0, 0, 0.15);
+        background: #fff;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        >li {
+            float: none !important;
+            display: table-cell;
+            width: 20%;
+            text-align: center;
+            &.active {
+                a {
+                    border-top-right-radius: 10px;
+                    border-top-left-radius: 10px;
+                    @include bg-gradient;
+                    color: #fff;
+                }
+                span {
+                    background: #fff;
+                    color: #222;
+                }
+            }
+            a {
+                font-size: 10px;
+                padding-left: 5px;
+                padding-right: 5px;
+                line-height: 5px;
+                font-weight: bold;
+                color: #222;
+            }
+            span {
+                position: absolute;
+                @include bg-gradient;
+                top: 10px;
+                right: 25%;
+                color: #fff;
+                padding: 4px;
+                border-radius: 50%;
+                width: 18px;
+                line-height: 0;
+                height: 18px;
+            }
+            i {
+                font-size: 32px;
+                display: block;
+            }
+            @media (min-width: 768px) {
+                float: none !important;
+                display: table-cell;
+                width: 20%;
+            }
+        }
+    }
+}
+
+.header {
+    height: 90px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    .myprofile {
+        .myprofile-img {
+            width: 50px;
+            border-radius: 50px;
+            height: auto;
+        }
+        span {
+            position: absolute;
+            top: 43px;
+            font-size: 10px;
+            background: rgba(255, 255, 255, 0.8117647058823529);
+            padding: 3px 6px;
+            border-radius: 16px;
+            right: 15px;
+            i {
+                padding-right: 2px;
+            }
+        }
+    }
+    .logo {
+        img {
+            width: auto;
+            height: 40px;
+        }
+        .page-title {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+    }
+}
+
+.unstyle {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 100px;
+    li {
+        margin: 0;
+    }
+}
+
+.profile-list {
+    padding: 10px 0;
+    margin-bottom: 18px;
+    background: #f2f2f2;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    &.chosen {
+        background: #f9ebeb;
+        border: 1px solid #efc2c4;
+    }
+    .location-time {
+        i {
+            padding-right: 10px;
+            color: $primary-color;
+            width: 25px;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+    .profile-list-image {
+        width: 120px;
+        padding-left: 15px;
+        float: left;
+        img {
+            width: 105px;
+        }
+        span {
+            position: relative;
+            top: -22px;
+            font-size: 10px;
+            background: rgba(255, 255, 255, .811765);
+            padding: 3px 6px;
+        }
+    }
+    .icon-chat {
+        font-size: 25px;
+        padding-left: 10px;
+        span {
+            font-size: 7px;
+            position: relative;
+            top: -17px;
+            right: -5px;
+            background: $primary-color;
+            color: white;
+            padding: 3px;
+            border-radius: 20px;
+        }
+    }
+}

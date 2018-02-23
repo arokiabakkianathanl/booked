@@ -1,0 +1,18 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "bookedapp",
+  "short_name": "bookedapp",
+  "version": "com.phonegap.bookedapp",
+  "description": "bookedapp",
+  "author": "bookedapp",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "undefinedxundefined"
+    }
+  ],
+  "start_url": "index.html",
+  "theme_color": "#2196f3"
+}

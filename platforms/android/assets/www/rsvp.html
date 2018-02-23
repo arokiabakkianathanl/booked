@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Booked</title>
+  <link rel="stylesheet" href="dist/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner sliding ">
+            <div class="left header-section">
+              <img src="img/booked_logo.jpg" class="navbar-logo">
+            </div>
+            <div class="right my-profile-navabar" onclick="goedit();">
+              <a href="#">
+                <img src="img/avatar.jpg" class="img-circle">
+              <span>Edit</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg messages-content">
+          <div class="block p-none">
+            <!-- Profile List -->
+            <div class="dashboard">
+              <div class="card chosen ml-none mr-none mb-xlg">
+                <div class="card-header">
+                  <p class="m-none"><b>Tonight 9:00PM - Drinks
+                  <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only">location_on</i></p>
+                </div>
+                <div class="card-content card-content-padding pt-sm pb-xs">
+                  <span class="treat">His Treat</span>
+                  <div class="row">
+                    <div class="col-75">
+                      <h1 class="m-none">Chosen!</h1>
+                      <p class="mt-none arial-narrow"><b>9 Min 32 Seconds to Confirm...</b></p>
+                      <div class="row">
+                        <div class="col-33">
+                          <div class="progress-bar"></div>
+                        </div>
+                        <div class="col-33">
+                          <i class="icon material-icons">change_history</i>25%
+                        </div>
+                        <div class="col-33">
+                          <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-25">
+                      <img src="img/avatar.jpg" class="img-responsive round-img">
+                      <p class="m-none text-center">Jonathan</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="row no-gap">
+                    <div class="col-50">
+                      <a href="#" class="link"><b>! Confirm and Book</b></a>
+                    </div>
+                    <div class="col-50">
+                      <a href="#" class="link"><b>Cancel</b></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--End Of Profile List -->
+            <div class="rsvp-msg">
+              <div class="messages">
+                <!-- Messages title -->
+                <div class="messages-title"><b>Sunday, Feb 9,</b> 12:58</div>
+                <!-- Messages -->
+                <div class="message message-sent">
+                  <div class="message-content">
+                    <div class="message-bubble">
+                      <div class="message-text">Hi, Kate</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-sent">
+                  <div class="message-content">
+                    <div class="message-bubble">
+                      <div class="message-text">How are you?</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-received">
+                  
+                  <div class="message-content">
+                    
+                    <div class="message-bubble">
+                      <div class="message-text">Hi, I am good!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-received">
+                  
+                  <div class="message-content">
+                    
+                    <div class="message-bubble">
+                      <div class="message-text">Hi there, I am also fine, thanks! And how are you?</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-sent">
+                  <div class="message-content">
+                    <div class="message-bubble">
+                      <div class="message-text">Hey, Blue Ninja! Glad to see you ;)</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-sent">
+                  <div class="message-content">
+                    <div class="message-bubble">
+                      <div class="message-text">Hey, look, cutest kitten ever!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-received">
+                  
+                  <div class="message-content">
+                    
+                    <div class="message-bubble">
+                      <div class="message-text">Nice!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-received">
+                  
+                  <div class="message-content">
+                    
+                    <div class="message-bubble">
+                      <div class="message-text">Like it very much!</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="message message-received">
+                  
+                  <div class="message-content">
+                    
+                    <div class="message-bubble">
+                      <div class="message-text">Awesome!</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="messagebar rsvp-msgbar">
+          <div class="messagebar-area">
+            <textarea class="resizable" placeholder="Message"></textarea>
+          </div>
+          <a class="link send-link" href="#">Send</a>
+        </div>
+        <div class="toolbar tabbar-labels ">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/framework7.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script type="">
+    var messages = app.messages.create({
+  el: '.messages',
+
+  // First message rule
+  firstMessageRule: function (message, previousMessage, nextMessage) {
+    // Skip if title
+    if (message.isTitle) return false;
+    /* if:
+      - there is no previous message
+      - or previous message type (send/received) is different
+      - or previous message sender name is different
+    */
+    if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name) return true;
+    return false;
+  },
+  // Last message rule
+  lastMessageRule: function (message, previousMessage, nextMessage) {
+    // Skip if title
+    if (message.isTitle) return false;
+    /* if:
+      - there is no next message
+      - or next message type (send/received) is different
+      - or next message sender name is different
+    */
+    if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+    return false;
+  },
+  // Last message rule
+  tailMessageRule: function (message, previousMessage, nextMessage) {
+    // Skip if title
+    if (message.isTitle) return false;
+      /* if (bascially same as lastMessageRule):
+      - there is no next message
+      - or next message type (send/received) is different
+      - or next message sender name is different
+    */
+    if (!nextMessage || nextMessage.type !== message.type || nextMessage.name !== message.name) return true;
+    return false;
+  }
+});
+    var messagebar = app.messagebar.create({
+  el: '.messagebar'
+});
+    $('.send-link').on('click', function () {
+  var text = messagebar.getValue().replace(/\n/g, '<br>').trim();
+  // return if empty message
+  if (!text.length) return;
+
+  // Clear area
+  messagebar.clear();
+
+  // Return focus to area
+  messagebar.focus();
+
+  // Add message to messages
+  messages.addMessage({
+    text: text,
+  });
+
+  if (responseInProgress) return;
+  // Receive dummy message
+  receiveMessage();
+});
+    function receiveMessage() {
+  responseInProgress = true;
+  setTimeout(function () {
+    // Get random answer and random person
+    var answer = answers[Math.floor(Math.random() * answers.length)];
+    var person = people[Math.floor(Math.random() * people.length)];
+
+    // Show typing indicator
+    messages.showTyping({
+      header: person.name + ' is typing',
+      avatar: person.avatar
+    });
+
+    setTimeout(function () {
+      // Add received dummy message
+      messages.addMessage({
+        text: answer,
+        type: 'received',
+        name: person.name,
+        avatar: person.avatar
+      });
+      // Hide typing indicator
+      messages.hideTyping();
+      responseInProgress = false;
+    }, 4000);
+  }, 1000);
+}
+
+	function finddates()
+	{
+		window.location.href = "empty-dashboard.html";
+	}
+	
+	function chat()
+	{
+		window.location.href = "rsvp.html";
+	}
+
+	function goedit()
+	{
+		window.location.href = "edit-profile.html";
+	}
+  
+	function gosettings()
+	{
+		window.location.href = "settings.html";
+	}
+  	
+  </script>
+</body>
+
+</html>

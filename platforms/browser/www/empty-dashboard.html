@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Booked</title>
+  <link rel="stylesheet" href="dist/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner sliding ">
+            <div class="left header-section">
+              <img src="img/booked_logo.jpg" class="navbar-logo">
+              <div><b>My Upcoming Schedule...</b></div>
+            </div>
+            <div class="right my-profile-navabar" onclick="goedit();">        
+              <img src="img/avatar.jpg" class="img-circle">
+              <span>Edit</span>
+            </div>
+          </div>
+        </div>
+        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg mb-lg">
+          <div class="block pt-lg">
+            <h2 class="light  pt-xlg">Looks like there is nothing <br> on your schedule. <br><br>Let's do something about <br>that :-)</h2>
+            <div class="mt-xlg pt-xlg">
+              <a href="#" class="button button-block link external button-big button-fill color-black">Post Something To Do</a><br><br>
+              <a href="#" class="button button-block link external button-big button-fill">Find Something To Do</a>
+            </div>
+
+          </div>
+        </div>
+        <div class="toolbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/framework7.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  
+  <script>
+  
+		
+	function goedit()
+	{
+		window.location.href = "edit-profile.html";
+	}
+
+	function finddates()
+	{
+		window.location.href = "empty-dashboard.html";
+	}
+	
+	function chat()
+	{
+		window.location.href = "rsvp.html";
+	}
+	
+	function gosettings()
+	{
+		window.location.href = "settings.html";
+	}
+  </script>
+  
+</body>
+
+</html>
