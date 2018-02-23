@@ -1,0 +1,11 @@
+@mixin bg-gradient {
+    background: #f57505;
+    background: -moz-linear-gradient(45deg, #f57505 0%, #eb0505 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #f57505), color-stop(100%, #eb0505));
+    background: -webkit-linear-gradient(45deg, #f57505 0%, #eb0505 100%);
+    background: -o-linear-gradient(45deg, #f57505 0%, #eb0505 100%);
+    background: -ms-linear-gradient(45deg, #f57505 0%, #eb0505 100%);
+    background: linear-gradient(45deg, #f57505 0%, #eb0505 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f57505', endColorstr='#eb0505', GradientType=1);
+}
+$primary-color: #eb0505;
