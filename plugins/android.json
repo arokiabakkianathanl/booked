@@ -12,6 +12,9 @@
     },
     "cordova-sms-plugin": {
       "PACKAGE_NAME": "com.phonegap.bookedapp"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
     }
   },
   "dependent_plugins": {}

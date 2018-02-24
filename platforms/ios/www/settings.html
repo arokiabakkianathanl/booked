@@ -53,19 +53,19 @@
               </div>
             <div class="block mb-sm">
               <p>
-                <b>My Saved Locations</b>
+                <b>Saved Locations</b>
                 <br> Saved locations allow you to easily search near places where you are most often at. (ie. Work, Home, School, etc.)
                 <br>
               </p>
               <div class="right-align">
-                <a href="#" class="link external ">Add New Location</a>
+                <a href="new-location.html" class="link external ">Add New Location</a>
               </div>
             </div>
               <div>
                 <div class="list links-list mt-none">
                   <ul>
-                    <li><a href="#" class="font-sm">Home</a></li>
-                    <li><a href="#" class="font-sm">Work</a></li>
+                    <li><a href="#" onclick="editlocation();" class="font-sm">Home</a></li>
+                    <li><a href="#" onclick="editlocation();" class="font-sm">Work</a></li>
                   </ul>
                 </div>
               </div>
@@ -108,6 +108,11 @@
 	function gosettings()
 	{
 		window.location.href = "settings.html";
+	}
+	
+	function editlocation()
+	{
+		window.location.href = "edit-location.html";
 	}
   	
   </script>

@@ -2,425 +2,378 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="theme-color" content="#2196f3">
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
-  <title>Booked</title>
-  <link rel="stylesheet" href="dist/css/framework7.min.css">
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
-  <link rel="icon" href="img/f7-icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Booked</title>
+    <link rel="stylesheet" href="dist/css/framework7.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
 </head>
 
 <body class="color-theme-red">
-  <div id="app">
-    <div class="statusbar"></div>
-    <div class="view view-main view-init ios-edges" data-url="/">
-      <div class="page">
-        <div class="page-content">
-          <div class="login-swiper">
-            <div class="swiper-wrapper">
-              <!-- Start of Page -->
-              <div class="swiper-slide">
-                <div class="login-header">
-                  <img src="img/booked_logo.jpg">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="page-content">
+                    <div class="login-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Start of Page -->
+                            <div class="swiper-slide">
+                                <div class="login-header">
+                                    <img src="img/booked_logo.jpg">
+                                </div>
+                                <div class="login-content">
+                                    <h1>Welcome!</h1>
+                                    <p class="location-alert">We have only a few
+                                        <br> questions to get you started...</p>
+                                </div>
+                                <div class="login-footer">
+                                    <!--<a href="#" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>-->
+                                    <a href="/slide1/" id="scr1" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>
+                                    <div class="mt-lg mb-lg text-center">
+                                        <a href="already-member.html" class="link external p-sm">Already a Memeber?</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Page -->
+                        </div>
+                    </div>
                 </div>
-                <div class="login-content">
-                  <h1>Welcome!</h1>
-                  <p class="location-alert">We have only a few
-                    <br> questions to get you started...</p>
-                </div>
-                <div class="login-footer">
-                  <!--<a href="#" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>-->
-                  <a href="/slide1/" id="scr1" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>
-                  <div class="mt-lg mb-lg text-center">
-                    <a href="already-member.html" class="link external p-sm">Already a Memeber?</a>
-                  </div>
-                </div>
-              </div>
-              <!-- End of Page -->
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <script src="dist/js/framework7.min.js"></script>
-  <script src="js/routes.js"></script>
-  <script src="js/app.js"></script>
-  <script type="text/javascript" src="jquery-2.1.4.js"></script>
-  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-  <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-  <script type="text/javascript">
-  var allowstatus = 0;
-  var dobstatus = 1;
-  var iam;
-  var interested;
-  var phone;
-  var dob;
-  var otpcode;
-
-  // Wait for Cordova to load
-  //
-  document.addEventListener("deviceready", onDeviceReady, false);
-  // Cordova is ready
-  //
-  function onDeviceReady() {
-    console.log("On Device Ready is Called...................");
-
-
-
-    var dialog = app.dialog.create({
-      title: '',
-      text: 'Allow "Booked" to access your location while you use the app? <br><br><span class="grey-text">The app will use location services only while you are interacting with the app.  It will not use location services or consume battery in the background.</span>',
-      buttons: [{
-          text: "Cancel",
-
-        },
-        {
-          text: "Allow",
-
-        }
-      ],
-      verticalButtons: false,
-      onClick: function(dialog, index) {
-
-        allowstatus = index;
-
-      }
-    }).open();
-
-  }
-
-  /*
-     var calendarModal = app.calendar.create({
-          inputEl: '#dob-dummy',
-          openIn: 'customModal',
-          header: true,
-          footer: true,
-      });
-  */
-  $(document).on('page:init', function(e) {
-
-    var calendarModal = app.calendar.create({
-      inputEl: '#dob-dummy',
-      openIn: 'customModal',
-      header: true,
-      footer: true,
-      dateFormat: 'dd/mm/yyyy'
-    });
-
-
-    // $('#dobicon').on('click', function() {
-    //   calenderOpen.open();
-    // });
-    $("#dob-dummy").on("change", function() {
-      $("#dob").val($(this).val());
-      checkdob();
-
-    });
-
-    $("#phone").inputmask({ "mask": "(999) 999-9999" });
-
-    $('#dob').inputmask({ "mask": "99/99/9999" });
-  });
-
-
-  $('.open-confirm').on('click', function() {
-    app.dialog.confirm('<br>It appears the number xxxxxxxx already has an account<br><br> Would you like to log in to it now?', function() {
-      app.dialog.alert('Great!');
-    });
-  });
-  $('.location-alert').on('click', function() {
-    app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() {});
-  });
-  $('.open-alert').on('click', function() {
-    app.dialog.alert('<br>Oops. That code is incorrect. <br><br> Please check the most recent text we sent you and enter the code.');
-  });
-  $('.dob-alert').on('click', function() {
-    app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
-    app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
-  });
-
-
-
-  function saveusers() {
-
-    otpcode = $("#otpcode").val();
-
-    $.ajax({
-      url: "http://18.219.77.161/api/savemember.php",
-      type: "POST",
-      dataType: "JSON",
-      data: '{"iam":"' + iam + '","interested":"' + interested + '","dob":"' + dob + '","phone":"' + phone + '","otpcode":"' + otpcode + '"}',
-      success: function(jsonStr) {
-
-        var jsonstr = JSON.stringify(jsonStr);
-
-        var jsonobject = JSON.parse(jsonstr);
-
-
-        var result;
-
-        for (i = 1; i < jsonobject.length; i++) {
-          result = jsonobject[i].result;
-        }
-
-        if (result == "FAIL") {
-          app.dialog.alert('<br>Mobile number already registered!');
-
-        } else {
-
-          for (i = 1; i < jsonobject.length; i++) {
-            i_memberid = jsonobject[i].MemberID;
-            i_iam = jsonobject[i].Gender;
-            i_interested = jsonobject[i].SeekingGender;
-            i_phone = jsonobject[i].PhoneNumber;
-            i_dob = jsonobject[i].DOB;
-          }
-
-          window.sessionStorage.setItem("memberid", i_memberid);
-          window.sessionStorage.setItem("iam", i_iam);
-          window.sessionStorage.setItem("interested", i_interested);
-          window.sessionStorage.setItem("phone", i_phone);
-          window.sessionStorage.setItem("dob", i_dob);
-
-
-          window.location.href = "empty-dashboard.html";
-
-        }
-
-      },
-      error: function(requestObject, error, errorThrown) {
-        alert(error);
-        alert(errorThrown);
-      }
-    });
-
-  }
-
-
-  function allow() {
-    if (allowstatus == 0) {
-      location.reload();
-    }
-  }
-
-  function checkdob() {
-
-    var dateString = document.getElementById('dob').value;
-
-
-    var newdate = dateString.split("/");
-
-    dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-    dob = dateString;
-
-    var myDate = new Date(dateString);
-    var today = new Date();
-
-    if (dateString == null || dateString == "") {
-      app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
-      dobstatus = 1;
-
-      return false;
-    }
-
-    if (myDate > today) {
-      app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
-      dobstatus = 2;
-      return false;
-    }
-
-    var age = calculateAge(myDate);
-    if (age < 18) {
-      app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
-      dobstatus = 3;
-      return false;
-    }
-
-    dobstatus = 0;
-
-    var a = document.getElementById('scr3'); //or grab it by tagname etc
-    a.href = "/slide3/"
-
-    return true;
-
-  }
-
-  function calculateAge(birthday) { // birthday is a date
-    var ageDifMs = Date.now() - birthday.getTime();
-    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    return Math.abs(ageDate.getUTCFullYear() - 1970);
-  }
-
-  function checkdobnext() {
-
-    dateString = $("#dob").val();
-    var newdate = dateString.split("/");
-
-    dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-    dob = dateString;
-    
-
-    if (dobstatus == "0") {
-      $("#scr3").attr("href", "/slide3/")
-    }
-
-  }
-
-  function checkotp() {
-
-    phone = $("#phone").val();
-
-    $("#scr4").attr("href", "/slide4/")
-  }
-
-
-  function checkmobile() {
-
-    var a = document.getElementById('scr4'); //or grab it by tagname etc
-    a.href = "/slide4/"
-
-    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
-      phone = "";
-    } else {
-      phone = document.getElementById("phone").value;
-    }
-
-
-    if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
-      dob = "";
-    } else {
-      //dob = document.getElementById("dob").value;
-
-      var dateString = document.getElementById('dob').value;
-
-      var newdate = dateString.split("/");
-
-      dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-      dob = dateString;
-    }
-
-
-    $.ajax({
-      url: "http://18.219.77.161/api/checkuser.php",
-      type: "POST",
-      dataType: "JSON",
-      data: '{"phone":"' + phone + '","dob":"' + dob + '"}',
-      success: function(jsonStr) {
-
-        var jsonstr = JSON.stringify(jsonStr);
-
-        var jsonobject = JSON.parse(jsonstr);
-
-
-        var result;
-
-        for (i = 1; i < jsonobject.length; i++) {
-          result = jsonobject[i].result;
-        }
-
-        if (result == "FAIL") {
-
-          var dialog1 = app.dialog.create({
+    <script src="dist/js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+    var allowstatus = 0;
+    var dobstatus = 1;
+    var iam;
+    var interested;
+    var phone;
+    var dob;
+    var otpcode;
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        console.log("On Device Ready is Called...................");
+
+
+
+        var dialog = app.dialog.create({
             title: '',
-            text: 'It appears the number ' + phone + ' already has an account<br><br> Would you like to log in to it now?',
+            text: 'Allow "Booked" to access your location while you use the app? <br><br><span class="grey-text">The app will use location services only while you are interacting with the app.  It will not use location services or consume battery in the background.</span>',
             buttons: [{
-                text: "Log In",
+                    text: "Cancel",
 
-              },
-              {
-                text: "Cancel",
+                },
+                {
+                    text: "Allow",
 
-              }
+                }
             ],
             verticalButtons: false,
-            onClick: function(dialog1, index) {
+            onClick: function(dialog, index) {
 
-              if (index == 0) {
-                window.location.href = "already-member.html";
-              }
+                allowstatus = index;
 
             }
-          }).open();
-        } else {
+        }).open();
+
+    }
+
+    /*
+       var calendarModal = app.calendar.create({
+            inputEl: '#dob-dummy',
+            openIn: 'customModal',
+            header: true,
+            footer: true,
+        });
+    */
+    $(document).on('page:init', function(e) {
+
+        var calendarModal = app.calendar.create({
+            inputEl: '#dob-dummy',
+            openIn: 'customModal',
+            header: true,
+            footer: true,
+            dateFormat: 'dd/mm/yyyy'
+        });
 
 
+        $('#dobicon').on('click', function() {
+            calendarModal.open();
+        });
+        $("#dob-dummy").on("change", function() {
+            $("#dob").val($(this).val());
+			checkdob();
+
+        });
+
+    $("#phone").inputmask({"mask": "(999) 999-9999"});
+	
+	$('#dob').inputmask({"mask": "99/99/9999"});
+    });
+	
+	
+    $('.open-confirm').on('click', function() {
+        app.dialog.confirm('<br>It appears the number xxxxxxxx already has an account<br><br> Would you like to log in to it now?', function() {
+            app.dialog.alert('Great!');
+        });
+    });
+    $('.location-alert').on('click', function() {
+        app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() {});
+    });
+    $('.open-alert').on('click', function() {
+        app.dialog.alert('<br>Oops. That code is incorrect. <br><br> Please check the most recent text we sent you and enter the code.');
+    });
+    $('.dob-alert').on('click', function() {
+        app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
+        app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
+    });
+
+
+
+    function saveusers() {
+
+        otpcode = $("#otpcode").val();
+	
+        $.ajax({
+            url: "http://18.219.77.161/api/savemember.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"iam":"' + iam + '","interested":"' + interested + '","dob":"' + dob + '","phone":"' + phone + '","otpcode":"' + otpcode + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "FAIL") 
+				{
+					app.dialog.alert('<br>Mobile number already registered!');
+					
+                } else {
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        i_memberid = jsonobject[i].MemberID;
+                        i_iam = jsonobject[i].Gender;
+                        i_interested = jsonobject[i].SeekingGender;
+                        i_phone = jsonobject[i].PhoneNumber;
+                        i_dob = jsonobject[i].DOB;
+                    }
+
+                    window.sessionStorage.setItem("memberid", i_memberid);
+                    window.sessionStorage.setItem("iam", i_iam);
+                    window.sessionStorage.setItem("interested", i_interested);
+                    window.sessionStorage.setItem("phone", i_phone);
+                    window.sessionStorage.setItem("dob", i_dob);
+
+
+                    window.location.href = "empty-dashboard.html";
+
+                }
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+
+    }
+
+
+    function allow() {
+        if (allowstatus == 0) {
+            location.reload();
+        }
+    }
+
+    function checkdob() {
+
+        var dateString = document.getElementById('dob').value;
+		
+
+		var newdate = dateString.split("/");
+		
+		dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+		dob = dateString;
+		
+        var myDate = new Date(dateString);
+        var today = new Date();
+
+        if (dateString == null || dateString == "") {
+            app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
+            dobstatus = 1;
+
+            return false;
         }
 
-      },
-      error: function(requestObject, error, errorThrown) {
-        alert(error);
-        alert(errorThrown);
-      }
-    });
-  }
+        if (myDate > today) {
+            app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
+            dobstatus = 2;
+            return false;
+        }
 
-  function scr2click() {
-    iam = $('#iam').val();
-    interested = $('#interested').val();
+        var age = calculateAge(myDate);
+        if (age < 18) {
+            app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
+            dobstatus = 3;
+            return false;
+        }
 
-  }
-  // document.getElementById('phone').addEventListener('input', function(e) {
-  //     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-  //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-  // });
-  $(document).on('page:init', function(e) {
-    var pickerCustomToolbar = app.picker.create({
-      inputEl: '#dob',
-      rotateEffect: true,
-      renderToolbar: function() {
-        return '<div class="toolbar">' +
-          '<div class="toolbar-inner">' +
-          '<div class="left">' +
-          '<!-- <a href="#" class="link toolbar-randomize-link">Done</a> -->' +
-          '</div>' +
-          '<div class="right">' +
-          '<a href="#" class="link sheet-close popover-close">Close</a>' +
-          '</div>' +
-          '</div>' +
-          '</div>';
-      },
-      formatValue: function(values, displayValues) {
-        return displayValues[0] + '/' + values[1] + '/' + values[2];
-      },
-      cols: [{
-          values: ('01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31').split(' '),
-          displayValues: ('01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31').split(' '),
-        },
-        {
-          values: ('01 02 03 04 05 06 07 08 09 10 11 12').split(' '),
-          displayValues: ('January February March April May June July August September October November December').split(' '),
-          textAlign: 'left'
-        },
-        {
-          values: (function() {
-            var arr = [];
-            var yr = new Date();
-            var Year = yr.getFullYear() - 18;
-            for (var i = Year; i >= 1920; i--) { arr.push(i); }
-            return arr;
-          })(),
-        },
-      ],
-      on: {
-        open: function(picker) {},
-      }
-    });
-    $('#dobicon').on('click', function() {
-      pickerCustomToolbar.open();
-    });
-    
-  });
+        dobstatus = 0;
+		
+		var a = document.getElementById('scr3'); //or grab it by tagname etc
+		a.href = "/slide3/"
 
-  </script>
+        return true;
+
+    }
+
+    function calculateAge(birthday) { // birthday is a date
+        var ageDifMs = Date.now() - birthday.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    function checkdobnext() {
+
+        dateString = $("#dob").val();
+
+		var newdate = dateString.split("/");
+		
+		dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+		
+		dob = dateString;
+		
+        if (dobstatus == "0") {
+            $("#scr3").attr("href", "/slide3/")
+        }
+
+    }
+
+    function checkotp() {
+
+        phone = $("#phone").val();
+
+        $("#scr4").attr("href", "/slide4/")
+    }
+
+
+    function checkmobile() {
+
+		var a = document.getElementById('scr4'); //or grab it by tagname etc
+		a.href = "/slide4/"
+		
+        if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+            phone = "";
+        } else {
+            phone = document.getElementById("phone").value;
+        }
+
+
+        if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+            dob = "";
+        } else {
+            //dob = document.getElementById("dob").value;
+			
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;
+        }
+
+
+        $.ajax({
+            url: "http://18.219.77.161/api/checkuser.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"phone":"' + phone + '","dob":"' + dob + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "FAIL") {
+
+                    var dialog1 = app.dialog.create({
+                        title: '',
+                        text: 'It appears the number ' + phone + ' already has an account<br><br> Would you like to log in to it now?',
+                        buttons: [{
+                                text: "Log In",
+
+                            },
+                            {
+                                text: "Cancel",
+
+                            }
+                        ],
+                        verticalButtons: false,
+                        onClick: function(dialog1, index) {
+
+                            if (index == 0) {
+                                window.location.href = "already-member.html";
+                            }
+
+                        }
+                    }).open();
+                } else {
+
+
+                }
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+    }
+
+    function scr2click() {
+        iam = $('#iam').val();
+        interested = $('#interested').val();
+
+    }
+    // document.getElementById('phone').addEventListener('input', function(e) {
+    //     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    // });
+    </script>
 </body>
 
 </html>

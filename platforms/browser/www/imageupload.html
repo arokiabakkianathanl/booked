@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Ergos</title>
+	<!--	
+    <style type="text/css">
+        div {border: 2px solid green;}
+        input {width: 100%;}
+    </style>
+	-->
+	<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+	<style type="text/css">
+	table.gridtable {
+		font-family: verdana,arial,sans-serif;
+		font-size:11px;
+		color:#333333;
+		border-width: 1px;
+		border-color: #666666;
+		border-collapse: collapse;
+	}
+	table.gridtable th {
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #dedede;
+	}
+	table.gridtable td {
+		border-width: 1px;
+		padding: 8px;
+		border-style: solid;
+		border-color: #666666;
+		background-color: #ffffff;
+	}
+	</style>
+	
+    <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="jquery-1.8.2.js"></script>
+	
+    <script type="text/javascript" charset="utf-8">
+    
+    var deviceReady = false;
+	var currentfile='empty.jpg';
+	var currentfolder;
+	var farmername;
+	var farmerid;
+	var tblText;
+	
+    /**
+     * Take picture with camera
+     */
+    function takePicture() {
+        navigator.camera.getPicture(
+            function(uri) {
+                var img = document.getElementById('camera_image');
+                img.style.visibility = "visible";
+                img.style.display = "block";
+                img.src = uri;
+                document.getElementById('camera_status').innerHTML = "Success";
+            },
+            function(e) {
+                console.log("Error getting picture: " + e);
+                document.getElementById('camera_status').innerHTML = "Error getting picture.";
+            },
+            { quality: 50, destinationType: navigator.camera.DestinationType.FILE_URI});
+    };
+
+    /**
+     * Select picture from library
+     */
+    function selectPicture() {
+        navigator.camera.getPicture(
+            function(uri) {
+                var img = document.getElementById('camera_image');
+                img.style.visibility = "visible";
+                img.style.display = "block";
+                img.src = uri;
+                document.getElementById('camera_status').innerHTML = "Success";
+            },
+            function(e) {
+                console.log("Error getting picture: " + e);
+                document.getElementById('camera_status').innerHTML = "Error getting picture.";
+            },
+            { quality: 50, destinationType: navigator.camera.DestinationType.FILE_URI, sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});
+    };
+    
+    /**
+     * Upload current picture
+     */
+    function uploadPicture() {
+    	
+    	// Get URI of picture to upload
+        var img = document.getElementById('camera_image');
+        var imageURI = img.src;
+        if (!imageURI || (img.style.display == "none")) {
+            document.getElementById('camera_status').innerHTML = "Take picture or select picture from library first.";
+            return;
+        }
+        
+        // Verify server has been entered
+        server = document.getElementById('serverUrl').value;
+        if (server) {
+        	
+            // Specify transfer options
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+            options.chunkedMode = false;
+			var params = new Object();
+			params.uploadpath = currentfolder;
+			params.imgName = currentfile;
+			options.params = params;
+            // Transfer picture to server
+            var ft = new FileTransfer();
+            ft.upload(imageURI, server, function(r) {
+                //document.getElementById('camera_status').innerHTML = "Upload successful: "+r.bytesSent+" bytes uploaded."; 
+				document.getElementById('camera_status').innerHTML = r.response.toString(); 
+            }, function(error) {
+                document.getElementById('camera_status').innerHTML = "Upload failed: Code = "+error.code;            	
+            }, options);
+        }
+    }
+
+    /**
+     * View pictures uploaded to the server
+     */
+    function viewUploadedPictures() {
+    	
+    	// Get server URL
+        server = document.getElementById('serverUrl').value;
+        if (server) {
+        	
+            // Get HTML that lists all pictures on server using XHR	
+            var xmlhttp = new XMLHttpRequest();
+
+            // Callback function when XMLHttpRequest is ready
+            xmlhttp.onreadystatechange=function(){
+                if(xmlhttp.readyState === 4){
+
+                    // HTML is returned, which has pictures to display
+                    if (xmlhttp.status === 200) {
+                    	document.getElementById('server_images').innerHTML = xmlhttp.responseText;
+                    }
+
+                    // If error
+                    else {
+                    	document.getElementById('server_images').innerHTML = "Error retrieving pictures from server.";
+                    }
+                }
+            };
+            xmlhttp.open("GET", server , true);
+            xmlhttp.send();       	
+        }	
+    }
+    
+    /**
+     * Function called when page has finished loading.
+     */
+    function init() {
+        document.addEventListener("deviceready", function() {deviceReady = true;}, false);
+        window.setTimeout(function() {
+            if (!deviceReady) {
+                alert("Error: PhoneGap did not initialize.  Demo will not run correctly.");
+            }
+        },2000);
+    }
+
+	
+    function GetFarmer() {
+        var db = window.openDatabase("ergos", "1.0", "Ergos Database", 200000);
+        db.transaction(FarmerqueryDB, errorCB);
+		//setTimeout(function(){db.transaction(queryDB, errorCB)}, 2000);
+    }
+
+    // Query the database
+    //
+    function FarmerqueryDB(tx) {
+        tx.executeSql('SELECT * FROM FARMERDATABASE', [], farmerquerySuccess, errorCB);
+		//tx.executeSql(farmerquery, [], farmerquerySuccess, errorCB);
+		
+    }
+
+    // Query the success callback
+    //
+    function farmerquerySuccess(tx, results) {
+			console.log("in farmer fetch success...");
+
+            tblText='<table class="gridtable"><thead><tr><th>Name</th><th>Userid</th><th>Profile Picture </th></tr></thead><tbody>';
+            var len = results.rows.length;
+            for (var i = 0; i < len; i++) {
+						
+                tblText +='<tr><td>' + results.rows.item(i).name +'</td><td>'
+                        +  results.rows.item(i).userid +'</td><td>' + results.rows.item(i).photofilename + '</td></tr>';
+				
+
+					var fileSource = results.rows.item(i).photofilename;
+					farmername = results.rows.item(i).name;
+					farmerid = results.rows.item(i).userid;
+					
+
+					uploadprofileimage(results.rows.item(i).photofilename);
+					uploadidproofimage(results.rows.item(i).idprooffilename);
+					uploadaddressproofimage(results.rows.item(i).addressprooffilename);
+					uploadbankimage(results.rows.item(i).chequeleaf1filename);
+					uploadbankimage(results.rows.item(i).chequeleaf2filename);
+					
+            }
+            tblText +="</tbody></table>";
+
+            document.getElementById("tblFarmerDiv").innerHTML = tblText;
+	}		
+
+	
+	function uploadprofileimage(fileSource) {
+		var reader = new FileReader();
+		reader.onloadend = function(evt) {
+		if(evt.target.result == null) 
+			{
+				console.log('file doesnt exists');
+			} else 
+			{
+				
+				//console.log(results.rows.item(i).photofilename);
+				
+				console.log('file exists' + fileSource);
+				
+				var x = fileSource.split("/") // Delimiter is a string
+
+				console.log(x[x.length-1]);
+				
+				currentfile=x[x.length-1];
+				currentfolder="UserImages";
+				var img = document.getElementById('camera_image');
+				img.style.visibility = "visible";
+				img.style.display = "block";
+				img.src = fileSource;
+				uploadPicture();
+			
+			}         
+		};
+	
+		// We are going to check if the file exists
+		reader.readAsDataURL(fileSource);   
+	}	
+
+
+	function uploadidproofimage(fileSource) {
+		var reader = new FileReader();
+		reader.onloadend = function(evt) {
+		if(evt.target.result == null) 
+			{
+				console.log('file doesnt exists');
+			} else 
+			{
+				
+				//console.log(results.rows.item(i).photofilename);
+				
+				console.log('file exists' + fileSource);
+				
+				var x = fileSource.split("/") // Delimiter is a string
+
+				console.log(x[x.length-1]);
+				
+				currentfile=x[x.length-1];
+				currentfolder="UserIDProof";
+				var img = document.getElementById('camera_image');
+				img.style.visibility = "visible";
+				img.style.display = "block";
+				img.src = fileSource;
+				uploadPicture();
+			
+			}         
+		};
+	
+		// We are going to check if the file exists
+		reader.readAsDataURL(fileSource);   
+	}
+
+
+	function uploadaddressproofimage(fileSource) {
+		var reader = new FileReader();
+		reader.onloadend = function(evt) {
+		if(evt.target.result == null) 
+			{
+				console.log('file doesnt exists');
+			} else 
+			{
+				
+				//console.log(results.rows.item(i).photofilename);
+				
+				console.log('file exists' + fileSource);
+				
+				var x = fileSource.split("/") // Delimiter is a string
+
+				console.log(x[x.length-1]);
+				
+				currentfile=x[x.length-1];
+				currentfolder="UserAddressProof";
+				var img = document.getElementById('camera_image');
+				img.style.visibility = "visible";
+				img.style.display = "block";
+				img.src = fileSource;
+				uploadPicture();
+			
+			}         
+		};
+	
+		// We are going to check if the file exists
+		reader.readAsDataURL(fileSource);   
+	}
+	
+
+	function uploadbankimage(fileSource) {
+		var reader = new FileReader();
+		reader.onloadend = function(evt) {
+		if(evt.target.result == null) 
+			{
+				console.log('file doesnt exists');
+			} else 
+			{
+				
+				//console.log(results.rows.item(i).photofilename);
+				
+				console.log('file exists' + fileSource);
+				
+				var x = fileSource.split("/") // Delimiter is a string
+
+				console.log(x[x.length-1]);
+				
+				currentfile=x[x.length-1];
+				currentfolder="UserBankImages";
+				var img = document.getElementById('camera_image');
+				img.style.visibility = "visible";
+				img.style.display = "block";
+				img.src = fileSource;
+				uploadPicture();
+			
+			}         
+		};
+	
+		// We are going to check if the file exists
+		reader.readAsDataURL(fileSource);   
+	}
+	
+    // Transaction error callback
+    //
+    function errorCB(err) {
+	
+	
+        console.log("Error processing SQL: "+err.code);
+    }	
+    </script>
+
+  </head>
+  <body onload="init();">
+    <h3>Image Uploads</h3>
+    
+    <div style="display:none;">
+        <h3>Server URL for upload.php:</h3>
+        <input id="serverUrl" type="text" value="http://www.ergoslive.com/php/" />
+    </div>
+	
+    <br/>
+
+
+    <!-- Actions -->
+    <div>
+    <!--         
+		<input type="button" onclick="takePicture();" value="Take Picture" /><br/>
+        <input type="button" onclick="selectPicture();" value="Select Picture from Library" /><br/>
+        <input type="button" onclick="uploadPicture();" value="Upload Picture" />
+	-->
+		<input type="button" onclick="GetFarmer();" value="Upload Farmer Database Pictures" />
+    </div>
+	
+    <br/>
+
+	<div>
+		<h3>Status:</h3> <span id="camera_status"></span>
+		<br>
+        <h3>Image:</h3> <img style="width:500px;visibility:hidden;display:none;" id="camera_image" src="" />
+		<br>
+	</div>
+ 
+    <br/>
+	 
+	<div id="tblFarmerDiv">
+
+	</div>
+    
+
+  </body>
+</html>

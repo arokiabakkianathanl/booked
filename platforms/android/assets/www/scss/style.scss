@@ -85,6 +85,7 @@
 
 
 
+
 /* Individual styles */
 
 
@@ -376,4 +377,14 @@ body {
             border-radius: 20px;
         }
     }
+}
+
+.no-border {
+    &:after,
+    &:before {
+        border-color: transparent;
+    }
+}
+.ios .navbar b{
+    font-size: 16px;
 }

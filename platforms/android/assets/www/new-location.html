@@ -29,38 +29,39 @@
             </div>
             <div class="right my-profile-navabar">
               <a href="#">
-                <img src="img/avatar.jpg" class="img-circle">
+                <img src="img/avatar.jpg" class="img-circle" onclick="goedit();">
               <span>Edit</span>
               </a>
             </div>
           </div>
         </div>
-        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg my-location">
-          <div class="block p-none">
+        <div class="page-content hide-navbar-on-scroll  pb-xlg my-location">
+          <div class="block pl-none pr-none" style="background: #f0f0f0">
             <div class="block mt-sm mb-sm">
               <p><b>New Location</b> </p>
             </div>
             <div class="list inline-labels no-hairlines-md mt-sm mb-lg">
-              <ul>
-                <li class="item-content item-input">
+              <ul class="no-border">
+                <li class="item-content item-input" style="background: #f0f0f0">
                   <div class="item-inner">
-                    <div class="item-title item-label">Location Label:</div>
+                    <div class="item-title item-label"><small>Location Label:</small></div>
                     <div class="item-input-wrap">
-                      <input type="text" class="form-control">
+                      <input type="text" class="form-control bg-color-white">
                       <span class="input-clear-button"></span>
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
-            <div class="block mt-sm mb-sm">
+            <div class="block mt-sm pb-sm " style="background-color:#f0f0f0">
+            
               <form>  
                 <label class="search-location"> 
                     <input type="text" class="round form-control" placeholder="Search for a place or address" name="">
                 
                 </label>
             </div>
-            <div class="block mt-sm mb-sm">
+            <div class="block mt-sm mb-sm" style="background-color:#f0f0f0">
               
               <div class="row">
                 <div class="col-50">
@@ -70,18 +71,26 @@
                   <div id="map1" class="map"></div>
                 </div>
               </div>
+			  <br><br>
+              <a href="#" class="col button button-big button-fill button-block link external">Save </a>
+			  
+		  <div><a href="#" onclick="gosettings();"  class="col link external mt-lg"> Return to My Location</a></div>
             </div>
-            <div class="text-center">
+      <!--
+            <div class="text-center" style="background-color:#f0f0f0">
               <a href="#" class="col button button-big button-fill button-block link external">Save </a>
               <a href="#" onclick="gosettings();"  class="col link external mt-lg"> Return to Settings</a>
             </div>
+      -->
           </div>
+      
+		  
         </div>
         <div class="toolbar tabbar-labels">
           <div class="toolbar-inner">
             <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
             <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
-            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
             <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
             <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
           </div>

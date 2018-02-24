@@ -102,25 +102,26 @@
               <div class="row">
                 <div class="col-33">
                   <label class="uploaded-image">
-                    <img id="image1" onclick="loadimage();" src="img/avatar.jpg" class="img-responsive">
-                    <span><i class="icon material-icons">mode_edit</i>Edit</span>
+                    <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                    <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
                     <input id="prime" type="radio" name="photo" value="1" checked>
                     Set as Primary				  
                 </div>
                 <div class="col-33">
                   <label class="uploaded-image">
-                    <img id="image2" onclick="loadimage();" src="img/avatar.jpg" class="img-responsive">
-                    <span><i class="icon material-icons">mode_edit</i>Edit</span>
+                    <img id="image2" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                    <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
                     <input id="prime" type="radio" name="photo" value="2">
                     Set as Primary				  
                 </div>
                 <div class="col-33">
-                  <label>
-                    <img id="image3" onclick="loadimage();" src="img/addimage.png" class="img-responsive">
+                  <label class="uploaded-image">
+                    <img id="image3" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                    <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-					<input id="prime" type="radio" name="photo" value="3">
+                    <input id="prime" type="radio" name="photo" value="3">
                     Set as Primary				  
                 </div>
               </div>
@@ -129,12 +130,19 @@
           </div>
 		  <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>  
 		  </div>
+		  
+    <div style="display:none;">
+        <h3>Server URL for upload.php:</h3>
+        <input id="serverUrl" type="text" value="http://18.219.77.161/api/upload/" />
+    </div>
+	
+	
         </div>
         <div class="toolbar tabbar-labels">
           <div class="toolbar-inner">
             <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
             <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
-            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
             <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
             <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
           </div>
@@ -192,6 +200,15 @@
     var i_SeekingGender;
 	var i_DOB;	
 	
+	var currentImageId;
+	var currentImageURL;
+	
+	var currentfile='empty.jpg';
+	var currentfolder;
+	
+	var pictureSource;   // picture source
+	var destinationType; // sets the format of returned value 
+		
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -199,6 +216,10 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
+
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=Camera.DestinationType.NATIVE_URI;	
+
 		
         i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
         i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
@@ -206,6 +227,7 @@
         i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
         i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
 
+		loadprofile();
     }
 
 	function saveprofile()
@@ -242,12 +264,13 @@
 
                 if (result == "PASS") 
 				{
-					app.dialog.alert('<br>Profile has been updated!');
-					
+					//app.dialog.alert('<br>Profile has been updated!');
+					window.location.href = "myprofile.html";
                 } 
 				else 
 				{
-					app.dialog.alert('<br>Profile not updated!');
+					//app.dialog.alert('<br>Profile not updated!');
+					window.location.href = "myprofile.html";
 				}
 
 
@@ -261,11 +284,137 @@
 		
 		
 	}
-	
-	function loadimage()
-	{
-		window.location.href = "camera.html";
+
+
+	function loadprofile()
+	{	
+        $.ajax({
+            url: "http://18.219.77.161/api/loadprofile.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"memberid":"' + i_memberid + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+				
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "FAIL") 
+				{
+					
+					
+                } 
+				else 
+				{
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        p_id = jsonobject[i].id;
+                        p_MemberID = jsonobject[i].MemberID;
+                        p_Name = jsonobject[i].Name;
+                        p_Neighborhood = jsonobject[i].Neighborhood;
+                        p_Occupation = jsonobject[i].Occupation;
+                        p_Headline = jsonobject[i].Headline;						
+                        p_DateCreated = jsonobject[i].DateCreated;						
+                        p_DateUpdated = jsonobject[i].DateUpdated;		
+
+
+						document.getElementById('firstname').value = p_Name;	
+						document.getElementById('occupation').value = p_Occupation;	
+						document.getElementById('area').value = p_Neighborhood;	
+						document.getElementById('headline').value = p_Headline;	
+					
+                    }
+
+						
+						
+				}
+
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+
 	}
+	
+	function loadimage(img)
+	{
+		// Vertical Buttons
+		
+		currentImageId = img;
+		
+		  app.dialog.create({
+			title: 'Image Selection',
+			text: '',
+			buttons: [
+			  {
+				text: 'Capture From Camera',
+			  },
+			  {
+				text: 'From Photo Library',
+			  },
+			],
+			verticalButtons: true,
+            onClick: function(dialog, index) {
+                
+				if (index == 0)
+				{
+					capturePhoto();
+				}			
+                else if (index == 1)
+				{
+					getPhotoFromLibrary();
+				}
+
+
+            }
+		  }).open();
+
+	}
+
+	
+	function capturePhoto()
+	{
+		navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
+	}
+	
+	function getPhotoFromLibrary()
+	{
+		getPhoto(pictureSource.PHOTOLIBRARY);
+    }
+
+	
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+
+    function onPhotoURISuccess(imageURI) {
+	
+		currentImageURL = imageURI;
+		//alert(currentImageURL);
+		
+		var largeImage = document.getElementById(currentImageId);
+
+		largeImage.style.display = 'block';
+
+		largeImage.src = imageURI;			
+    }
+	
+
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
 
     </script>    
   

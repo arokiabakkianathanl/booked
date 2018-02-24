@@ -42,10 +42,10 @@
                                                         <p class="m-none">I was born on</p>
                                                     </div>
                                                     <div class="item-input-wrap">
-                                                        <input type="text" onblur="checkdob();" class="form-control input-sm" id="dob" placeholder="MM / DD / YYYY" />
-                                                        <input type="text" class="form-control input-sm" id="dob-dummy" />
+                                                        <input type="tel" onblur="checkdob();" class="form-control input-sm" id="dob" />
+                                                        <input type="tel" class="form-control input-sm" id="dob-dummy" />
                                                     </div>
-                                                    <div class="f7-demo-icon" id="dobicon"><i class="f7-icons">calendar</i></div>
+                                                    <div style="display:none;" class="f7-demo-icon" id="dobicon"><i class="f7-icons">calendar</i></div>
                                                 </div>
                                             </li>
                                         </ul>
@@ -74,7 +74,7 @@
     <script src="js/app.js"></script>
     <script type="text/javascript" src="jquery-2.1.4.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript" src="jquery.inputmask.bundle.js"></script>
     <script type="text/javascript">
     var mobilestatus = 0;
     var dobstatus = 1;

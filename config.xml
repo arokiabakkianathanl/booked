@@ -19,12 +19,14 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
+    <engine name="ios" spec="~4.5.4" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+
     <engine name="android" spec="~6.3.0" />
-    <engine name="ios" spec="~4.5.3" />
     <access origin="http://18.219.77.161/" />
     <icon src="icon.png" />
     <preference name="phonegap-version" value="cli-6.3.1" />
@@ -66,5 +68,18 @@
     <engine name="browser" spec="~5.0.3" />
 	
 
+<platform name="ios">
+
+     <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge" overwrite="true">
+          <string>Booked app uses camera and photo library</string>
+     </edit-config>
+     <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge" overwrite="true" >
+          <string>Booked app uses camera and photo library</string>
+     </edit-config>
+     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge" overwrite="true">
+          <string>Booked app uses camera and photo library</string>
+     </edit-config>
+</platform>	
+	
 	
 </widget>

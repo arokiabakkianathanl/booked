@@ -2,6 +2,8 @@
 <html>
   <head>
     <title>Capture Photo</title>
+	
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: ms-appdata: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
 
     <script type="text/javascript" src="jquery-2.1.4.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -65,14 +67,34 @@
     //
     function capturePhoto() {
       // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+      //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50 });
+	 
+		navigator.camera.getPicture(onSuccess, onFail,
+		{
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			popoverOptions: new CameraPopoverOptions(300, 300, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY)
+		});
+		 
+		// Reposition the popover if the orientation changes.
+		window.onorientationchange = function() {
+			var cameraPopoverHandle = new CameraPopoverHandle();
+			var cameraPopoverOptions = new CameraPopoverOptions(0, 0, 100, 100, Camera.PopoverArrowDirection.ARROW_ANY);
+			cameraPopoverHandle.setPosition(cameraPopoverOptions);
+		}	  		
     }
 
     // A button will call this function
     //
     function capturePhotoEdit() {
       // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true }); 
+      //navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true }); 
+
+	  navigator.camera.getPicture(onSuccess, onFail, { 
+			quality: 50,
+			allowEdit: true,
+			destinationType: Camera.DestinationType.FILE_URI });
+	  
     }
 
     // A button will call this function
@@ -90,10 +112,63 @@
       alert('Failed because: ' + message);
     }
 
+	function onSuccess(imageURI) {
+		
+      // Uncomment to view the image file URI 
+      // console.log(imageURI);
+
+      // Get image handle
+      //
+      var largeImage = document.getElementById('largeImage');
+
+      // Unhide image elements
+      //
+      largeImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      largeImage.src = imageURI;		
+	}
+
+
+function setOptions(srcType) {
+    var options = {
+        // Some common settings are 20, 50, and 100
+        quality: 50,
+        destinationType: Camera.DestinationType.FILE_URI,
+        // In this app, dynamically set the picture source, Camera or photo gallery
+        sourceType: srcType,
+        encodingType: Camera.EncodingType.JPEG,
+        mediaType: Camera.MediaType.PICTURE,
+        allowEdit: true,
+        correctOrientation: true  //Corrects Android orientation quirks
+    }
+    return options;
+}
+
+function openCamera(selection) {
+
+    var srcType = Camera.PictureSourceType.CAMERA;
+    var options = setOptions(srcType);
+    var func = createNewFileEntry;
+
+    navigator.camera.getPicture(function cameraSuccess(imageUri) {
+
+        onSuccess(imageUri);
+        // You may choose to copy the picture, save it somewhere, or upload.
+        func(imageUri);
+
+    }, function cameraError(error) {
+        console.debug("Unable to obtain picture: " + error, "app");
+
+    }, options);
+}`
+	
     </script>
   </head>
   <body>
-    <button onclick="capturePhoto();">Capture Photo</button> <br><br>
+    <button onclick="openCamera('camera-thmb');">Capture Photo</button> <br><br>
     <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br><br>
     <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br><br>
     <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br><br>

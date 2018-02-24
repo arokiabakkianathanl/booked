@@ -1,15 +1,21 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
     },
-    "config_munge": {
-        "files": {}
+    "cordova-sms-plugin": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
     },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.bible2bible"
-        }
-    },
-    "dependent_plugins": {}
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
+    }
+  },
+  "dependent_plugins": {}
 }
