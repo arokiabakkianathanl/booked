@@ -515,6 +515,7 @@
   border: 1px solid #000;
   border-top-width: 0px;
   display: block;
+  min-height: 34px;
   padding: 0; }
   .dashboard .card-footer .row .col-50:nth-child(2) {
     border-left: 1px solid #000; }
@@ -528,7 +529,9 @@
     padding: 0px 2px;
     display: block;
     text-align: center;
-    margin: 0px auto; }
+    margin: 0px auto;
+    height: 34px;
+    line-height: 34px; }
 
 .dashboard .round-img {
   margin-top: 20px; }
@@ -539,7 +542,11 @@
   border: 1px solid #000;
   border-bottom-width: 0px; }
   .dashboard .card-content i.icon {
-    font-size: 30px; }
+    font-size: 43px;
+    line-height: 0; }
+    .dashboard .card-content i.icon svg {
+      height: 38px;
+      width: 40px; }
 
 .dashboard .card-header {
   padding-bottom: 0 !important;
@@ -854,12 +861,22 @@
 
 .text-black {
   color: #000; }
-.no-border:after,
-    .no-border:before {
-        border-color: transparent;
-        background:  transparent !important;
-    
-}
-.ios .navbar b{
-    font-size: 16px;
-}
+
+.no-border:after, .no-border:before {
+  border-color: transparent !important;
+  background: transparent !important; }
+
+.ios .navbar b {
+  font-size: 16px; }
+
+.w-200 {
+  max-width: 200px;
+  width: 100%;
+  display: block;
+  margin: auto; }
+
+.statusbar {
+  background: #fff;
+  /* We can add transition for smooth color animation */
+  -webkit-transition: 400ms;
+  transition: 400ms; }

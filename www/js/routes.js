@@ -26,14 +26,19 @@ var routes = [
     name: 'slide4',
   },
   {
+    path: '/already-member/',
+    url: './already-member.html',
+    name: 'already-member',
+  },
+  {
+    path: '/already-member1/',
+    url: './already-member1.html',
+    name: 'already-member1',
+  },
+  {
     path: '/already-member2/',
     url: './already-member2.html',
     name: 'already-member2',
-  },
-  {
-    path: '/already-member/',
-    url: './already-member.html',
-    name: 'about',
   },
 
   // Default route (404 page). MUST BE THE LAST

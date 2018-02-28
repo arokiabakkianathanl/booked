@@ -21,7 +21,7 @@
         <div class="view view-main view-init ios-edges" data-url="/">
             <div class="page">
                 <div class="page-content">
-                    <div class="login-swiper">
+                    <div class="swiper-container login-swiper">
                         <div class="swiper-wrapper">
                             <!-- Start of Page -->
                             <div class="swiper-slide">
@@ -29,15 +29,18 @@
                                     <img src="img/BookedLogo2.jpg">
                                 </div>
                                 <div class="login-content">
-                                    <h1>Welcome!</h1>
-                                    <p class="location-alert">We have only a few
-                                        <br> questions to get you started...</p>
+                                    <p class="pl-sm ml-xs login-alert mb-none text-center">I was born on</p>
+                                    
+                                    <div class="p-lg pt-none pb-none">
+                                                        <input type="tel" onblur="checkdob();" class="form-control input-sm" id="dob" />
+                                                        <input type="tel" class="form-control input-sm" id="dob-dummy" />
+                                        
+                                    </div>
                                 </div>
                                 <div class="login-footer">
-                                    <!--<a href="#" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>-->
-                                    <a href="/slide1/" id="scr1" onclick="allow();" class="col button button-big button-fill button-block slideNext">Continue</a>
+                                    <a id="mem1" onclick="gonext();" class="col button button-block button-big button-fill">Continue</a>
                                     <div class="mt-lg mb-lg text-center">
-                                        <a href="already-member.html" class="link external p-sm">Already a Memeber?</a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -55,13 +58,8 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" src="jquery.inputmask.bundle.js"></script>
     <script type="text/javascript">
-    var allowstatus = 0;
+    var mobilestatus = 0;
     var dobstatus = 1;
-    var iam;
-    var interested;
-    var phone;
-    var dob;
-    var otpcode;
 
     // Wait for Cordova to load
     //
@@ -70,87 +68,84 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
+        //app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() { },function() { });
 
-
-
-        var dialog = app.dialog.create({
-            title: '',
-            text: 'Allow “Booked” to access your location while using the app? <br><br><span class="grey-text">The app will not use location services or consume battery in the background.</span>',
-            buttons: [{
-                    text: "Cancel",
-
-                },
-                {
-                    text: "Allow",
-
-                }
-            ],
-            verticalButtons: false,
-            onClick: function(dialog, index) {
-
-                allowstatus = index;
-
-            }
-        }).open();
 
     }
 
     /*
-       var calendarModal = app.calendar.create({
-            inputEl: '#dob-dummy',
-            openIn: 'customModal',
-            header: true,
-            footer: true,
-        });
+      var calendarModal = app.calendar.create({
+        inputEl: '#dob',
+        openIn: 'customModal',
+        header: true,
+        footer: true,
+      });
     */
-    $(document).on('page:init', function(e) {
-
-        var calendarModal = app.calendar.create({
-            inputEl: '#dob-dummy',
-            openIn: 'customModal',
-            header: true,
-            footer: true,
-            dateFormat: 'dd/mm/yyyy'
-        });
 
 
-        $('#dobicon').on('click', function() {
-            calendarModal.open();
-        });
-        $("#dob-dummy").on("change", function() {
-            $("#dob").val($(this).val());
-			checkdob();
 
-        });
+    var calendarModal = app.calendar.create({
+        inputEl: '#dob-dummy',
 
-    $("#phone").inputmask({"mask": "(999) 999-9999"});
-	
-	$('#dob').inputmask({"mask": "99/99/9999"});
+        openIn: 'customModal',
+        header: true,
+        footer: true,
     });
-	
-	
-    $('.open-confirm').on('click', function() {
-        app.dialog.confirm('<br>It appears the number xxxxxxxx already has an account<br><br> Would you like to log in to it now?', function() {
-            app.dialog.alert('Great!');
-        });
+
+
+    $('#dobicon').on('click', function() {
+        calendarModal.open();
     });
-    $('.location-alert').on('click', function() {
-        app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() {});
+    $("#dob-dummy").on("change", function() {
+        $("#dob").val($(this).val());
+		checkdob();
     });
-    $('.open-alert').on('click', function() {
-        app.dialog.alert('<br>Oops. That code is incorrect. <br><br> Please check the most recent text we sent you and enter the code.');
-    });
-    $('.dob-alert').on('click', function() {
-        app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
-        app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
-    });
+
 
 
 
     function saveusers() {
 
-        otpcode = $("#otpcode").val();
-	
+        if (document.getElementById('iam').value == "" || document.getElementById('iam').value == undefined) {
+            iam = "";
+        } else {
+            iam = document.getElementById("iam").value;
+        }
+
+        if (document.getElementById('interested').value == "" || document.getElementById('interested').value == undefined) {
+            interested = "";
+        } else {
+            interested = document.getElementById("interested").value;
+        }
+
+        if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+            dob = "";
+        } else {
+            //dob = document.getElementById("dob").value;
+			
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;
+        }
+
+        if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+            phone = "";
+        } else {
+            phone = document.getElementById("phone").value;
+        }
+
+        if (document.getElementById('otpcode').value == "" || document.getElementById('otpcode').value == undefined) {
+            otpcode = "";
+        } else {
+            otpcode = document.getElementById("otpcode").value;
+        }
+
+        //alert(iam + " - " + interested + " - " + dob + " - " + phone + " - " + otpcode);
+
         $.ajax({
             url: "http://18.219.77.161/api/savemember.php",
             type: "POST",
@@ -169,10 +164,8 @@
                     result = jsonobject[i].result;
                 }
 
-                if (result == "FAIL") 
-				{
-					app.dialog.alert('<br>Mobile number already registered!');
-					
+                if (result == "FAIL") {
+                    alert("Mobile number may already exists!");
                 } else {
 
                     for (i = 1; i < jsonobject.length; i++) {
@@ -204,35 +197,30 @@
     }
 
 
-    function allow() {
-        if (allowstatus == 0) {
-            location.reload();
-        }
-    }
 
     function checkdob() {
-
         var dateString = document.getElementById('dob').value;
-		
+					
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
 
-		var newdate = dateString.split("/");
+			dob = dateString;		
 		
-		dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-		dob = dateString;
 		
         var myDate = new Date(dateString);
         var today = new Date();
 
         if (dateString == null || dateString == "") {
             app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
-            dobstatus = 1;
 
+            dobstatus = 1;
             return false;
         }
 
         if (myDate > today) {
             app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
+
             dobstatus = 2;
             return false;
         }
@@ -240,17 +228,17 @@
         var age = calculateAge(myDate);
         if (age < 18) {
             app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
+
             dobstatus = 3;
             return false;
         }
 
         dobstatus = 0;
 		
-		var a = document.getElementById('scr3'); //or grab it by tagname etc
-		a.href = "/slide3/"
-
+		var a = document.getElementById('mem1'); //or grab it by tagname etc
+		a.href = "/already-member2/"
+		
         return true;
-
     }
 
     function calculateAge(birthday) { // birthday is a date
@@ -259,56 +247,31 @@
         return Math.abs(ageDate.getUTCFullYear() - 1970);
     }
 
-    function checkdobnext() {
-
-        dateString = $("#dob").val();
-
-		var newdate = dateString.split("/");
-		
-		dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-		
-		dob = dateString;
-		
-        if (dobstatus == "0") {
-            $("#scr3").attr("href", "/slide3/")
-        }
+    function allowdate() {
 
     }
-
-    function checkotp() {
-
-        phone = $("#phone").val();
-
-        $("#scr4").attr("href", "/slide4/")
-    }
-
 
     function checkmobile() {
 
-		var a = document.getElementById('scr4'); //or grab it by tagname etc
-		a.href = "/slide4/"
-		
         if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
             phone = "";
         } else {
             phone = document.getElementById("phone").value;
         }
 
-
         if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
             dob = "";
         } else {
             //dob = document.getElementById("dob").value;
-			
 			var dateString = document.getElementById('dob').value;
 			
 			var newdate = dateString.split("/");
 			
 			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
 
-			dob = dateString;
+			dob = dateString;			
+			
         }
-
 
         $.ajax({
             url: "http://18.219.77.161/api/checkuser.php",
@@ -328,31 +291,51 @@
                     result = jsonobject[i].result;
                 }
 
-                if (result == "FAIL") {
+                if (result == "PASS") 
+				{
+                    if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+                        dob = "";
+                    } else {
+                        //dob = document.getElementById("dob").value;
+						
+						var dateString = document.getElementById('dob').value;
+						
+						var newdate = dateString.split("/");
+						
+						dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
 
-                    var dialog1 = app.dialog.create({
-                        title: '',
-                        text: 'It appears the number ' + phone + ' already has an account<br><br> Would you like to log in to it now?',
-                        buttons: [{
-                                text: "Log In",
+						dob = dateString;						
+                    }
 
-                            },
-                            {
-                                text: "Cancel",
+                    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+                        phone = "";
+                    } else {
+                        phone = document.getElementById("phone").value;
+                    }
 
-                            }
-                        ],
-                        verticalButtons: false,
-                        onClick: function(dialog1, index) {
 
-                            if (index == 0) {
-                                window.location.href = "already-member.html";
-                            }
+                    app.dialog.alert('<br>We cannot find an account with the cell number ' + phone + ' and date of birth ' + dob + '<br><br>Please try again.');
 
-                        }
-                    }).open();
-                } else {
+                    mobilestatus = 1;
+                    return false;
 
+                } 
+				else 
+				{
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        i_memberid = jsonobject[i].MemberID;
+                        i_PhoneNumber = jsonobject[i].PhoneNumber;
+                        i_Gender = jsonobject[i].Gender;
+                        i_SeekingGender = jsonobject[i].SeekingGender;
+                        i_DOB = jsonobject[i].DOB;
+                    }
+
+                    window.sessionStorage.setItem("memberid", i_memberid);
+                    window.sessionStorage.setItem("PhoneNumber", i_PhoneNumber);
+                    window.sessionStorage.setItem("Gender", i_Gender);
+                    window.sessionStorage.setItem("SeekingGender", i_SeekingGender);
+                    window.sessionStorage.setItem("DOB", i_DOB);
 
                 }
 
@@ -362,17 +345,27 @@
                 alert(errorThrown);
             }
         });
+
     }
 
-    function scr2click() {
-        iam = $('#iam').val();
-        interested = $('#interested').val();
 
+    function gonext() {
+        if (dobstatus == "0" && mobilestatus == "0") {
+            $("#mem1").attr("href", "/already-member2/")
+        }
+    }
+
+    function gotodashboard() {
+        window.location = "dashboard.html";
     }
     // document.getElementById('phone').addEventListener('input', function(e) {
     //     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
     //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     // });
+    $("#phone").inputmask({"mask": "(999) 999-9999"});
+	$('#dob').inputmask({"mask": "99/99/9999"});    
+   
+
     </script>
 </body>
 
