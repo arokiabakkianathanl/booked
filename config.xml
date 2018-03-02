@@ -19,13 +19,11 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <engine name="ios" spec="~4.5.4" />
     <plugin name="cordova-plugin-camera" spec="^4.0.2" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-
     <engine name="android" spec="~6.3.0" />
     <access origin="http://18.219.77.161/" />
     <icon src="icon.png" />
@@ -65,21 +63,24 @@
     <splash platform="android" qualifier="land-ldpi" src="res/screen/android/screen-ldpi-portrait.png" />
     <splash platform="android" qualifier="land-mdpi" src="res/screen/android/screen-mdpi-portrait.png" />
     <splash platform="android" qualifier="land-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+    <platform name="ios">
+        <edit-config file="*-Info.plist" mode="merge" overwrite="true" target="NSLocationWhenInUseUsageDescription">
+            <string>Booked app uses camera and photo library</string>
+        </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" overwrite="true" target="NSPhotoLibraryUsageDescription">
+            <string>Booked app uses camera and photo library</string>
+        </edit-config>
+        <edit-config file="*-Info.plist" mode="merge" overwrite="true" target="NSCameraUsageDescription">
+            <string>Booked app uses camera and photo library</string>
+        </edit-config>
+    </platform>
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
+    <plugin name="cordova-plugin-ios-camera-permissions" spec="^1.2.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value="To upload your profile picture, this app uses your camera and photo galleries" />
+        <variable name="MICROPHONE_USAGE_DESCRIPTION" value="To upload your profile picture, this app uses your camera and photo galleries" />
+        <variable name="PHOTOLIBRARY_ADD_USAGE_DESCRIPTION" value="To upload your profile picture, this app uses your camera and photo galleries" />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="To upload your profile picture, this app uses your camera and photo galleries" />
+    </plugin>
+    <engine name="ios" spec="~4.5.4" />
     <engine name="browser" spec="~5.0.3" />
-	
-
-<platform name="ios">
-
-     <edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge" overwrite="true">
-          <string>Booked app uses camera and photo library</string>
-     </edit-config>
-     <edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge" overwrite="true" >
-          <string>Booked app uses camera and photo library</string>
-     </edit-config>
-     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge" overwrite="true">
-          <string>Booked app uses camera and photo library</string>
-     </edit-config>
-</platform>	
-	
-	
 </widget>

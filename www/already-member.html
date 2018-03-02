@@ -79,6 +79,14 @@
     var mobilestatus = 0;
     var dobstatus = 1;
 
+	var	i_id;
+	var	i_memberid;
+	var i_iam;
+	var	i_interested;
+	var	i_phone;
+	var	i_dob;
+	var	i_activationcode;	
+	
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -86,9 +94,8 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
-        //app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() { },function() { });
 
-
+		
     }
 
     /*
@@ -200,7 +207,6 @@
                     window.sessionStorage.setItem("phone", i_phone);
                     window.sessionStorage.setItem("dob", i_dob);
 
-
                     window.location.href = "empty-dashboard.html";
 
                 }
@@ -214,8 +220,7 @@
 
     }
 
-
-
+	
     function checkdob() {
         var dateString = document.getElementById('dob').value;
 					
@@ -342,18 +347,20 @@
 				{
 
                     for (i = 1; i < jsonobject.length; i++) {
+						
                         i_memberid = jsonobject[i].MemberID;
-                        i_PhoneNumber = jsonobject[i].PhoneNumber;
-                        i_Gender = jsonobject[i].Gender;
-                        i_SeekingGender = jsonobject[i].SeekingGender;
-                        i_DOB = jsonobject[i].DOB;
+                        i_iam = jsonobject[i].Gender;
+                        i_interested = jsonobject[i].SeekingGender;
+                        i_phone = jsonobject[i].PhoneNumber;
+                        i_dob = jsonobject[i].DOB;						
+						
                     }
-
+					
                     window.sessionStorage.setItem("memberid", i_memberid);
-                    window.sessionStorage.setItem("PhoneNumber", i_PhoneNumber);
-                    window.sessionStorage.setItem("Gender", i_Gender);
-                    window.sessionStorage.setItem("SeekingGender", i_SeekingGender);
-                    window.sessionStorage.setItem("DOB", i_DOB);
+                    window.sessionStorage.setItem("iam", i_iam);
+                    window.sessionStorage.setItem("interested", i_interested);
+                    window.sessionStorage.setItem("phone", i_phone);
+                    window.sessionStorage.setItem("dob", i_dob);
 
                 }
 
@@ -374,12 +381,43 @@
     }
 
     function gotodashboard() {
+	
+		var db = window.openDatabase("bookedapp", "1.0", "Bookedapp Database", 200000);
+		db.transaction(storecredentials, errorCB, storesuccess);
+						
         window.location = "dashboard.html";
     }
-    // document.getElementById('phone').addEventListener('input', function(e) {
-    //     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-    //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-    // });
+
+
+    // Populate the database
+    //
+    function storecredentials(tx) 
+	{
+		
+	tstr = 'INSERT INTO bookedappdatabase (memberid, iam, interested, dob, phone) values (' +  i_memberid + ',\"' + i_iam + '\",\"' + i_interested + '\",\"' + i_dob + '\",\"' + i_phone + '\")';  
+	
+	//tstr = 'INSERT INTO bookedappdatabase (id, memberid, iam, interested, dob, phone) values (1,1,"aaa","bbb","ccc","ddd")';  
+	
+		
+        tx.executeSql(tstr);
+	}		
+	
+	function storesuccess()
+	{
+		console.log("Record added in local database");
+	}
+			
+    // Transaction error callback
+    //
+    function errorCB(err) 
+	{
+        console.log("Error processing SQL: "+err.code);
+    }	
+	
+	
+	
+	
+	
     $("#phone").inputmask({"mask": "(999) 999-9999"});
 	$('#dob').inputmask({"mask": "99/99/9999"});    
    

@@ -43,7 +43,7 @@
               <p><b>Edit: About Me</b> </p>
             </div>
             <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
-      <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
+			<div class="list inline-labels no-hairlines-md mt-sm mb-xs">
               <ul>
                 <li class="item-content item-input">
                   <div class="item-inner">
@@ -57,7 +57,7 @@
               </ul>
             </div>
             <div class="list no-hairlines-md mt-xs">
-      
+			
               <ul>
                 <li class="item-content item-input mt-xs">
                   <div class="item-inner">
@@ -93,49 +93,49 @@
                 </li>
               </ul>
             </div>
-      </div>
-      <div class="block mt-xs mb-xs white-bg">
+			</div>
+			<div class="block mt-xs mb-xs white-bg">
               <p><b>Edit: My Photos</b> </p>
             </div>
             <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
-      <div class="block mt-sm mb-sm">
+			<div class="block mt-sm mb-sm">
               <div class="row">
                 <div class="col-33">
                   <label class="uploaded-image">
                     <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime1" type="radio" name="photo" value="1" checked>
-                    Set as Primary</label>          
+                    <input id="prime" type="radio" name="photo" value="1" checked>
+                    Set as Primary				  
                 </div>
                 <div class="col-33">
                   <label class="uploaded-image">
                     <img id="image2" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime2" type="radio" name="photo" value="2" >
-                    Set as Primary</label>          
+                    <input id="prime" type="radio" name="photo" value="2">
+                    Set as Primary				  
                 </div>
                 <div class="col-33">
                   <label class="uploaded-image">
                     <img id="image3" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime3" type="radio" name="photo" value="3">
-                    Set as Primary</label>      
+                    <input id="prime" type="radio" name="photo" value="3">
+                    Set as Primary				  
                 </div>
               </div>
             </div>
           
           </div>
-      <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>  
-      
-      <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>  
-    
-      <br>
-      
-      </div>
-      
+		  <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>  
+		  
+		  <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>  
+	  
+		  <br>
+		  
+		  </div>
+		  
 
         </div>
         <div class="toolbar tabbar-labels">
@@ -159,36 +159,31 @@
    });
     
 
-  function finddates()
-  {
-    window.location.href = "empty-dashboard.html";
-  }
-  
-  function chat()
-  {
-    window.location.href = "rsvp.html";
-  }
+	function finddates()
+	{
+		window.location.href = "empty-dashboard.html";
+	}
+	
+	function chat()
+	{
+		window.location.href = "rsvp.html";
+	}
 
-  function goedit()
-  {
-    window.location.href = "edit-profile.html";
-  }
-    
-  function gosettings()
-  {
-    window.location.href = "settings.html";
-  }
-    
-  
-  function logout()
-  {
-    window.location.href = "logout.html";
-  }
-
-
-  $("#prime1").on('click', function(){
-	alert("hi");
-  })
+	function goedit()
+	{
+		window.location.href = "edit-profile.html";
+	}
+		
+	function gosettings()
+	{
+		window.location.href = "settings.html";
+	}
+  	
+	
+	function logout()
+	{
+		window.location.href = "logout.html";
+	}
 	
   </script>
   
@@ -197,29 +192,29 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript">
     var allowstatus = 0;
-  
+	
     var firstname;
     var occupation;
     var area;
     var headline;
-  var prime;
-  var memberid;
+	var prime;
+	var memberid;
 
-  var i_memberid;
+	var i_memberid;
     var i_PhoneNumber;
     var i_Gender;
     var i_SeekingGender;
-  var i_DOB;  
-  
-  var currentImageId;
-  var currentImageURL;
-  
-  var currentfile='empty.jpg';
-  var currentfolder;
-  
-  var pictureSource;   // picture source
-  var destinationType; // sets the format of returned value 
-    
+	var i_DOB;	
+	
+	var currentImageId;
+	var currentImageURL;
+	
+	var currentfile='empty.jpg';
+	var currentfolder;
+	
+	var pictureSource;   // picture source
+	var destinationType; // sets the format of returned value 
+		
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -229,33 +224,33 @@
         console.log("On Device Ready is Called...................");
 
         pictureSource=navigator.camera.PictureSourceType;
-        destinationType=Camera.DestinationType.NATIVE_URI;  
+        destinationType=Camera.DestinationType.NATIVE_URI;	
 
-    
+		
         i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
         i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
         i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
         i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
         i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
 
-    loadprofile();
+		loadprofile();
     }
 
-  function saveprofile()
-  {
-      
+	function saveprofile()
+	{
+			
         firstname = $("#firstname").val();
-    occupation = $("#occupation").val();
-    area = $("#area").val();
-    headline = $("#headline").val();
-    image1 = document.getElementById("image1");
-    image2 = document.getElementById("image2");
-    image3 = document.getElementById("image3");
-    prime = document.getElementById("prime1").value;
-    
+		occupation = $("#occupation").val();
+		area = $("#area").val();
+		headline = $("#headline").val();
+		image1 = document.getElementById("image1");
+		image2 = document.getElementById("image2");
+		image3 = document.getElementById("image3");
+		prime = document.getElementById("prime").value;
+		
 
-    //alert(firstname +  " - "  + occupation +  " - "  + area +  " - "  + headline +  " - "  + memberid);
-    
+		//alert(firstname +  " - "  + occupation +  " - "  + area +  " - "  + headline +  " - "  + memberid);
+		
         $.ajax({
             url: "http://18.219.77.161/api/saveprofile.php",
             type: "POST",
@@ -266,7 +261,7 @@
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-        
+				
                 var result;
 
                 for (i = 1; i < jsonobject.length; i++) {
@@ -274,15 +269,15 @@
                 }
 
                 if (result == "PASS") 
-        {
-          //app.dialog.alert('<br>Profile has been updated!');
-          window.location.href = "myprofile.html";
+				{
+					//app.dialog.alert('<br>Profile has been updated!');
+					window.location.href = "myprofile.html";
                 } 
-        else 
-        {
-          //app.dialog.alert('<br>Profile not updated!');
-          window.location.href = "myprofile.html";
-        }
+				else 
+				{
+					//app.dialog.alert('<br>Profile not updated!');
+					window.location.href = "myprofile.html";
+				}
 
 
             },
@@ -292,13 +287,13 @@
             }
         });
 
-    
-    
-  }
+		
+		
+	}
 
 
-  function loadprofile()
-  { 
+	function loadprofile()
+	{	
         $.ajax({
             url: "http://18.219.77.161/api/loadprofile.php",
             type: "POST",
@@ -309,7 +304,7 @@
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-        
+				
                 var result;
 
                 for (i = 1; i < jsonobject.length; i++) {
@@ -317,12 +312,12 @@
                 }
 
                 if (result == "FAIL") 
-        {
-          
-          
+				{
+					
+					
                 } 
-        else 
-        {
+				else 
+				{
 
                     for (i = 1; i < jsonobject.length; i++) {
                         p_id = jsonobject[i].id;
@@ -330,39 +325,21 @@
                         p_Name = jsonobject[i].Name;
                         p_Neighborhood = jsonobject[i].Neighborhood;
                         p_Occupation = jsonobject[i].Occupation;
-                        p_Headline = jsonobject[i].Headline;            
-                        p_DateCreated = jsonobject[i].DateCreated;            
-                        p_DateUpdated = jsonobject[i].DateUpdated;    
+                        p_Headline = jsonobject[i].Headline;						
+                        p_DateCreated = jsonobject[i].DateCreated;						
+                        p_DateUpdated = jsonobject[i].DateUpdated;		
 
 
-            document.getElementById('firstname').value = p_Name;  
-            document.getElementById('occupation').value = p_Occupation; 
-            document.getElementById('area').value = p_Neighborhood; 
-            document.getElementById('headline').value = p_Headline; 
-			
-		var abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
-			if (abc)
-			{
-			document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg";
-			}
-
-		abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
-			if (abc)
-			{			
-			document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg";
-			}
-			
-		abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
-			if (abc)
-			{				
-			document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg";
-			}
-			
+						document.getElementById('firstname').value = p_Name;	
+						document.getElementById('occupation').value = p_Occupation;	
+						document.getElementById('area').value = p_Neighborhood;	
+						document.getElementById('headline').value = p_Headline;	
+					
                     }
 
-            
-            
-        }
+						
+						
+				}
 
 
             },
@@ -372,55 +349,55 @@
             }
         });
 
-  }
-  
-  function loadimage(img)
-  {
-    // Vertical Buttons
-    
-    currentImageId = img;
-    
-      app.dialog.create({
-      title: 'Image Selection',
-      text: '',
-      buttons: [
-        {
-        text: 'Capture From Camera',
-        },
-        {
-        text: 'From Photo Library',
-        },
-      ],
-      verticalButtons: true,
+	}
+	
+	function loadimage(img)
+	{
+		// Vertical Buttons
+		
+		currentImageId = img;
+		
+		  app.dialog.create({
+			title: 'Image Selection',
+			text: '',
+			buttons: [
+			  {
+				text: 'Capture From Camera',
+			  },
+			  {
+				text: 'From Photo Library',
+			  },
+			],
+			verticalButtons: true,
             onClick: function(dialog, index) {
                 
-        if (index == 0)
-        {
-          capturePhoto();
-        }     
+				if (index == 0)
+				{
+					capturePhoto();
+				}			
                 else if (index == 1)
-        {
-          getPhotoFromLibrary();
-        }
+				{
+					getPhotoFromLibrary();
+				}
 
 
             }
-      }).open();
+		  }).open();
 
-  }
+	}
 
-  
-  function capturePhoto()
-  {
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
-  }
-  
-  function getPhotoFromLibrary()
-  {
-    getPhoto(pictureSource.PHOTOLIBRARY);
+	
+	function capturePhoto()
+	{
+		navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
+	}
+	
+	function getPhotoFromLibrary()
+	{
+		getPhoto(pictureSource.PHOTOLIBRARY);
     }
 
-  
+	
     function getPhoto(source) {
       // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
@@ -429,76 +406,49 @@
     }
 
     function onPhotoURISuccess(imageURI) {
-  
-    currentImageURL = imageURI;
-    //alert(currentImageURL);
-    
-    var largeImage = document.getElementById(currentImageId);
-
-    largeImage.style.display = 'block';
-
-    largeImage.src = imageURI;    
-
-    uploadPhoto(imageURI);
 	
-		if (currentImageId == "image1")
-		{
-		  i_fileName = i_memberid + "_PhotoSeq_1_color.jpg";
-		  i_seq = 1;
-		  i_bw="NO";
-		}
-		else if (currentImageId == "image2")
-		{
-		  i_fileName = i_memberid + "_PhotoSeq_2_color.jpg";
-		  i_seq = 2;
-		  i_bw="NO";
-		}
-		else if (currentImageId == "image3")
-		{
-		  i_fileName = i_memberid + "_PhotoSeq_3_color.jpg";
-		  i_seq = 3;
-		  i_bw="NO";
-		}
-		else
-		{
-		  i_fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-		  i_seq = 4;
-		  i_bw="NO";
-		}
+		currentImageURL = imageURI;
+		//alert(currentImageURL);
 		
-	updateRecord(i_memberid, i_fileName, i_seq, i_bw);
+		var largeImage = document.getElementById(currentImageId);
+
+		largeImage.style.display = 'block';
+
+		largeImage.src = imageURI;		
+
+		uploadPhoto(imageURI);
     }
-  
+	
 
     function onFail(message) {
       alert('Failed because: ' + message);
     }
 
-  
+	
 
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
         options.fileKey = "file";
         //options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-    
-    if (currentImageId == "image1")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_1_color";
+		
+		if (currentImageId == "image1")
+		{
+			options.fileName = "101_PhotoSeq_1_color";
         }
-    else if (currentImageId == "image2")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_2_color";
+		else if (currentImageId == "image2")
+		{
+			options.fileName = "101_PhotoSeq_2_color";
         }
-    else if (currentImageId == "image3")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_3_color";
+		else if (currentImageId == "image3")
+		{
+			options.fileName = "101_PhotoSeq_3_color";
         }
-    else
-    {
-      options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+		else
+		{
+			options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
         }
-    
-    options.mimeType = "image/jpeg";
+		
+		options.mimeType = "image/jpeg";
         console.log(options.fileName);
         var params = new Object();
         params.value1 = "test";
@@ -514,52 +464,6 @@
             console.log(JSON.stringify(error));
         }, options);
     }
-	
-	function updateRecord(i_memberid, i_fileName, i_seq, i_bw)
-	{
-
-        $.ajax({
-            url: "http://18.219.77.161/api/updatephoto.php",
-            type: "POST",
-            dataType: "JSON",
-            data: '{"memberid":"' + i_memberid + '","photoseq":"' + i_seq + '","isbw":"' + i_bw + '","photourl":"' + i_fileName + '"}',
-            success: function(jsonStr) {
-
-                var jsonstr = JSON.stringify(jsonStr);
-
-                var jsonobject = JSON.parse(jsonstr);
-        
-                var result;
-
-                for (i = 1; i < jsonobject.length; i++) {
-                    result = jsonobject[i].result;
-                }
-
-				console.log("Success photo update");
-
-            },
-            error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
-            }
-        });
-	
-	}
-
-
-
-	function imageExists(image_url){
-		
-		var http = new XMLHttpRequest();
-
-		http.open('HEAD', image_url, false);
-		http.send();
-
-		return http.status != 404;
-
-	}
-	
-
     </script>    
   
   
