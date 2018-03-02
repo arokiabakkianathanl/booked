@@ -105,7 +105,7 @@
                     <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime1" type="radio" name="photo" value="1" checked>
+                    <label><input id="prime1" type="radio" name="photo" value="1" onclick="updprimary(this.id);" checked>
                     Set as Primary</label>          
                 </div>
                 <div class="col-33">
@@ -113,7 +113,7 @@
                     <img id="image2" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime2" type="radio" name="photo" value="2" >
+                    <label><input id="prime2" type="radio" name="photo" value="2" onclick="updprimary(this.id);">
                     Set as Primary</label>          
                 </div>
                 <div class="col-33">
@@ -121,7 +121,7 @@
                     <img id="image3" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                     <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                   </label>
-                    <label><input id="prime3" type="radio" name="photo" value="3">
+                    <label><input id="prime3" type="radio" name="photo" value="3" onclick="updprimary(this.id);">
                     Set as Primary</label>      
                 </div>
               </div>
@@ -186,10 +186,8 @@
   }
 
 
-  $("#prime1").on('click', function(){
-	alert("hi");
-  })
-	
+
+
   </script>
   
   
@@ -559,7 +557,52 @@
 
 	}
 	
+  function updprimary(id)
+  {
+	var seqid=0;
+  
+		if (id == "prime1")
+		{
+		  seqid = 1;
+		}
+		else if (id == "prime2")
+		{
+		  seqid = 2;
+		}
+		else if (id == "prime3")
+		{
+		  seqid = 3;
+		}
 
+		//alert(id + "  -  " + i_memberid + "  -  " + seqid);
+
+		   $.ajax({
+            url: "http://18.219.77.161/api/updateprimary.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"memberid":"' + i_memberid + '","photoseq":"' + seqid  + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+        
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+				
+				console.log("Success primary update");
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+  }
+  
     </script>    
   
   
