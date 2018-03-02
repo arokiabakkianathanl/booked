@@ -731,13 +731,36 @@
 .edit-profile small {
   font-size: 12px; }
 
-.uploaded-image span {
+.img-delete {
+  position: relative;
+  top: 14px;
+  float: right;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+  left: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #999;
+  border-radius: 50%; }
+
+.uploaded-image .upload-edit {
   background: rgba(255, 255, 255, 0.75);
   font-size: 10px;
   position: absolute;
   bottom: 44px;
   padding: 3px 5px; }
-  .uploaded-image span i {
+  .uploaded-image .upload-edit i {
     font-size: 10px;
     padding-right: 5px; }
 
@@ -864,7 +887,7 @@
     line-height: 0;
     font-size: 13px; }
     .ProgressBar .percent.percent-sm {
-      top: 0px;
+      top: 20px;
       font-size: 11px; }
 
 .chat-text {
@@ -872,9 +895,10 @@
 
 .percent-triangle {
   position: relative;
-  top: 0px; }
+  top: 15px; }
   .percent-triangle i {
-    font-size: 60px !important; }
+    font-size: 60px !important;
+    line-height: 0 !important; }
   .percent-triangle > span {
     margin-left: -12px; }
 
