@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Booked</title>
+    <link rel="stylesheet" href="dist/css/framework7.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-red">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="view view-main view-init ios-edges" data-url="/">
+            <div class="page">
+                <div class="page-content">
+                    <div class="swiper-container login-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Start of Page -->
+                            <div class="swiper-slide">
+                                <div class="login-header">
+                                    <img src="img/BookedLogo2.jpg">
+                                </div>
+                                <div class="login-content">
+                                    <p class="pl-sm ml-xs login-alert mb-none text-center">I was born on</p>
+                                    
+                                    <div class="p-lg pt-none pb-none">
+                                                        <input type="tel" onblur="checkdob();" class="form-control input-sm" id="dob" />
+                                                        <input type="tel" class="form-control input-sm" id="dob-dummy" />
+                                        
+                                    </div>
+                                </div>
+                                <div class="login-footer">
+                                    <a id="mem1" onclick="gonext();" class="col button button-block button-big button-fill">Continue</a>
+                                    <div class="mt-lg mb-lg text-center">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End of Page -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="dist/js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" src="jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+    var mobilestatus = 0;
+    var dobstatus = 1;
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        console.log("On Device Ready is Called...................");
+        //app.dialog.confirm('<br>Allow "Booked" to access your location while you use the app? <br><br>The app requires this to function properly.', function() { },function() { });
+
+
+    }
+
+    /*
+      var calendarModal = app.calendar.create({
+        inputEl: '#dob',
+        openIn: 'customModal',
+        header: true,
+        footer: true,
+      });
+    */
+
+
+
+    var calendarModal = app.calendar.create({
+        inputEl: '#dob-dummy',
+
+        openIn: 'customModal',
+        header: true,
+        footer: true,
+    });
+
+
+    $('#dobicon').on('click', function() {
+        calendarModal.open();
+    });
+    $("#dob-dummy").on("change", function() {
+        $("#dob").val($(this).val());
+		checkdob();
+    });
+
+
+
+
+    function saveusers() {
+
+        if (document.getElementById('iam').value == "" || document.getElementById('iam').value == undefined) {
+            iam = "";
+        } else {
+            iam = document.getElementById("iam").value;
+        }
+
+        if (document.getElementById('interested').value == "" || document.getElementById('interested').value == undefined) {
+            interested = "";
+        } else {
+            interested = document.getElementById("interested").value;
+        }
+
+        if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+            dob = "";
+        } else {
+            //dob = document.getElementById("dob").value;
+			
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;
+        }
+
+        if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+            phone = "";
+        } else {
+            phone = document.getElementById("phone").value;
+        }
+
+        if (document.getElementById('otpcode').value == "" || document.getElementById('otpcode').value == undefined) {
+            otpcode = "";
+        } else {
+            otpcode = document.getElementById("otpcode").value;
+        }
+
+        //alert(iam + " - " + interested + " - " + dob + " - " + phone + " - " + otpcode);
+
+        $.ajax({
+            url: "http://18.219.77.161/api/savemember.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"iam":"' + iam + '","interested":"' + interested + '","dob":"' + dob + '","phone":"' + phone + '","otpcode":"' + otpcode + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "FAIL") {
+                    alert("Mobile number may already exists!");
+                } else {
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        i_memberid = jsonobject[i].MemberID;
+                        i_iam = jsonobject[i].Gender;
+                        i_interested = jsonobject[i].SeekingGender;
+                        i_phone = jsonobject[i].PhoneNumber;
+                        i_dob = jsonobject[i].DOB;
+                    }
+
+                    window.sessionStorage.setItem("memberid", i_memberid);
+                    window.sessionStorage.setItem("iam", i_iam);
+                    window.sessionStorage.setItem("interested", i_interested);
+                    window.sessionStorage.setItem("phone", i_phone);
+                    window.sessionStorage.setItem("dob", i_dob);
+
+
+                    window.location.href = "empty-dashboard.html";
+
+                }
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+
+    }
+
+
+
+    function checkdob() {
+        var dateString = document.getElementById('dob').value;
+					
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;		
+		
+		
+        var myDate = new Date(dateString);
+        var today = new Date();
+
+        if (dateString == null || dateString == "") {
+            app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
+
+            dobstatus = 1;
+            return false;
+        }
+
+        if (myDate > today) {
+            app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
+
+            dobstatus = 2;
+            return false;
+        }
+
+        var age = calculateAge(myDate);
+        if (age < 18) {
+            app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
+
+            dobstatus = 3;
+            return false;
+        }
+
+        dobstatus = 0;
+		
+		var a = document.getElementById('mem1'); //or grab it by tagname etc
+		a.href = "/already-member2/"
+		
+        return true;
+    }
+
+    function calculateAge(birthday) { // birthday is a date
+        var ageDifMs = Date.now() - birthday.getTime();
+        var ageDate = new Date(ageDifMs); // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
+
+    function allowdate() {
+
+    }
+
+    function checkmobile() {
+
+        if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+            phone = "";
+        } else {
+            phone = document.getElementById("phone").value;
+        }
+
+        if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+            dob = "";
+        } else {
+            //dob = document.getElementById("dob").value;
+			var dateString = document.getElementById('dob').value;
+			
+			var newdate = dateString.split("/");
+			
+			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+			dob = dateString;			
+			
+        }
+
+        $.ajax({
+            url: "http://18.219.77.161/api/checkuser.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"phone":"' + phone + '","dob":"' + dob + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "PASS") 
+				{
+                    if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
+                        dob = "";
+                    } else {
+                        //dob = document.getElementById("dob").value;
+						
+						var dateString = document.getElementById('dob').value;
+						
+						var newdate = dateString.split("/");
+						
+						dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
+
+						dob = dateString;						
+                    }
+
+                    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+                        phone = "";
+                    } else {
+                        phone = document.getElementById("phone").value;
+                    }
+
+
+                    app.dialog.alert('<br>We cannot find an account with the cell number ' + phone + ' and date of birth ' + dob + '<br><br>Please try again.');
+
+                    mobilestatus = 1;
+                    return false;
+
+                } 
+				else 
+				{
+
+                    for (i = 1; i < jsonobject.length; i++) {
+                        i_memberid = jsonobject[i].MemberID;
+                        i_PhoneNumber = jsonobject[i].PhoneNumber;
+                        i_Gender = jsonobject[i].Gender;
+                        i_SeekingGender = jsonobject[i].SeekingGender;
+                        i_DOB = jsonobject[i].DOB;
+                    }
+
+                    window.sessionStorage.setItem("memberid", i_memberid);
+                    window.sessionStorage.setItem("PhoneNumber", i_PhoneNumber);
+                    window.sessionStorage.setItem("Gender", i_Gender);
+                    window.sessionStorage.setItem("SeekingGender", i_SeekingGender);
+                    window.sessionStorage.setItem("DOB", i_DOB);
+
+                }
+
+            },
+            error: function(requestObject, error, errorThrown) {
+                alert(error);
+                alert(errorThrown);
+            }
+        });
+
+    }
+
+
+    function gonext() {
+        if (dobstatus == "0" && mobilestatus == "0") {
+            $("#mem1").attr("href", "/already-member2/")
+        }
+    }
+
+    function gotodashboard() {
+        window.location = "dashboard.html";
+    }
+    // document.getElementById('phone').addEventListener('input', function(e) {
+    //     var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    //     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    // });
+    $("#phone").inputmask({"mask": "(999) 999-9999"});
+	$('#dob').inputmask({"mask": "99/99/9999"});    
+   
+
+    </script>
+</body>
+
+</html>
