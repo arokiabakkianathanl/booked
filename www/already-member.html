@@ -34,11 +34,12 @@
                   </p>
                   <div class="p-lg pt-none pb-none ">
                     <p class="pl-sm ml-xs text-center">My Cell Phone Number is:</p>
-                    <input type="tel" placeholder="" class="form-control f-20" id="phone" onblur="checkmobile();">
+                    <!--<input type="tel" placeholder="" class="form-control f-20" id="phone" onblur="checkmobile();">-->
+                    <input type="tel" placeholder="" class="form-control f-20" id="phone" onblur="checkhref();">
                   </div>
                 </div>
                 <div class="login-footer">
-                  <a id="mem1" onclick="gonext();" class="col button button-block button-big button-fill">Continue</a>
+                  <a id="mem1" onclick="checkmobile();" class="col button button-block button-big button-fill">Continue</a>
                   <div class="mt-lg mb-lg text-center">
                     <a href="index.html" class="link external p-sm">Cannot find your account?</a>
                   </div>
@@ -110,99 +111,6 @@
 
 
 
-
-  function saveusers() {
-
-    if (document.getElementById('iam').value == "" || document.getElementById('iam').value == undefined) {
-      iam = "";
-    } else {
-      iam = document.getElementById("iam").value;
-    }
-
-    if (document.getElementById('interested').value == "" || document.getElementById('interested').value == undefined) {
-      interested = "";
-    } else {
-      interested = document.getElementById("interested").value;
-    }
-
-    if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
-      dob = "";
-    } else {
-      //dob = document.getElementById("dob").value;
-
-      var dateString = document.getElementById('dob').value;
-
-      var newdate = dateString.split("/");
-
-      dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-      dob = dateString;
-    }
-
-    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
-      phone = "";
-    } else {
-      phone = document.getElementById("phone").value;
-    }
-
-    if (document.getElementById('otpcode').value == "" || document.getElementById('otpcode').value == undefined) {
-      otpcode = "";
-    } else {
-      otpcode = document.getElementById("otpcode").value;
-    }
-
-    //alert(iam + " - " + interested + " - " + dob + " - " + phone + " - " + otpcode);
-
-    $.ajax({
-      url: "http://18.219.77.161/api/savemember.php",
-      type: "POST",
-      dataType: "JSON",
-      data: '{"iam":"' + iam + '","interested":"' + interested + '","dob":"' + dob + '","phone":"' + phone + '","otpcode":"' + otpcode + '"}',
-      success: function(jsonStr) {
-
-        var jsonstr = JSON.stringify(jsonStr);
-
-        var jsonobject = JSON.parse(jsonstr);
-
-
-        var result;
-
-        for (i = 1; i < jsonobject.length; i++) {
-          result = jsonobject[i].result;
-        }
-
-        if (result == "FAIL") {
-          alert("Mobile number may already exists!");
-        } else {
-
-          for (i = 1; i < jsonobject.length; i++) {
-            i_memberid = jsonobject[i].MemberID;
-            i_iam = jsonobject[i].Gender;
-            i_interested = jsonobject[i].SeekingGender;
-            i_phone = jsonobject[i].PhoneNumber;
-            i_dob = jsonobject[i].DOB;
-          }
-
-          window.sessionStorage.setItem("memberid", i_memberid);
-          window.sessionStorage.setItem("iam", i_iam);
-          window.sessionStorage.setItem("interested", i_interested);
-          window.sessionStorage.setItem("phone", i_phone);
-          window.sessionStorage.setItem("dob", i_dob);
-
-          window.location.href = "empty-dashboard.html";
-
-        }
-
-      },
-      error: function(requestObject, error, errorThrown) {
-        alert(error);
-        alert(errorThrown);
-      }
-    });
-
-  }
-
-
   function checkdob() {
     var dateString = document.getElementById('dob').value;
 
@@ -264,32 +172,18 @@
       phone = document.getElementById("phone").value;
     }
 
-    if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
-      dob = "";
-    } else {
-      //dob = document.getElementById("dob").value;
-      var dateString = document.getElementById('dob').value;
-
-      var newdate = dateString.split("/");
-
-      dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-      dob = dateString;
-
-    }
-
     $.ajax({
       url: "http://18.219.77.161/api/checkuser.php",
       type: "POST",
       dataType: "JSON",
-      data: '{"phone":"' + phone + '","dob":"' + dob + '"}',
+	  async: false,
+      data: '{"phone":"' + phone + '"}',
       success: function(jsonStr) {
 
         var jsonstr = JSON.stringify(jsonStr);
 
         var jsonobject = JSON.parse(jsonstr);
-
-
+		
         var result;
 
         for (i = 1; i < jsonobject.length; i++) {
@@ -297,19 +191,6 @@
         }
 
         if (result == "PASS") {
-          if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
-            dob = "";
-          } else {
-            //dob = document.getElementById("dob").value;
-
-            var dateString = document.getElementById('dob').value;
-
-            var newdate = dateString.split("/");
-
-            dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-            dob = dateString;
-          }
 
           if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
             phone = "";
@@ -318,7 +199,7 @@
           }
 
 
-          app.dialog.alert('<br>We cannot find an account with the cell number ' + phone + ' and date of birth ' + dob + '<br><br>Please try again.');
+          app.dialog.alert('<br>We cannot find an account with the cell number ' + phone + '<br><br>Please try again.');
 
           mobilestatus = 1;
           return false;
@@ -332,9 +213,9 @@
             i_interested = jsonobject[i].SeekingGender;
             i_phone = jsonobject[i].PhoneNumber;
             i_dob = jsonobject[i].DOB;
-
+			
           }
-
+          mobilestatus = 0;
           window.sessionStorage.setItem("memberid", i_memberid);
           window.sessionStorage.setItem("iam", i_iam);
           window.sessionStorage.setItem("interested", i_interested);
@@ -352,9 +233,14 @@
 
   }
 
+  function checkhref()
+  {
+    var a = document.getElementById('mem1'); //or grab it by tagname etc
+    a.href = "/already-member2/"  
+  }
 
   function gonext() {
-    if (dobstatus == "0" && mobilestatus == "0") {
+    if (mobilestatus == "0") {
       $("#mem1").attr("href", "/already-member2/")
     }
   }

@@ -10,7 +10,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 
 $phone = $data['phone'];
-$dob = $data['dob'];
+//$dob = $data['dob'];
 			
 			// Pass
 			$pass = "SELECT result FROM result where id=1";
@@ -49,7 +49,7 @@ $dob = $data['dob'];
 
 
 
-$userresult = mysqli_query($link, "SELECT `MemberID`, `PhoneNumber`, `Gender`, `SeekingGender`, `DOB`, `Accountstatus`, `PhoneSerialNumber`, `icloudAccount`, `DateCreated`, `DateUpdated` FROM `Member` WHERE `PhoneNumber`='$phone' AND `DOB`='$dob'") or die(mysql_error());
+$userresult = mysqli_query($link, "SELECT `MemberID`, `PhoneNumber`, `Gender`, `SeekingGender`, `DOB`, `Accountstatus`, `PhoneSerialNumber`, `icloudAccount`, `DateCreated`, `DateUpdated` FROM `Member` WHERE `PhoneNumber`='$phone'") or die(mysql_error());
 
 
 			$total = mysqli_num_rows($userresult);
