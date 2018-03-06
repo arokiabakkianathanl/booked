@@ -502,7 +502,7 @@
       background: #ffffffb8;
       padding: 1px 8px;
       border-radius: 5px;
-      /*border: 1px solid #ddd;*/
+      border: 1px solid #ddd;
       right: 11px; }
 
 .white-bg {
@@ -510,6 +510,9 @@
 
 .light {
   font-weight: 100; }
+
+.f-900 {
+  font-weight: 900 !important; }
 
 .img-responsive {
   max-width: 100%; }
@@ -704,7 +707,7 @@
     margin-right: 8px; }
 
 .edit-profile .item-label {
-  color: #000;
+  color: #666;
   font-size: 14px; }
 
 .edit-profile .list ul:after, .edit-profile .list ul:before {
@@ -905,6 +908,9 @@
 .f-14 {
   font-size: 14px !important; }
 
+.f-16 {
+  font-size: 16px !important; }
+
 .f-28 {
   font-size: 28px !important; }
 
@@ -944,3 +950,9 @@
 
 .grey-bg {
   background-color: #f2f2f2; }
+
+.lh-1 {
+  line-height: 1; }
+
+.lh-half {
+  line-height: 0.5; }

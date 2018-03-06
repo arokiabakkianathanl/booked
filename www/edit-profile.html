@@ -37,7 +37,7 @@
                 <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
                     <div class="block p-none">
                         <div class="block mb-xs">
-                            <p><b>Edit: About Me</b> </p>
+                            <p class="f-16 text-black"><b>Edit: About Me</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
@@ -74,7 +74,7 @@
                                         </div>
                                     </li>
                                     <li class="item-content">
-                                        <p class="m-xs"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
+                                        <p class="m-xs lh-1"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
                                     </li>
                                     <li class="item-content item-input mt-xs">
                                         <div class="item-inner">
@@ -85,13 +85,13 @@
                                         </div>
                                     </li>
                                     <li class="item-content">
-                                        <p class="m-xs"><small>Headlines are never easy!  We need a few words that sum you up.  Feel free to use quotes as well.</small></p>
+                                        <p class="m-xs lh-1"><small>We need a few words that sum you up.  If you can't think of anything, simply use one of your favorite quotes such as "Dance like nobody's watching" - Mark Twain</small></p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="block mt-xs mb-xs white-bg">
-                            <p><b>Edit: My Photos</b> </p>
+                            <p class="f-16 text-black"><b>Edit: My Photos</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="block mt-sm mb-sm">
@@ -165,7 +165,7 @@
     }
 
     function gosettings() {
-        window.location.href = "settings.html";
+        window.location.href = "dashboard.html";
     }
 
 
@@ -216,7 +216,7 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
-        app.preloader.show();
+        // app.preloader.show();
 
         pictureSource = navigator.camera.PictureSourceType;
         destinationType = Camera.DestinationType.NATIVE_URI;
