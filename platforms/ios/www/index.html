@@ -57,25 +57,42 @@
     <script type="text/javascript">
     var allowstatus = 0;
     var dobstatus = 1;
+	var phonestatus = 1;
     var iam;
     var interested;
     var phone;
     var dob;
     var otpcode;
 
+	var	i_id;
+	var	i_memberid;
+	var i_iam;
+	var	i_interested;
+	var	i_phone;
+	var	i_dob;
+	var	i_activationcode;
+				
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
     // Cordova is ready
     //
     function onDeviceReady() {
+	
+	
+        var db = window.openDatabase("bookedapp", "1.0", "Bookedapp Database", 200000);
+        db.transaction(populateDB, errorCB, successCB);
+	
         console.log("On Device Ready is Called...................");
 
+		setTimeout(function(){ 
+		   console.log("Waiting for database checkup...................");
+		}, 3000);  
 
 
         var dialog = app.dialog.create({
             title: '',
-            text: 'Allow "Booked" to access your location while you use the app? <br><br><span class="grey-text">The app will use location services only while you are interacting with the app.  It will not use location services or consume battery in the background.</span>',
+            text: 'Allow “Booked” to access your location while using the app?<br><br><span class="grey-text">The app will not use location services or consume battery in the background.</span>',
             buttons: [{
                     text: "Cancel",
 
@@ -95,14 +112,75 @@
 
     }
 
-    /*
-       var calendarModal = app.calendar.create({
-            inputEl: '#dob-dummy',
-            openIn: 'customModal',
-            header: true,
-            footer: true,
-        });
-    */
+
+    // Populate the database
+    //
+    function populateDB(tx) {
+	console.log("In Populate...................");
+
+        tx.executeSql('CREATE TABLE IF NOT EXISTS bookedappdatabase (id INTEGER PRIMARY KEY AUTOINCREMENT, memberid, name, iam, interested, dob, phone, activationcode)');
+	}	
+	
+	// Transaction success callback
+    //
+    function successCB() {
+
+        var db = window.openDatabase("bookedapp", "1.0", "Bookedapp Database", 200000);
+        db.transaction(queryDB, errorCB);
+		//setTimeout(function(){db.transaction(queryDB, errorCB)}, 2000);
+    }
+	
+    // Query the database
+    //
+    function queryDB(tx) {
+        tx.executeSql('SELECT * FROM bookedappdatabase', [], querySuccess, errorCB);
+    }
+
+    // Query the success callback
+    //
+    function querySuccess(tx, results) {
+	console.log("In Query Success...");
+
+            var len = results.rows.length;
+			
+			var flag = 0;
+            for (var i = 0; i < len; i++) 
+			{
+				i_id = results.rows.item(i).id;
+				i_memberid = results.rows.item(i).memberid;
+				i_iam = results.rows.item(i).iam;
+				i_interested = results.rows.item(i).interested;
+				i_phone = results.rows.item(i).name;
+				i_dob = results.rows.item(i).dob;
+				i_activationcode = results.rows.item(i).activationcode;
+				
+				console.log(i_memberid);
+				
+                window.sessionStorage.setItem("memberid", i_memberid);
+                window.sessionStorage.setItem("iam", i_iam);
+                window.sessionStorage.setItem("interested", i_interested);
+                window.sessionStorage.setItem("phone", i_phone);
+                window.sessionStorage.setItem("dob", i_dob);					
+			
+				flag=1;
+            }
+
+			if (flag == 1)
+			{
+				window.location.href = "dashboard.html";
+			}
+			
+	}	
+	
+    // Transaction error callback
+    //
+    function errorCB(err) 
+	{
+        console.log("Error processing SQL: "+err.code);
+    }	
+	
+	
+	
     $(document).on('page:init', function(e) {
 
         var calendarModal = app.calendar.create({
@@ -125,7 +203,13 @@
 
     $("#phone").inputmask({"mask": "(999) 999-9999"});
 	
-	$('#dob').inputmask({"mask": "99/99/9999"});
+//	$('#dob').inputmask({"mask": "99/99/9999"});
+	
+	$('#dob').inputmask("99/99/9999",{
+		        placeholder: "MM/DD/YYYY",
+
+	});
+	
     });
 	
 	
@@ -189,7 +273,9 @@
                     window.sessionStorage.setItem("phone", i_phone);
                     window.sessionStorage.setItem("dob", i_dob);
 
-
+					var db = window.openDatabase("bookedapp", "1.0", "Bookedapp Database", 200000);
+					db.transaction(storecredentials, errorCB, storesuccess);
+					
                     window.location.href = "empty-dashboard.html";
 
                 }
@@ -203,7 +289,24 @@
 
     }
 
-
+    // Populate the database
+    //
+    function storecredentials(tx) 
+	{
+		
+	tstr = 'INSERT INTO bookedappdatabase (memberid, iam, interested, dob, phone) values (' +  i_memberid + ',\"' + i_iam + '\",\"' + i_interested + '\",\"' + i_dob + '\",\"' + i_phone + '\")';  
+	
+	//tstr = 'INSERT INTO bookedappdatabase (id, memberid, iam, interested, dob, phone) values (1,1,"aaa","bbb","ccc","ddd")';  
+	
+		
+        tx.executeSql(tstr);
+	}		
+	
+	function storesuccess()
+	{
+		console.log("Record added in local database");
+	}
+			
     function allow() {
         if (allowstatus == 0) {
             location.reload();
@@ -214,6 +317,7 @@
 
         var dateString = document.getElementById('dob').value;
 		
+		var dt = dateString;
 
 		var newdate = dateString.split("/");
 		
@@ -224,32 +328,31 @@
         var myDate = new Date(dateString);
         var today = new Date();
 
-        if (dateString == null || dateString == "") {
+		var age = calculateAge(myDate);
+		 
+        if (dt == null || dt == "") {
             app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
             dobstatus = 1;
 
             return false;
         }
-
-        if (myDate > today) {
+        else if (myDate > today) {
             app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
             dobstatus = 2;
             return false;
-        }
-
-        var age = calculateAge(myDate);
-        if (age < 18) {
+        }   
+        else if (age < 18) {
             app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
             dobstatus = 3;
             return false;
         }
-
-        dobstatus = 0;
-		
-		var a = document.getElementById('scr3'); //or grab it by tagname etc
-		a.href = "/slide3/"
-
-        return true;
+		else
+		{
+			dobstatus = 0;
+			var a = document.getElementById('scr3'); //or grab it by tagname etc
+			a.href = "/slide3/";	
+			return true;
+		}
 
     }
 
@@ -279,34 +382,21 @@
 
         phone = $("#phone").val();
 
-        $("#scr4").attr("href", "/slide4/")
-    }
+		if (phonestatus == 0)
+		{
+			$("#scr4").attr("href", "/slide4/");
+		}
+	}
 
 
     function checkmobile() {
 
-		var a = document.getElementById('scr4'); //or grab it by tagname etc
-		a.href = "/slide4/"
-		
         if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
             phone = "";
+			phonestatus = 1;
+			return false;
         } else {
             phone = document.getElementById("phone").value;
-        }
-
-
-        if (document.getElementById('dob').value == "" || document.getElementById('dob').value == undefined) {
-            dob = "";
-        } else {
-            //dob = document.getElementById("dob").value;
-			
-			var dateString = document.getElementById('dob').value;
-			
-			var newdate = dateString.split("/");
-			
-			dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-			dob = dateString;
         }
 
 
@@ -314,13 +404,13 @@
             url: "http://18.219.77.161/api/checkuser.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"phone":"' + phone + '","dob":"' + dob + '"}',
+			async : false,
+            data: '{"phone":"' + phone + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-
 
                 var result;
 
@@ -328,8 +418,17 @@
                     result = jsonobject[i].result;
                 }
 
-                if (result == "FAIL") {
+                if (result == "PASS")   // pass meens fails
+				{
 
+					phonestatus = 0;
+
+					var a = document.getElementById('scr4'); //or grab it by tagname etc
+					a.href = "/slide4/";
+					
+                } 
+				else
+				{
                     var dialog1 = app.dialog.create({
                         title: '',
                         text: 'It appears the number ' + phone + ' already has an account<br><br> Would you like to log in to it now?',
@@ -350,10 +449,7 @@
                             }
 
                         }
-                    }).open();
-                } else {
-
-
+                    }).open();			
                 }
 
             },

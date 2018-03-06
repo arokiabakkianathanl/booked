@@ -35,7 +35,7 @@
                   <div class="p-lg pt-none pb-none ">
                     <p class="pl-sm ml-xs text-center">My Cell Phone Number is:</p>
                     <!--<input type="tel" placeholder="" class="form-control f-20" id="phone" onblur="checkmobile();">-->
-                    <input type="tel" placeholder="" class="form-control f-20" id="phone" onblur="checkhref();">
+                    <input type="tel" placeholder="" class="form-control f-20" id="phone">
                   </div>
                 </div>
                 <div class="login-footer">
@@ -111,49 +111,6 @@
 
 
 
-  function checkdob() {
-    var dateString = document.getElementById('dob').value;
-
-    var newdate = dateString.split("/");
-
-    dateString = newdate[2] + "-" + newdate[0] + "-" + newdate[1];
-
-    dob = dateString;
-
-
-    var myDate = new Date(dateString);
-    var today = new Date();
-
-    if (dateString == null || dateString == "") {
-      app.dialog.alert('<br>Date of Birth can not be empty!<br><br>Please re-enter it.');
-
-      dobstatus = 1;
-      return false;
-    }
-
-    if (myDate > today) {
-      app.dialog.alert('<br>Birthdates may not be in the future.  <br><br>Please re-enter it.');
-
-      dobstatus = 2;
-      return false;
-    }
-
-    var age = calculateAge(myDate);
-    if (age < 18) {
-      app.dialog.alert('<br>Users of Booked must be at least 18 years of age.');
-
-      dobstatus = 3;
-      return false;
-    }
-
-    dobstatus = 0;
-
-    var a = document.getElementById('mem1'); //or grab it by tagname etc
-    a.href = "/already-member2/"
-
-    return true;
-  }
-
   function calculateAge(birthday) { // birthday is a date
     var ageDifMs = Date.now() - birthday.getTime();
     var ageDate = new Date(ageDifMs); // miliseconds from epoch
@@ -166,9 +123,14 @@
 
   function checkmobile() {
 
-    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) {
+    if (document.getElementById('phone').value == "" || document.getElementById('phone').value == undefined) 
+	{
       phone = "";
-    } else {
+	  mobilestatus = 1;
+	  return false;
+    } 
+	else 
+	{
       phone = document.getElementById("phone").value;
     }
 
@@ -221,7 +183,11 @@
           window.sessionStorage.setItem("interested", i_interested);
           window.sessionStorage.setItem("phone", i_phone);
           window.sessionStorage.setItem("dob", i_dob);
-
+		  
+		  var a = document.getElementById('mem1'); //or grab it by tagname etc
+		  a.href = "/already-member2/";
+		  document.getElementById('mem1').click();
+			 
         }
 
       },
@@ -233,17 +199,6 @@
 
   }
 
-  function checkhref()
-  {
-    var a = document.getElementById('mem1'); //or grab it by tagname etc
-    a.href = "/already-member2/"  
-  }
-
-  function gonext() {
-    if (mobilestatus == "0") {
-      $("#mem1").attr("href", "/already-member2/")
-    }
-  }
 
   function gotodashboard() {
 

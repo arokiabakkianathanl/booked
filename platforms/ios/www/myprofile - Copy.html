@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Booked</title>
+  <link rel="stylesheet" href="dist/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner sliding">
+            <div class="left header-section">
+              <img src="img/booked_logo.jpg" class="navbar-logo">
+              <div><b>Meet Sara (Me)...</b></div>
+            </div>
+            <div class="right my-profile-navabar" onclick="goedit();">
+              <a href="#">
+                <i class="f7-icons icon icon-image">gear_fill</i>
+              <span>Account<br>Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg">
+          <div class="block">
+            <div class="row mb-lg">
+              <div class="col-50">
+                <div class="flex-center myProfile-img">
+                  <img src="https://via.placeholder.com/250x250" class="img-respodnsive">
+                </div>
+                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+              </div>
+              <div class="col-50">
+                <div class="flex-center myProfile-img">
+                  <img src="https://via.placeholder.com/1350x350" class="img-respodnsive">
+                </div>
+                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-50">
+                <div class="flex-center myProfile-img last">
+                  <img src="https://via.placeholder.com/350x450" class="img-respodnsive">
+                </div>
+                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+              </div>
+              <div class="col-50">
+                <div class="row mb-lg">
+                  <div class="col-50 right-align"> How Genuine is she?</div>
+                  <div class="col-50">
+                    <div class="flex-center">
+                      <div id="circle1" class="ProgressBar"><strong class="percent"></strong></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-50 right-align"> Odds of booking a date with her:</div>
+                  <div class="col-50">
+                    <div class="flex-center">
+                      <div id="circle2" class="ProgressBar"><strong class="percent"></strong></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center mt-lg mb-sm f-20 text-black"> Engineering Student at Georgia Tech</p>
+            <div class="row">
+              <div class="col-50 text-center">
+                <p class="grey-text f-18 mt-sm mb-xs"> <i>  Alpharetta, GA</i></p>
+              </div>
+              <div class="col-50 text-center">
+                <p class="text-color-red f-28 mt-xs mb-xs"> <b>Age: 21</b></p>
+              </div>
+            </div>
+            <div class="pl-sm pr-sm">
+              <div class="row">
+                <div class="col-75">
+                  <p class="f-18 mt-sm mb-sm text-black">"Iowa farm girl masquerading as a Southern Intellectual"</p>
+                </div>
+                <div class="col-25">
+                  <div class="bg-color-gray text-color-black text-center pr-xs pl-xs">
+                    <i class="icon material-icons">mode_edit</i><br>Edit My<br>Profile
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="toolbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/framework7.min.js"></script>
+  <script src="js/progressbar.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="jquery-2.1.4.js"></script>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  
+  <script>
+  
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        console.log("On Device Ready is Called...................");
+
+        i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
+        i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
+        i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
+        i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
+        i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
+
+		alert("deviceready");
+    }
+  
+  
+  
+  
+  
+  function finddates() {
+    window.location.href = "empty-dashboard.html";
+  }
+
+  function chat() {
+    window.location.href = "rsvp.html";
+  }
+
+  function goedit() {
+    window.location.href = "edit-profile.html";
+  }
+
+  function gosettings() {
+    window.location.href = "dashboard.html";
+  }
+
+
+  $(".myProfile-img > img").each(function() {
+    var nwidth = $(this).width();
+    var nheight = $(this).height();
+    if (nwidth > nheight) {
+      $(this).css({ "width": "100%", "height": "auto", "opacity": "1" });
+      var absheight = ((150 - $(this).height()) / 2) + $(this).height();
+    } else if (nwidth < nheight) {
+      $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
+      var absheight = $(this).height();
+    } else if (nwidth == nheight) {
+      $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
+      var absheight = $(this).height();
+    }
+    var offimg = $(this).offset();
+    $(this).parent().next().css({ "left": +offimg.left + "px", "top": +absheight + "px", "position": "absolute" });
+
+  });
+  jQuery.noConflict();
+  jQuery(document).ready(function($) {
+    $('#circle1').circleProgress({
+      value: 0.75,
+      size: 50,
+      fill: { color: '#000000' }
+    }).on('circle-animation-progress', function(event, progress, stepValue) {
+      $(this).find('strong').html(Math.round(75 * progress) + '<i>%</i>');
+    });
+    $('#circle2').circleProgress({
+      value: 0.33,
+      size: 50,
+      fill: { color: '#000000' }
+    }).on('circle-animation-progress', function(event, progress, stepValue) {
+      $(this).find('strong').html(Math.round(33 * progress) + '<i>%</i>');
+    });
+  })
+
+  </script>
+  
+</body>
+
+</html>

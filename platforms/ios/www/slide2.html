@@ -7,7 +7,12 @@
           <div class="login-header">
             <img src="img/booked_logo.jpg">
           </div>
-          <div class="login-content">
+          <div class="login-content w-200">
+                      <p class="m-none text-center mb-lg">I was born on</p>
+                      <input type="tel"  class="form-control f-20 input-sm" id="dob" onblur="checkdob();" />
+                      <input type="tel"  class="form-control input-sm" id="dob-dummy" />
+                  <small class="pl-sm ml-xs dob-alert"><br>Your age will appear on your profile.
+                          <br><br>You cannot later change this so please enter it carefully.</small>
             <div class="list inline-labels no-hairlines-md">
               <ul>
                 <li class="item-content item-input">
@@ -16,20 +21,14 @@
                   </div>
                   <div class="item-inner">
                     <div class="item-title item-label no-width">
-                      <p class="m-none">I was born on</p>
                     </div>
                     <div class="item-input-wrap">
                       <!--<input type="text"  class="form-control input-sm" id="dob" onblur="checkdob();" placeholder="dd/mm/yyyy"/>-->
-                      <input type="tel"  class="form-control input-sm" id="dob" onblur="checkdob();" />
-                      <input type="tel"  class="form-control input-sm" id="dob-dummy" />
                     </div>
                     <div class="f7-demo-icon" id="dobicon" style="display:none;"><i class="f7-icons">calendar</i></div>
                   </div>
                 </li>
                 <li class="item-content item-input">
-                  <small class="pl-sm ml-xs dob-alert"><br>Please note you cannot later change<br>this information.
-                          <br><br>
-                        So please enter it carefully.</small>
                 </li>
               </ul>
             </div>

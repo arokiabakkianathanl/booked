@@ -7,15 +7,29 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
+    },
+    "cordova-plugin-ios-camera-permissions": {
+      "CAMERA_USAGE_DESCRIPTION": "To upload your profile picture, this app uses your camera and photo galleries",
+      "MICROPHONE_USAGE_DESCRIPTION": "To upload your profile picture, this app uses your camera and photo galleries",
+      "PHOTOLIBRARY_ADD_USAGE_DESCRIPTION": "To upload your profile picture, this app uses your camera and photo galleries",
+      "PHOTOLIBRARY_USAGE_DESCRIPTION": "To upload your profile picture, this app uses your camera and photo galleries",
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
+    },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.phonegap.bookedapp"
     },
     "cordova-sms-plugin": {
       "PACKAGE_NAME": "com.phonegap.bookedapp"
-    },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.phonegap.bookedapp"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.phonegap.bookedapp"
+    }
+  }
 }

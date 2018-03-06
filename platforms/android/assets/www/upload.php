@@ -1,11 +1,8 @@
 <?php
-// Directory where uploaded images are saved
-$dirname = $_POST['uploadpath']; 
-
-if ($_FILES) {
-    if(move_uploaded_file($_FILES["file"]["tmp_name"],'../'.$dirname."/".$_POST["imgName"]))
-		echo 'Image Uploaded Successfully';
-	else
-		echo 'Image Not Uploaded';
-}
+	//Allow Headers
+	header('Access-Control-Allow-Origin: *');
+	//print_r(json_encode($_FILES));
+	$new_image_name = urldecode($_FILES["file"]["name"]).".jpg";
+	//Move your files into upload folder
+	move_uploaded_file($_FILES["file"]["tmp_name"], "upload/".$new_image_name);
 ?>

@@ -6,6 +6,13 @@
   /* For IE6-8 */
   src: local("Material Icons"), local("MaterialIcons-Regular"), url(../fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../fonts/MaterialIcons-Regular.woff) format("woff"), url(../fonts/MaterialIcons-Regular.ttf) format("truetype"); }
 
+@font-face {
+  font-family: 'Arial-Narrow';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: condensed;
+  src: url(../fonts/arial-narrow.ttf); }
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -495,7 +502,7 @@
       background: #ffffffb8;
       padding: 1px 8px;
       border-radius: 5px;
-      border: 1px solid #ddd;
+      /*border: 1px solid #ddd;*/
       right: 11px; }
 
 .white-bg {
@@ -515,6 +522,7 @@
   border: 1px solid #000;
   border-top-width: 0px;
   display: block;
+  min-height: 34px;
   padding: 0; }
   .dashboard .card-footer .row .col-50:nth-child(2) {
     border-left: 1px solid #000; }
@@ -528,7 +536,9 @@
     padding: 0px 2px;
     display: block;
     text-align: center;
-    margin: 0px auto; }
+    margin: 0px auto;
+    height: 34px;
+    line-height: 34px; }
 
 .dashboard .round-img {
   margin-top: 20px; }
@@ -538,8 +548,22 @@
   border-top-left-radius: 4px;
   border: 1px solid #000;
   border-bottom-width: 0px; }
+  .dashboard .card-content .up-arrow {
+    margin-top: 15px; }
+    .dashboard .card-content .up-arrow i.icon {
+      position: absolute;
+      margin-left: -25px; }
+      .dashboard .card-content .up-arrow i.icon svg {
+        height: 100px;
+        width: 100px; }
+    .dashboard .card-content .up-arrow span {
+      margin-left: 30px; }
   .dashboard .card-content i.icon {
-    font-size: 30px; }
+    font-size: 41px;
+    line-height: 1; }
+    .dashboard .card-content i.icon svg {
+      height: 38px;
+      width: 40px; }
 
 .dashboard .card-header {
   padding-bottom: 0 !important;
@@ -707,13 +731,36 @@
 .edit-profile small {
   font-size: 12px; }
 
-.uploaded-image span {
+.img-delete {
+  position: relative;
+  top: 14px;
+  float: right;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+  left: 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #999;
+  border-radius: 50%; }
+
+.uploaded-image .upload-edit {
   background: rgba(255, 255, 255, 0.75);
   font-size: 10px;
   position: absolute;
   bottom: 44px;
   padding: 3px 5px; }
-  .uploaded-image span i {
+  .uploaded-image .upload-edit i {
     font-size: 10px;
     padding-right: 5px; }
 
@@ -783,7 +830,7 @@
   width: auto; }
 
 .arial-narrow {
-  font-family: "Arial Narrow", sans-serif !important; }
+  font-family: "Arial-Narrow", sans-serif !important; }
 
 .round-img {
   border-radius: 20px; }
@@ -840,26 +887,60 @@
     line-height: 0;
     font-size: 13px; }
     .ProgressBar .percent.percent-sm {
-      top: 22px;
+      top: 20px;
       font-size: 11px; }
 
+.chat-text {
+  margin-top: -5px; }
+
+.percent-triangle {
+  position: relative;
+  top: 15px; }
+  .percent-triangle i {
+    font-size: 60px !important;
+    line-height: 0 !important; }
+  .percent-triangle > span {
+    margin-left: -12px; }
+
+.f-14 {
+  font-size: 14px !important; }
+
 .f-28 {
-  font-size: 28px; }
+  font-size: 28px !important; }
 
 .f-18 {
-  font-size: 18px; }
+  font-size: 18px !important; }
 
 .f-20 {
-  font-size: 20px; }
+  font-size: 20px !important; }
+
+.f-24 {
+  font-size: 24px !important; }
+
+.gill-sans {
+  font-family: 'GillSans-SemiBold', sans-serif !important; }
 
 .text-black {
   color: #000; }
-.no-border:after,
-    .no-border:before {
-        border-color: transparent;
-        background:  transparent !important;
-    
-}
-.ios .navbar b{
-    font-size: 16px;
-}
+
+.no-border:after, .no-border:before {
+  border-color: transparent !important;
+  background: transparent !important; }
+
+.ios .navbar b {
+  font-size: 16px; }
+
+.w-200 {
+  max-width: 200px;
+  width: 100%;
+  display: block;
+  margin: auto; }
+
+.statusbar {
+  background: #fff;
+  /* We can add transition for smooth color animation */
+  -webkit-transition: 400ms;
+  transition: 400ms; }
+
+.grey-bg {
+  background-color: #f2f2f2; }

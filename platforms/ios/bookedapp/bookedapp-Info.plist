@@ -61,12 +61,12 @@
       </dict>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string>need camera access to take pictures</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>need photo library access to get pictures from there</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>need location access to find things nearby</string>
+    <string>To upload your profile picture, this app uses your camera and photo galleries</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>To upload your profile picture, this app uses your camera and photo galleries</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>need photo library access to save pictures there</string>
+    <string>To upload your profile picture, this app uses your camera and photo galleries</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>To upload your profile picture, this app uses your camera and photo galleries</string>
   </dict>
 </plist>
