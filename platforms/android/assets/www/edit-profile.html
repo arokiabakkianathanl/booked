@@ -28,7 +28,7 @@
                         </div>
                         <div class="right my-profile-navabar" onclick="goedit();">
                             <a href="#">
-                <img src="img/avatar.jpg" class="img-circle">
+                <img src="img/avatar2.jpg" class="img-circle">
               <span>Edit</span>
               </a>
                         </div>
@@ -37,7 +37,7 @@
                 <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
                     <div class="block p-none">
                         <div class="block mb-xs">
-                            <p><b>Edit: About Me</b> </p>
+                            <p class="f-16 text-black"><b>Edit: About Me</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
@@ -74,7 +74,7 @@
                                         </div>
                                     </li>
                                     <li class="item-content">
-                                        <p class="m-xs"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
+                                        <p class="m-xs lh-1"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
                                     </li>
                                     <li class="item-content item-input mt-xs">
                                         <div class="item-inner">
@@ -85,13 +85,13 @@
                                         </div>
                                     </li>
                                     <li class="item-content">
-                                        <p class="m-xs"><small>Headlines are never easy!  We need a few words that sum you up.  Feel free to use quotes as well.</small></p>
+                                        <p class="m-xs lh-1"><small>We need a few words that sum you up.  If you can't think of anything, simply use one of your favorite quotes such as "Dance like nobody's watching" - Mark Twain</small></p>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="block mt-xs mb-xs white-bg">
-                            <p><b>Edit: My Photos</b> </p>
+                            <p class="f-16 text-black"><b>Edit: My Photos</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="block mt-sm mb-sm">
@@ -102,31 +102,75 @@
                                             <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                                             <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                                         </label>
-                                        <label>
-                                            <input id="prime1" type="radio" name="photo" value="1" onclick="updprimary(this.id);" checked> Set as Primary</label>
                                     </div>
                                     <div class="col-33">
-                                        <label class="uploaded-image">
-                                            <span id="delimg2" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                            <img id="image2" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                            <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                        </label>
-                                        <label>
-                                            <input id="prime2" type="radio" name="photo" value="2" onclick="updprimary(this.id);"> Set as Primary</label>
+                                        <p class="lh-1"><small>Your Portrait is your most important photo. It will appear on your invites and RSVPs. The focus should be on your face.</small></p>
                                     </div>
                                     <div class="col-33">
-                                        <label class="uploaded-image">
-                                            <span id="delimg3" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                            <img id="image3" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                            <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                        </label>
-                                        <label>
-                                            <input id="prime3" type="radio" name="photo" value="3" onclick="updprimary(this.id);"> Set as Primary</label>
+                                        <img src="img/avatar.jpg" class="img-responsive mt-lg">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>
+                        <div class="block mt-xs mb-xs white-bg">
+                            <p class="f-16 text-black"><b>Edit Other Photos</b> </p>
+                        </div>
+                        <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                            <div class="block mt-sm mb-sm">
+                                <div class="">
+                                    <div class="swiper-container add-photo">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image">
+                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image">
+                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image">
+                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image">
+                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image add-image-button">
+                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="saveprofile();" class="col button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
                         <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
                         <br>
                     </div>
@@ -165,7 +209,7 @@
     }
 
     function gosettings() {
-        window.location.href = "settings.html";
+        window.location.href = "dashboard.html";
     }
 
 
@@ -216,7 +260,7 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
-        app.preloader.show();
+        // app.preloader.show();
 
         pictureSource = navigator.camera.PictureSourceType;
         destinationType = Camera.DestinationType.NATIVE_URI;
@@ -662,6 +706,18 @@
             }
         });
     }
+    </script>
+    <script>
+    var swiper = new Swiper('.swiper-container.add-photo', {
+        // direction: 'horizontal',
+        slidesPerView: 3,
+        spaceBetween: 20,
+        freeMode: true,
+        // scrollbar: {
+        //     el: '.swiper-scrollbar'
+        // },
+        mousewheel: true,
+    });
     </script>
 </body>
 

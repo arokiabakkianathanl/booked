@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "bookedapp",
-  "short_name": "bookedapp",
+  "name": "Booked Dating",
+  "short_name": "Booked Dating",
   "version": "com.phonegap.bookedapp",
-  "description": "bookedapp",
-  "author": "bookedapp",
+  "description": "Booked Dating - Meet First. Message Later.",
+  "author": "David A",
   "icons": [
     {
       "src": "icon.png",

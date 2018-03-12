@@ -18,12 +18,12 @@
     <feature name="FileTransfer">
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
-    <name>bookedapp</name>
+    <name>Booked Dating</name>
     <description>
-        bookedapp
+        Booked Dating - Meet First. Message Later.
     </description>
-    <author email="arokiabakkianathanl@gmail.com" href="http://shauninfomedia.com">
-       bookedapp
+    <author email="david.antzelevitch@gmail.com" href="http://bookedapp.com">
+       David A
     </author>
     <content src="index.html" />
     <access origin="*" />

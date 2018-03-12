@@ -4,6 +4,7 @@
   font-weight: 400;
   src: url(../fonts/MaterialIcons-Regular.eot);
   /* For IE6-8 */
+
   src: local("Material Icons"), local("MaterialIcons-Regular"), url(../fonts/MaterialIcons-Regular.woff2) format("woff2"), url(../fonts/MaterialIcons-Regular.woff) format("woff"), url(../fonts/MaterialIcons-Regular.ttf) format("truetype");
 }
 
@@ -628,13 +629,16 @@
     -webkit-align-items: flex-end;
     -ms-flex-align: end;
     align-items: flex-end;
-    img,
-    .icon-image {
-      width: 55px;
-      font-size: 30px;
+    img{
+      height: 55px;
       &.img-circle {
-        border-radius: 50%;
+        border-radius: 20%;
       }
+    }
+    
+    .icon-image {
+      font-size: 30px;
+      width: 55px;
     }
     .icon-image {
       padding-bottom: 30px;
@@ -653,7 +657,7 @@
       padding: 1px 8px;
       border-radius: 5px;
       border: 1px solid #ddd;
-      right: 11px;
+      right: 13%;
     }
   }
 }
@@ -1292,6 +1296,22 @@
       width: 75% !important;
       border-radius: 35px;
       padding-left: 35px;
+    }
+  }
+}
+
+.c33{
+    // width: 180px;
+    // display: inline-block;
+  .img-delete{
+    left: 0;
+  }
+  img{
+    max-width: 90%;
+  }
+  .add-image-button{
+    .img-delete{
+      visibility: hidden;
     }
   }
 }

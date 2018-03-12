@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.bookedapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>bookedapp</name>
+    <name>Booked Dating</name>
     <description>
-        bookedapp
+        Booked Dating - Meet First. Message Later.
     </description>
-    <author email="arokiabakkianathanl@gmail.com" href="http://shauninfomedia.com">
-       bookedapp
+    <author email="david.antzelevitch@gmail.com" href="http://bookedapp.com">
+       David A
     </author>
     <content src="index.html" />
     <access origin="*" />

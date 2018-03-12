@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Booked</title>
+  <link rel="stylesheet" href="dist/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner sliding ">
+            <div class="left header-section">
+              <img src="img/booked_logo.jpg" class="navbar-logo">
+              <div><b>Post Something To Do...</b></div>
+            </div>
+            <div class="right my-profile-navabar" onclick="goedit();">
+              <a href="#">
+                <img src="img/avatar.jpg" class="img-circle">
+              <span>Edit</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
+          <div class="block p-none">
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Invite Description</b> </p>
+              </div>
+              <div class="grey-bg pl-lg pr-sm" style="background:#f2f2f2; padding:5px;">
+                <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
+                  <div class="activity">
+                      <label><span>Activity:</span> <input type="text" class="round" name=""></label>
+                  </div>
+                  <div class="clearfix"></div>
+                  <div class="pl-lg mb-xs">
+                    <p class="mt-xs lh-1"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Invite Type</b> </p>
+              </div>
+              <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                <div class="list mt-sm mb-xs">
+                  <div class="radio-block flex-center">
+                    <label class="f-18 mr-lg text-color-black">
+                      <input type="radio" name="" class="mr-xs">Standard</label>
+                    <label class="f-18 grey-text mr-sm">
+                      <input type="radio" name="" class="mr-xs">Personal (Coming Soon)</label>
+                    <label class="f-18 grey-text mr-sm">
+                      <input type="radio" name="" class="mr-xs">Double Date (Coming Soon)</label>
+                  </div>
+                  <div class="pl-lg mb-xs">
+                    <p class="mt-xs lh-1"><small>Your invites will not be visible to members on your Hidden List in Settings.  That includes all members that you have already met.</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Decision Process</b> </p>
+              </div>
+              <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                <div class="list mt-sm mb-xs">
+                  <div class="radio-block flex-center">
+                    <label class="f-18 mr-lg  text-color-black">
+                      <input type="radio" name="" class="mr-xs">I decide</label>
+                    <label class="f-18 grey-text mr-sm">
+                      <input type="radio" name="" class="mr-xs">Instant Book (Coming Soon)</label>
+                    <div class="row">
+                      <div class="col-100 hours-text flex-center">
+                        <span>I will decide by:</span>
+                        <input type="tel" name="" value="3"> <span>Hours Prior</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pl-lg mb-xs">
+                    <p class="mt-xs lh-1"><small>Your invites will not be visible to members on your Hidden List in Settings.  That includes all members that you have already met.</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Meeting Time</b> </p>
+              </div>
+              <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                <div class="list mt-sm mb-xs">
+                  <div class="">
+                    <label class="date-inline">
+                      <span>Date:</span>
+                      <input type="tel" class="w-200" name="" id="eventdate">
+                    </label>
+                  </div>
+                  <div class="">
+                    <label class="date-inline">
+                      <span>Time:</span>
+                      <input type="text" readonly="readonly" id="demo-picker-custom-toolbar" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Meeting Location</b> </p>
+              </div>
+              <div class="block mt-none pt-lg mb-none " style="background-color:#f0f0f0">
+                <form>
+                  <label class="search-location">
+                    <input type="text" class="round form-control" placeholder="Search for a place or address" name="">
+                  </label>
+                </form>
+              </div>
+              <div class="block mt-none mb-sm pb-lg" style="background-color:#f0f0f0">
+                <!--<h2 class="text-center">Work</h2>-->
+                <div class="row">
+                  <div class="col-50">
+                    <br> Terminus 100
+                    <br> 3280 Peachtree Rd, Atlanta, GA 30305
+                    <br> (404) 407-2000
+                    <br> terminus-atlanta.com
+                    <br>
+                  </div>
+                  <div class="col-50">
+                    <br>
+                    <div id="map1" class="map"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>Special Meeting Instructions</b> </p>
+              </div>
+              <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                <div class="list mt-sm mb-xs">
+                  <div class="pl-sm pr-sm">
+                    <textarea rows="3" placeholder="Meet by the ...."></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="block mb-xs">
+                <p class="f-16 text-black"><b>My Chat Availability</b> </p>
+              </div>
+              <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                <div class="pl-lg mb-xs">
+                  <p class="mt-xs lh-1"><small>Your Chat Availability will be visible if an applicant attempts to message you.</small></p>
+                </div>
+                <div class="list mt-sm mb-xs">
+                  <div class="pl-sm pr-sm">
+                    <div class="f-14 mb-sm">
+                      <label class="text-color-black">
+                        <input type="radio" name="avail" class="mr-sm"> Busy day. I'm not available to chat, but look forward to meeting!</label>
+                    </div>
+                    <div class="f-14 mb-sm">
+                      <label class="text-color-black">
+                        <input type="radio" name="avail" class="mr-sm"> Busy day. I'll try my best to reply, but if I get caught up I look forward to meeting!</label>
+                    </div>
+                    <div class="f-14 mb-sm">
+                      <label class="text-color-black">
+                        <input type="radio" name="avail" class="mr-sm"> Leave Blank </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#" onclick="" class="col button button-big button-fill button-block link external mt-lg">Post Invite</a>
+            <br>
+          </div>
+        </div>
+        <div class="toolbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="dist/js/framework7.min.js"></script>
+  <script type="text/javascript" src="jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="jquery.inputmask.bundle.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ52I5ls2kiaC3_JbCQYU7Id42adgYAQQ&amp;callback=initMap"></script>
+  <script>
+  function initMap() {
+    var uluru = { lat: -25.363, lng: 131.044 };
+    var map = new google.maps.Map(document.getElementById('map1'), {
+      zoom: 4,
+      center: uluru,
+
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map,
+
+    });
+  }
+
+  </script>
+  <script type="text/javascript">
+  function finddates() {
+    window.location.href = "empty-dashboard.html";
+  }
+
+  function chat() {
+    window.location.href = "rsvp.html";
+  }
+
+  function goedit() {
+    window.location.href = "edit-profile.html";
+  }
+
+  function gosettings() {
+    window.location.href = "dashboard.html";
+  }
+
+
+  function logout() {
+    window.location.href = "logout.html";
+  }
+  jQuery(document).ready(function() {
+    console.log("Page mounted");
+    jQuery('#eventdate').inputmask("99/99/9999", {
+      placeholder: "MM/DD/YYYY",
+
+    });
+  });
+  var today = new Date();
+  var pickerCustomToolbar = app.picker.create({
+    inputEl: '#demo-picker-custom-toolbar',
+    rotateEffect: true,
+    renderToolbar: function() {
+      return '<div class="toolbar">' +
+        '<div class="toolbar-inner">' +
+        '<div class="left">' +
+        '<!-- <a href="#" class="link toolbar-randomize-link">Randomize</a> -->' +
+        '</div>' +
+        '<div class="right">' +
+        '<a href="#" class="link sheet-close popover-close">Close</a>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    },
+
+    formatValue: function(values) {
+      return values[0] + ' : ' + values[1] + '  ' + values[2];
+    },
+    cols: [{
+        values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      },
+      // Divider
+      {
+        divider: true,
+        content: ':'
+      },
+      {
+        values: (function() {
+          var arr = [];
+          for (var i = 0; i <= 59; i++) { arr.push(i < 10 ? '0' + i : i); }
+          return arr;
+        })(),
+      },
+      {
+        values: ('am pm').split(' ')
+      },
+    ],
+    on: {
+      open: function(picker) {
+        picker.$el.find('.toolbar-randomize-link').on('click', function() {
+          var col0Values = picker.cols[0].values;
+          var col0Random = col0Values[Math.floor(Math.random() * col0Values.length)];
+
+          var col3Values = picker.cols[3].values;
+          var col3Random = col3Values[Math.floor(Math.random() * col3Values.length)];
+
+          var col2Values = picker.cols[2].values;
+          var col2Random = col2Values[Math.floor(Math.random() * col2Values.length)];
+
+          picker.setValue([col0Random, col2Random, col3Random]);
+        });
+      },
+    }
+  });
+
+  </script>
+</body>
+
+</html>

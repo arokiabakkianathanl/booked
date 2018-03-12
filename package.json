@@ -29,5 +29,11 @@
     "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-ios-camera-permissions": "^1.2.0",
     "cordova-plugin-whitelist": "1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-sass": "^3.2.0"
   }
 }
