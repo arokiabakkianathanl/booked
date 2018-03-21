@@ -11,7 +11,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 
 $memberid = $data['memberid'];
-$photoseq = $data['photoseq'];
+$photourl = $data['photourl'];
 
 			
 			// Pass
@@ -50,12 +50,16 @@ $photoseq = $data['photoseq'];
 
 
 
-	$sql_update = "update MemberPhotos set PhotoURL = '' WHERE `MemberID`='$memberid' AND `PhotoSeq`=$photoseq";
+	$sql_update = "delete from MemberPhotos where `MemberID`='$memberid' AND `PhotoURL`='$photourl'";
 
 	$result = mysqli_query($link ,$sql_update) 
 								or die (mysqli_error()); 		
 			
 	
+	
+	rename("upload/$photourl", "upload/deleted/$photourl");
+    
+
 	header('Content-Type: application/json');
 	echo json_encode($passres);		
 

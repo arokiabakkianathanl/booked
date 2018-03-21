@@ -37,17 +37,25 @@
         <div class="page-content hide-navbar-on-scroll white-bg pb-xlg">
           <div class="block">
             <div class="row mb-lg">
-              <div class="col-100">
+              <div class="col-50">
                 <div class="myProfile-img flex-center">
                   <img id="image1" onclick="showimageslider();" src="" class="img-respdonsive">
                 </div>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
+              </div>
+              <div class="col-50">
+                <div class="myProfile-img flex-center">
+                  <img id="image2" onclick="showimageslider();" src="" class="img-respdonsive">
+                </div>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
               </div>
             </div>
             <div class="row">
               <div class="col-50">
                 <div class="myProfile-img flex-center">
-                  <img id="image2" onclick="showimageslider();" src="" class="img-respdonsive">
+                  <img id="image3" onclick="showimageslider();" src="" class="img-respdonsive">
                 </div>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
               </div>
               <div class="col-50">
                 <div class="row mb-lg">
@@ -170,7 +178,7 @@
   var photo_IsPrimary = {};
   var photo_DateUpdated = {};
 
-  var myPhotoBrowserStandalone;    
+  var myPhotoBrowserStandalone;  
   
   // Wait for Cordova to load
   //
@@ -203,10 +211,10 @@
     circleLoader();
 
     myVar = setTimeout(imageResize, 4000);
-
+	
 	var ig1="http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
 	var ig2="http://18.219.77.161/api/upload/" + photo_PhotoURL[2];
-	//var ig3="http://18.219.77.161/api/upload/" + photo_PhotoURL[3];
+	var ig3="http://18.219.77.161/api/upload/" + photo_PhotoURL[3];
 
 	
 	/*=== Default standalone ===*/
@@ -214,12 +222,10 @@
 		photos : [
 			ig1,
 			ig2,
-			//ig3,
+			ig3,
 		]
 	});	
-	
-	
-	
+
   }
 
 
@@ -403,14 +409,14 @@
       $(this).find('strong').html(Math.round(33 * progress) + '<i>%</i>');
     });
   }
+  
 
 
 function showimageslider()
 {
 	myPhotoBrowserStandalone.open();
 }
-  
-  
+
   </script>
 </body>
 

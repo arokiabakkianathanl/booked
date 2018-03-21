@@ -282,7 +282,34 @@
   <script src="js/progressbar.js"></script>
   <script src="js/routes.js"></script>
   <script src="js/app.js"></script>
-  <script>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
+
+  <script type="text/javascript">
+  
+    var photo_id = {};
+    var photo_MemberID = {};
+    var photo_PhotoSeq = {};
+    var photo_IsBW = {};
+    var photo_PhotoURL = {};
+    var photo_IsPrimary = {};
+    var photo_DateUpdated = {};
+	
+	photo_PhotoURL[1]="empty";
+	photo_PhotoURL[2]="empty";
+	photo_PhotoURL[3]="empty";
+	  
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        console.log("On Device Ready is Called...................");
+        // app.preloader.show();
+    }
+  
+  
+  
   function finddates() {
     window.location.href = "empty-dashboard.html";
   }
@@ -339,6 +366,7 @@
     });
   })
 
+  
   </script>
 </body>
 

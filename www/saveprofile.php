@@ -14,7 +14,7 @@ $firstname = $data['firstname'];
 $occupation = $data['occupation'];
 $area = $data['area'];
 $headline = $data['headline'];
-$prime = $data['prime'];
+//$prime = $data['prime'];
 $memberid = $data['memberid'];
 
 			
