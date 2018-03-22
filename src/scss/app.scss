@@ -1315,3 +1315,15 @@
     }
   }
 }
+.image_count{
+      width: 100%;
+    display: block;
+    text-align: right;
+    margin-top: -25px;
+    .image_count_box{
+      background: transparentize(#fff, 0.35);
+      color: #000;
+      padding: 3px;
+      font-size: 12px;
+    }
+}

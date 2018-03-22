@@ -100,7 +100,7 @@
                                         <label class="uploaded-image">
                                             <!--<span onclick="deleteimage(this.id);" class="img-delete">x</span>-->
                                             <img id="portraitimage" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                            <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                            <span class="image_count"><span class="image_count_box">+3</span></span>
                                         </label>
                                     </div>
                                     <div class="col-45">
@@ -490,9 +490,11 @@
                 if (index == 0) {
                     capturePhoto();
                     change_del_onclick_id(currentImageId);
+                    $(".swiper-slide #"+currentImageId+".new-image").closest(".swiper-slide").css({"visibility":"visible"});
                 } else if (index == 1) {
                     getPhotoFromLibrary();
                     change_del_onclick_id(currentImageId);
+                    $(".swiper-slide #"+currentImageId+".new-image").closest(".swiper-slide").css({"visibility":"visible"});
                 } else if (index == 2) {
                     app.dialog.close();
                     console.log(currentImageId);
@@ -881,11 +883,12 @@
                  <div class="c33">\
                       <label class="uploaded-image">\
                              <span id="delimg' + (prepend_Number) + '" onclick="deleteimage(this.id);" class="img-delete">x</span>\
-                             <img id="image' + (prepend_Number) + '" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">\
+                             <img id="image' + (prepend_Number) + '" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive new-image">\
                          </label>\
                      </div>\
                 </div>');
             loadimage("image" + (prepend_Number));
+            $(".swiper-slide #image"+prepend_Number+".new-image").closest(".swiper-slide").css({"visibility":"hidden"});
             // var source_slide = $(".swiper-wrapper > .swiper-slide:nth-child(1)");
             // var destination_slide = $(".swiper-wrapper");
             // $(source_slide).appendTo(destination_slide);
