@@ -1,4 +1,2 @@
-node_modules/
-platforms/
-platforms/android/assets/www/edit-profile.html
-platforms/browser/www/edit-profile.html
+node_modules/*
+platforms/*
