@@ -15,7 +15,7 @@
   <link rel="icon" href="img/f7-icon.png">
 </head>
 
-<body class="color-theme-red">
+<body class="color-theme-red" onload="init();">
   <div id="app">
     <div class="statusbar"></div>
     <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
@@ -27,9 +27,9 @@
               <div id="q_name"></div>
             </div>
             <div class="right my-profile-navabar" onclick="goedit();">
-              <a href="#">
-                <i class="f7-icons icon icon-image">gear_fill</i>
-              <span>Account<br>Settings</span>
+                            <a href="#">
+                <img src="img/avatar.jpg" class="img-circle">
+              <span>Edit</span>
               </a>
             </div>
           </div>
@@ -39,9 +39,10 @@
             <div class="row pt-lg">
               <div class="col-50">
                 <div class="myProfile-img flex-center">
-                  <img id="image3" src="" class="img-respdonsive">
+                  <img id="image1" onclick="showimageslider();" src="" class="img-respdonsive">
                 </div>
-                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
+                <!--<span class="myProfile-img-span" id="imgcounter"></span>-->
+				<span class="myProfile-img-span" style="position: absolute;bottom: 0;right: 0;!important;" id="imgcounter"></span>
               </div>
               <div class="col-50">
                 <div class="row mb-lg">
@@ -100,10 +101,21 @@
       </div>
     </div>
   </div>
+  <style type="text/css">
+    .myProfile-img-span{
+      opacity: 0;
+    }
+  </style>
   <script src="dist/js/framework7.min.js"></script>
   <script src="js/routes.js"></script>
   <script src="js/app.js"></script>
   <script type="text/javascript">
+  
+	function init()
+	{		
+		app.dialog.preloader();
+	}
+	
   function finddates() {
     window.location.href = "empty-dashboard.html";
   }
@@ -157,7 +169,8 @@
   var pictureSource; // picture source
   var destinationType; // sets the format of returned value 
 
-
+  var myPhotoBrowserStandalone;  
+ 
   var photo_id = {};
   var photo_MemberID = {};
   var photo_PhotoSeq = {};
@@ -165,6 +178,9 @@
   var photo_PhotoURL = {};
   var photo_IsPrimary = {};
   var photo_DateUpdated = {};
+
+  
+  var displayed_images = 1;
 
   // Wait for Cordova to load
   //
@@ -198,6 +214,30 @@
 
     myVar = setTimeout(imageResize, 4000);
 
+	if (displayed_images == 2)
+	{
+		var x = document.getElementById("imgcounter");
+		x.style.display = "none";
+	}
+
+    document.getElementById("imgcounter").innerHTML = "<b>+" + (displayed_images-2) + "</b>";
+	
+	
+	var photos = [];
+	
+	for (ip=1; ip < displayed_images; ip++)
+	{
+		photos.push("http://18.219.77.161/api/upload/" +  photo_PhotoURL[ip]);
+	}	
+	
+		myPhotoBrowserStandalone = app.photoBrowser.create({
+			photos : photos
+		});		
+	
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 500);
+  
   }
 
 
@@ -219,6 +259,8 @@
 
         var result;
 
+		displayed_images = jsonobject.length;
+		
         for (i = 1; i < jsonobject.length; i++) {
           result = jsonobject[i].result;
         }
@@ -279,41 +321,27 @@
             p_Headline = jsonobject[i].Headline;
             p_DateCreated = jsonobject[i].DateCreated;
             p_DateUpdated = jsonobject[i].DateUpdated;
-
-            document.getElementById("q_name").innerHTML = "<b>" + p_Name + "</b>";
+		
+            document.getElementById("q_name").innerHTML = "<b>Meet " + p_Name + " (Me) ....</b>";
             document.getElementById("q_occupation").innerHTML = p_Occupation;
             document.getElementById("q_place").innerHTML = "<i>" + p_Neighborhood + "</i>";
             document.getElementById("q_desc").innerHTML = '\"' + p_Headline + '\"';
-            document.getElementById("q_age").innerHTML = "<b>Age: " + i_age + "</b>";
+            document.getElementById("q_age").innerHTML = "<b>Age: " + i_age + "</b>";			
+			
 
-            var abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
+            var abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[1]);
             if (abc && photo_PhotoURL[1] != "") {
-              document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg";
+              document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
             } else {
               document.getElementById("image1").src = "img/noimage.jpg";
 
             }
 
-            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
-            if (abc && photo_PhotoURL[2] != "") {
-              document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg";
-            } else {
-              document.getElementById("image2").src = "img/noimage.jpg";
-
-            }
-
-            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
-            if (abc && photo_PhotoURL[3] != "") {
-              document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg";
-            } else {
-              document.getElementById("image3").src = "img/noimage.jpg";
-
-            }
           }
 
         }
 
-
+	
       },
       error: function(requestObject, error, errorThrown) {
         alert(error);
@@ -351,7 +379,7 @@
       var nheight = $(this).height();
       if (nwidth > nheight) {
         $(this).css({ "width": "100%", "height": "auto", "opacity": "1" });
-        var absheight = ((150 - $(this).height()) / 2) + $(this).height();
+        var absheight = ((200 - $(this).height()) / 2) + $(this).height(); 
       } else if (nwidth < nheight) {
         $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
         var absheight = $(this).height();
@@ -359,8 +387,10 @@
         $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
         var absheight = $(this).height();
       }
-      var offimg = $(this).offset();
-      $(this).parent().next().css({ "left": +offimg.left + "px", "top": +absheight + "px", "position": "absolute" });
+      var offimgleft = $(this).offset();
+      var offimggleft = (offimgleft.left + $(".myProfile-img > img").width())-30; 
+
+      $(this).parent().next().css({ "left": +offimggleft + "px", "top": +absheight + "px", "opacity": "1", "position": "absolute" });
       app.preloader.hide();
     });
   }
@@ -381,7 +411,12 @@
       $(this).find('strong').html(Math.round(33 * progress) + '<i>%</i>');
     });
   }
-
+  
+  
+function showimageslider()
+{
+	myPhotoBrowserStandalone.open();
+}
   </script>
 </body>
 

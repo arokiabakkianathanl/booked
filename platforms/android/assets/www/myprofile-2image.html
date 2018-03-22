@@ -39,14 +39,14 @@
             <div class="row mb-lg">
               <div class="col-100">
                 <div class="myProfile-img flex-center">
-                  <img id="image1" src="" class="img-respdonsive">
+                  <img id="image1" onclick="showimageslider();" src="" class="img-respdonsive">
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-50">
                 <div class="myProfile-img flex-center">
-                  <img id="image2" src="" class="img-respdonsive">
+                  <img id="image2" onclick="showimageslider();" src="" class="img-respdonsive">
                 </div>
               </div>
               <div class="col-50">
@@ -121,7 +121,7 @@
   }
 
   function gosettings() {
-    window.location.href = "settings.html";
+    window.location.href = "dashboard.html";
   }
 
 
@@ -170,6 +170,8 @@
   var photo_IsPrimary = {};
   var photo_DateUpdated = {};
 
+  var myPhotoBrowserStandalone;    
+  
   // Wait for Cordova to load
   //
   document.addEventListener("deviceready", onDeviceReady, false);
@@ -202,6 +204,22 @@
 
     myVar = setTimeout(imageResize, 4000);
 
+	var ig1="http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
+	var ig2="http://18.219.77.161/api/upload/" + photo_PhotoURL[2];
+	//var ig3="http://18.219.77.161/api/upload/" + photo_PhotoURL[3];
+
+	
+	/*=== Default standalone ===*/
+	myPhotoBrowserStandalone = app.photoBrowser.create({
+		photos : [
+			ig1,
+			ig2,
+			//ig3,
+		]
+	});	
+	
+	
+	
   }
 
 
@@ -284,31 +302,31 @@
             p_DateCreated = jsonobject[i].DateCreated;
             p_DateUpdated = jsonobject[i].DateUpdated;
 
-            document.getElementById("q_name").innerHTML = "<b>" + p_Name + "</b>";
+            document.getElementById("q_name").innerHTML = "<b>Meet " + p_Name + " (Me) ....</b>";
             document.getElementById("q_occupation").innerHTML = p_Occupation;
             document.getElementById("q_place").innerHTML = "<i>" + p_Neighborhood + "</i>";
             document.getElementById("q_desc").innerHTML = '\"' + p_Headline + '\"';
             document.getElementById("q_age").innerHTML = "<b>Age: " + i_age + "</b>";
 
-            var abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
+            var abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[1]);
             if (abc && photo_PhotoURL[1] != "") {
-              document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg";
+              document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
             } else {
               document.getElementById("image1").src = "img/noimage.jpg";
 
             }
 
-            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
+            abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[2]);
             if (abc && photo_PhotoURL[2] != "") {
-              document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg";
+              document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[2];
             } else {
               document.getElementById("image2").src = "img/noimage.jpg";
 
             }
 
-            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
+            abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[3]);
             if (abc && photo_PhotoURL[3] != "") {
-              document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg";
+			  document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[3];
             } else {
               document.getElementById("image3").src = "img/noimage.jpg";
 
@@ -386,6 +404,13 @@
     });
   }
 
+
+function showimageslider()
+{
+	myPhotoBrowserStandalone.open();
+}
+  
+  
   </script>
 </body>
 

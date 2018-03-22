@@ -24,7 +24,7 @@
           <div class="navbar-inner sliding">
             <div class="left header-section">
               <img src="img/booked_logo.jpg" class="navbar-logo">
-              <div><b>Meet Sara (Me)...</b></div>
+              <div id="q_name"></div>
             </div>
             <div class="right my-profile-navabar" onclick="goedit();">
               <a href="#">
@@ -38,24 +38,24 @@
           <div class="block">
             <div class="row mb-lg">
               <div class="col-50">
-                <div class="flex-center myProfile-img">
-                  <img src="https://via.placeholder.com/250x250" class="img-respodnsive">
+                <div class="myProfile-img flex-center">
+                  <img id="image1" src="" class="img-respdonsive">
                 </div>
-                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
               </div>
               <div class="col-50">
-                <div class="flex-center myProfile-img">
-                  <img src="https://via.placeholder.com/1350x350" class="img-respodnsive">
+                <div class="myProfile-img flex-center">
+                  <img id="image2" src="" class="img-respdonsive">
                 </div>
-                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
               </div>
             </div>
             <div class="row">
               <div class="col-50">
-                <div class="flex-center myProfile-img last">
-                  <img src="https://via.placeholder.com/350x450" class="img-respodnsive">
+                <div class="myProfile-img flex-center">
+                  <img id="image3" src="" class="img-respdonsive">
                 </div>
-                <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit</span>
+                <!-- <span class="myProfile-img-span"><i class="icon f7-icons ios-only">camera_fill</i>Edit </span> -->
               </div>
               <div class="col-50">
                 <div class="row mb-lg">
@@ -76,24 +76,25 @@
                 </div>
               </div>
             </div>
-            <p class="text-center mt-lg mb-sm f-20 text-black"> Engineering Student at Georgia Tech</p>
+            <p class="text-center mt-lg mb-sm f-20 text-black" id="q_occupation"></p>
             <div class="row">
               <div class="col-50 text-center">
-                <p class="grey-text f-18 mt-sm mb-xs"> <i>  Alpharetta, GA</i></p>
+                <p class="grey-text f-18 mt-sm mb-xs" id="q_place"></p>
               </div>
               <div class="col-50 text-center">
-                <p class="text-color-red f-28 mt-xs mb-xs"> <b>Age: 21</b></p>
+                <p class="text-color-red f-28 mt-xs mb-xs" id="q_age"></p>
               </div>
             </div>
             <div class="pl-sm pr-sm">
               <div class="row">
-                <div class="col-75">
-                  <p class="f-18 mt-sm mb-sm text-black">"Iowa farm girl masquerading as a Southern Intellectual"</p>
+                <div class="col-5">
+                  <p class="f-18 mt-sm mb-sm text-black"></p>
                 </div>
-                <div class="col-25">
-                  <div class="bg-color-gray text-color-black text-center pr-xs pl-xs">
-                    <i class="icon material-icons">mode_edit</i><br>Edit My<br>Profile
-                  </div>
+                <div class="col-90">
+                  <p class="f-18 mt-sm mb-sm text-black" style="font-family:'Courier';font-size: 18px;font-weight: 500;" id="q_desc"></p>
+                </div>
+                <div class="col-5">
+                  <p class="f-18 mt-sm mb-sm text-black"></p>
                 </div>
               </div>
             </div>
@@ -112,35 +113,9 @@
     </div>
   </div>
   <script src="dist/js/framework7.min.js"></script>
-  <script src="js/progressbar.js"></script>
   <script src="js/routes.js"></script>
   <script src="js/app.js"></script>
-  <script type="text/javascript" src="jquery-2.1.4.js"></script>
-  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-  
-  <script>
-  
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        console.log("On Device Ready is Called...................");
-
-        i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
-        i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
-        i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
-        i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
-        i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
-
-		alert("deviceready");
-    }
-  
-  
-  
-  
-  
+  <script type="text/javascript">
   function finddates() {
     window.location.href = "empty-dashboard.html";
   }
@@ -158,25 +133,251 @@
   }
 
 
-  $(".myProfile-img > img").each(function() {
-    var nwidth = $(this).width();
-    var nheight = $(this).height();
-    if (nwidth > nheight) {
-      $(this).css({ "width": "100%", "height": "auto", "opacity": "1" });
-      var absheight = ((150 - $(this).height()) / 2) + $(this).height();
-    } else if (nwidth < nheight) {
-      $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
-      var absheight = $(this).height();
-    } else if (nwidth == nheight) {
-      $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
-      var absheight = $(this).height();
-    }
-    var offimg = $(this).offset();
-    $(this).parent().next().css({ "left": +offimg.left + "px", "top": +absheight + "px", "position": "absolute" });
+  function logout() {
+    window.location.href = "logout.html";
+  }
 
-  });
-  jQuery.noConflict();
-  jQuery(document).ready(function($) {
+  </script>
+  <script type="text/javascript" src="jquery-2.1.4.js"></script>
+  <script src="js/progressbar.js"></script>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <script type="text/javascript">
+  var allowstatus = 0;
+
+  var firstname;
+  var occupation;
+  var area;
+  var headline;
+  var prime;
+  var memberid;
+
+  var i_id;
+  var i_memberid;
+  var i_iam;
+  var i_interested;
+  var i_phone;
+  var i_dob;
+  var i_activationcode;
+  var i_age;
+
+  var currentImageId;
+  var currentImageURL;
+
+  var currentfile = 'empty.jpg';
+  var currentfolder;
+
+  var pictureSource; // picture source
+  var destinationType; // sets the format of returned value 
+
+
+  var photo_id = {};
+  var photo_MemberID = {};
+  var photo_PhotoSeq = {};
+  var photo_IsBW = {};
+  var photo_PhotoURL = {};
+  var photo_IsPrimary = {};
+  var photo_DateUpdated = {};
+
+  // Wait for Cordova to load
+  //
+  document.addEventListener("deviceready", onDeviceReady, false);
+  // Cordova is ready
+  //
+  function onDeviceReady() {
+    console.log("On Device Ready is Called...................");
+
+    // app.preloader.show();
+
+    pictureSource = navigator.camera.PictureSourceType;
+    destinationType = Camera.DestinationType.NATIVE_URI;
+
+    i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
+    i_iam = window.sessionStorage.getItem("iam", i_iam);
+    i_interested = window.sessionStorage.getItem("interested", i_interested);
+    i_phone = window.sessionStorage.getItem("phone", i_phone);
+    i_dob = window.sessionStorage.getItem("dob", i_dob);
+
+
+    var myDate = new Date(i_dob);
+
+
+    i_age = calculateAge(myDate);
+
+    loadphotoprofile();
+
+    loadprofile();
+    circleLoader();
+
+    myVar = setTimeout(imageResize, 4000);
+
+  }
+
+
+
+
+  function loadphotoprofile() {
+
+    $.ajax({
+      url: "http://18.219.77.161/api/loadphotoprofile.php",
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+      data: '{"memberid":"' + i_memberid + '"}',
+      success: function(jsonStr) {
+
+        var jsonstr = JSON.stringify(jsonStr);
+
+        var jsonobject = JSON.parse(jsonstr);
+
+        var result;
+
+        for (i = 1; i < jsonobject.length; i++) {
+          result = jsonobject[i].result;
+        }
+
+        if (result == "FAIL") {
+
+        } else {
+
+          for (i = 1; i < jsonobject.length; i++) {
+            photo_id[i] = jsonobject[i].id;
+            photo_MemberID[i] = jsonobject[i].MemberID;
+            photo_PhotoSeq[i] = jsonobject[i].PhotoSeq;
+            photo_IsBW[i] = jsonobject[i].IsBW;
+            photo_PhotoURL[i] = jsonobject[i].PhotoURL;
+            photo_IsPrimary[i] = jsonobject[i].IsPrimary;
+            photo_DateUpdated[i] = jsonobject[i].DateUpdated;
+
+            console.log(photo_PhotoURL[i]);
+          }
+        }
+      },
+      error: function(requestObject, error, errorThrown) {
+        alert(error);
+        alert(errorThrown);
+      }
+    });
+  }
+
+  function loadprofile() {
+    $.ajax({
+      url: "http://18.219.77.161/api/loadprofile.php",
+      type: "POST",
+      dataType: "JSON",
+      data: '{"memberid":"' + i_memberid + '"}',
+      success: function(jsonStr) {
+
+        var jsonstr = JSON.stringify(jsonStr);
+
+        var jsonobject = JSON.parse(jsonstr);
+
+        var result;
+
+        for (i = 1; i < jsonobject.length; i++) {
+          result = jsonobject[i].result;
+        }
+
+        if (result == "FAIL") {
+
+
+        } else {
+
+          for (i = 1; i < jsonobject.length; i++) {
+            p_id = jsonobject[i].id;
+            p_MemberID = jsonobject[i].MemberID;
+            p_Name = jsonobject[i].Name;
+            p_Neighborhood = jsonobject[i].Neighborhood;
+            p_Occupation = jsonobject[i].Occupation;
+            p_Headline = jsonobject[i].Headline;
+            p_DateCreated = jsonobject[i].DateCreated;
+            p_DateUpdated = jsonobject[i].DateUpdated;
+
+            document.getElementById("q_name").innerHTML = "<b>Meet " + p_Name + " (Me) ....</b>";
+            document.getElementById("q_occupation").innerHTML = p_Occupation;
+            document.getElementById("q_place").innerHTML = "<i>" + p_Neighborhood + "</i>";
+            document.getElementById("q_desc").innerHTML = '\"' + p_Headline + '\"';
+            document.getElementById("q_age").innerHTML = "<b>Age: " + i_age + "</b>";
+
+            var abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
+            if (abc && photo_PhotoURL[1] != "") {
+              document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_1_color.jpg";
+            } else {
+              document.getElementById("image1").src = "img/noimage.jpg";
+
+            }
+
+            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
+            if (abc && photo_PhotoURL[2] != "") {
+              document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_2_color.jpg";
+            } else {
+              document.getElementById("image2").src = "img/noimage.jpg";
+
+            }
+
+            abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
+            if (abc && photo_PhotoURL[3] != "") {
+              document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_3_color.jpg";
+            } else {
+              document.getElementById("image3").src = "img/noimage.jpg";
+
+            }
+          }
+
+        }
+
+
+      },
+      error: function(requestObject, error, errorThrown) {
+        alert(error);
+        alert(errorThrown);
+      }
+    });
+
+  }
+
+
+
+  function imageExists(image_url) {
+
+    var http = new XMLHttpRequest();
+
+    http.open('HEAD', image_url, false);
+    http.send();
+
+    return http.status != 404;
+
+  }
+
+
+
+  function calculateAge(birthday) { // birthday is a date
+    var ageDifMs = Date.now() - birthday.getTime();
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
+  }
+  // jQuery.noConflict();
+  function imageResize() {
+
+    $(".myProfile-img > img").each(function() {
+      var nwidth = $(this).width();
+      var nheight = $(this).height();
+      if (nwidth > nheight) {
+        $(this).css({ "width": "100%", "height": "auto", "opacity": "1" });
+        var absheight = ((150 - $(this).height()) / 2) + $(this).height();
+      } else if (nwidth < nheight) {
+        $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
+        var absheight = $(this).height();
+      } else if (nwidth == nheight) {
+        $(this).css({ "width": "auto", "height": "100%", "opacity": "1" });
+        var absheight = $(this).height();
+      }
+      var offimg = $(this).offset();
+      $(this).parent().next().css({ "left": +offimg.left + "px", "top": +absheight + "px", "position": "absolute" });
+      app.preloader.hide();
+    });
+  }
+
+  function circleLoader() {
     $('#circle1').circleProgress({
       value: 0.75,
       size: 50,
@@ -191,10 +392,9 @@
     }).on('circle-animation-progress', function(event, progress, stepValue) {
       $(this).find('strong').html(Math.round(33 * progress) + '<i>%</i>');
     });
-  })
+  }
 
   </script>
-  
 </body>
 
 </html>

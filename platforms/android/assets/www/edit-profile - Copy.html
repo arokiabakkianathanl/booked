@@ -2,224 +2,237 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="theme-color" content="#2196f3">
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
-  <title>Booked</title>
-  <link rel="stylesheet" href="dist/css/framework7.min.css">
-  <link rel="stylesheet" href="css/app.css">
-  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
-  <link rel="icon" href="img/f7-icon.png">
-
-  
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#2196f3">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>Booked</title>
+    <link rel="stylesheet" href="dist/css/framework7.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
 </head>
 
-<body class="color-theme-red">
-  <div id="app">
-    <div class="statusbar"></div>
-    <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
-      <div class="page">
-        <div class="navbar">
-          <div class="navbar-inner sliding ">
-            <div class="left header-section">
-              <img src="img/booked_logo.jpg" class="navbar-logo">
-              <div><b>My Account Information...</b></div>
-            </div>
-            <div class="right my-profile-navabar" onclick="goedit();">
-              <a href="#">
+<body class="color-theme-red" onload="init();">
+    <div id="app">
+        <div class="statusbar"></div>
+        <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
+            <div class="page">
+                <div class="navbar">
+                    <div class="navbar-inner sliding ">
+                        <div class="left header-section">
+                            <img src="img/booked_logo.jpg" class="navbar-logo">
+                            <div><b>My Account Information...</b></div>
+                        </div>
+                        <div class="right my-profile-navabar" onclick="goedit();">
+                            <a href="#">
                 <img src="img/avatar.jpg" class="img-circle">
               <span>Edit</span>
               </a>
-            </div>
-          </div>
-        </div>
-        <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
-          <div class="block p-none">
-            <div class="block mb-xs">
-              <p><b>Edit: About Me</b> </p>
-            </div>
-            <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
-      <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
-              <ul>
-                <li class="item-content item-input">
-                  <div class="item-inner">
-                    <div class="item-title item-label">My First Name:</div>
-                    <div class="item-input-wrap">
-                      <input id="firstname" type="text" placeholder="">
-                      <span class="input-clear-button" style="top: 20px;"></span>
+                        </div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="list no-hairlines-md mt-xs">
-      
-              <ul>
-                <li class="item-content item-input mt-xs">
-                  <div class="item-inner no-border">
-                    <div class="item-title item-label">My Occupation</div>
-                    <div class="item-input-wrap">
-                      <input id="occupation" type="text" placeholder="">
-                      <span class="input-clear-button" style="top: 14px;"></span>
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content item-input mt-xs">
-                  <div class="item-inner no-border">
-                    <div class="item-title item-label">The Area/Neighborhood where I live</div>
-                    <div class="item-input-wrap">
-                      <input id="area" type="text" placeholder="">
-                      <span class="input-clear-button" style="top: 14px;"></span>
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content item-input mt-xs">
-                  <div class="item-inner no-border">mem1
-                    <div class="item-title item-label">My Headline</div>
-                    <div class="item-input-wrap">
-                      <textarea id="headline" placeholder=""></textarea>
-                    </div>
-                  </div>
-                </li>
-                <li class="item-content">
-                  <p class="m-xs" style="line-height:1"><small>We need a few words that sum you up.  If you can't think of anything, simply use one of your favorite quotes such as "Dance like nobody's watching" - Mark Twain</small></p>
-                </li>
-              </ul>
-            </div>
-      </div>
-      <div class="block mt-xs mb-xs white-bg">
-              <p><b>Edit: My Photos</b> </p>
-            </div>
-            <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
-      <div class="block mt-sm mb-sm">
-              <div class="row">
-                <div class="col-33">
-                  <label class="uploaded-image">
-                    <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                    <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                    <!-- <span class="upload-edit"><i class="icon material-icons">mode_edit</i>Edit</span> -->
-                  </label>
-                    <label><input id="prime1" type="radio" name="photo" value="1" checked>
-                    Set as Primary</label>          
                 </div>
-                <div class="col-33">
-                  <label class="uploaded-image">
-                    <span id="delimg2" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                    <img id="image2" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                    <!--<span class="upload-edit"><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                  </label>
-                    <label><input id="prime2" type="radio" name="photo" value="2" >
-                    Set as Primary</label>          
+                <div class="page-content hide-navbar-on-scroll white-bg pb-xlg edit-profile">
+                    <div class="block p-none">
+                        <div class="block mb-xs">
+                            <p class="f-16 text-black"><b>Edit: About Me</b> </p>
+                        </div>
+                        <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                            <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
+                                <ul>
+                                    <li class="item-content item-input">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">My First Name:</div>
+                                            <div class="item-input-wrap">
+                                                <input id="firstname" type="text" placeholder="" required validate>
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list no-hairlines-md mt-xs">
+                                <ul>
+                                    <li class="item-content item-input mt-xs">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">My Occupation</div>
+                                            <div class="item-input-wrap">
+                                                <input id="occupation" type="text" placeholder="">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input mt-xs">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">The Area/Neighborhood where I live</div>
+                                            <div class="item-input-wrap">
+                                                <input id="area" type="text" placeholder="">
+                                                <span class="input-clear-button"></span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <p class="m-xs lh-1"><small>It's best to be descriptive and include the neighborhood name.  (ie. Midtown, Buckhead, Virginia Highlands,  etc.)</small></p>
+                                    </li>
+                                    <li class="item-content item-input mt-xs">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">My Headline</div>
+                                            <div class="item-input-wrap">
+                                                <textarea id="headline" placeholder=""></textarea>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <p class="m-xs lh-1"><small>We need a few words that sum you up.  If you can't think of anything, simply use one of your favorite quotes such as "Dance like nobody's watching" - Mark Twain</small></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="block mt-xs mb-xs white-bg">
+                            <p class="f-16 text-black"><b>Edit: My Photos</b> </p>
+                        </div>
+                        <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                            <div class="block mt-sm mb-sm">
+                                <div class="row">
+                                    <div class="col-33">
+                                        <label class="uploaded-image">
+                                            <span onclick="deleteimage(this.id);" class="img-delete" style="visibility: hidden;"></span>
+                                            <img id="portraitimage" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                            <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                        </label>
+                                    </div>
+                                    <div class="col-33">
+                                        <p class="lh-1"><small>Your Portrait is your most important photo. It will appear on your invites and RSVPs. The focus should be on your face.</small></p>
+                                    </div>
+                                    <div class="col-33">
+                                        <img src="img/avatar.jpg" class="img-responsive mt-lg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block mt-xs mb-xs white-bg">
+                            <p class="f-16 text-black"><b>Edit Other Photos</b> </p>
+                        </div>
+                        <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
+                            <div class="block mt-sm mb-sm">
+                                <div class="">
+                                    <div class="swiper-container add-photo">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="c33">
+                                                    <label class="uploaded-image add-image-button">
+                                                        <span id="delimg5" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="addimage" src="img/addnew.png" class="prepend-slide img-responsive">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" onclick="saveprofile();" class="col button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
+                        <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
+                        <br>
+                    </div>
                 </div>
-                <div class="col-33">
-                  <label class="uploaded-image">
-                    <span id="delimg3" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                    <img id="image3" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                    <!--<span class="upload-edit"><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                  </label>
-                    <label><input id="prime3" type="radio" name="photo" value="3">
-                    Set as Primary</label>      
+                <div class="toolbar tabbar-labels">
+                    <div class="toolbar-inner">
+                        <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
+                        <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
+                        <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
+                        <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+                        <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
+                    </div>
                 </div>
-              </div>
             </div>
-          
-          </div>
-      <a href="#" onclick="saveprofile();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Save and View</a>  
-      
-      <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>  
-    
-      <br>
-      
-      </div>
-      
-
         </div>
-        <div class="toolbar tabbar-labels">
-          <div class="toolbar-inner">
-            <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
-            <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
-            <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
-            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
-            <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <script src="dist/js/framework7.min.js"></script>
-  <script src="js/routes.js"></script>
-  <script src="js/app.js"></script>
-  <script type="text/javascript">
-    $('.library-alert').on('click', function() {
-      app.dialog.confirm('Allow "Booked" to access your photo library?');
-   });
-    
-
-  function finddates()
-  {
-    window.location.href = "empty-dashboard.html";
-  }
-  
-  function chat()
-  {
-    window.location.href = "rsvp.html";
-  }
-
-  function goedit()
-  {
-    window.location.href = "edit-profile.html";
-  }
-    
-  function gosettings()
-  {
-    window.location.href = "dashboard.html";
-  }
-    
-  
-  function logout()
-  {
-    window.location.href = "logout.html";
-  }
-
-
-  $("#prime1").on('click', function(){
-	alert("hi");
-  })
+    <script src="dist/js/framework7.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript">
 	
-  </script>
-  
-  
+	function init()
+	{		
+		app.dialog.preloader();
+	}
+	
+    $('.library-alert').on('click', function() {
+        app.dialog.confirm('Allow "Booked" to access your photo library?');
+    });
+
+
+    function finddates() {
+        window.location.href = "empty-dashboard.html";
+    }
+
+    function chat() {
+        window.location.href = "rsvp.html";
+    }
+
+    function goedit() {
+        window.location.href = "edit-profile.html";
+    }
+
+    function gosettings() {
+        window.location.href = "dashboard.html";
+    }
+
+
+    function logout() {
+        window.location.href = "logout.html";
+    }
+    </script>
     <script type="text/javascript" src="jquery-2.1.4.js"></script>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript">
     var allowstatus = 0;
-  
+
     var firstname;
     var occupation;
     var area;
     var headline;
-  var prime;
-  var memberid;
+    var prime;
+    var memberid;
 
-  var i_memberid;
+    var i_memberid;
     var i_PhoneNumber;
     var i_Gender;
     var i_SeekingGender;
-  var i_DOB;  
-  
-  var currentImageId;
-  var currentImageURL;
-  
-  var currentfile='empty.jpg';
-  var currentfolder;
-  
-  var pictureSource;   // picture source
-  var destinationType; // sets the format of returned value 
-    
+    var i_DOB;
+
+    var currentImageId;
+    var currentImageURL;
+
+    var currentfile = 'empty.jpg';
+    var currentfolder;
+
+    var pictureSource; // picture source
+    var destinationType; // sets the format of returned value 
+
+
+    var photo_id = {};
+    var photo_MemberID = {};
+    var photo_PhotoSeq = {};
+    var photo_IsBW = {};
+    var photo_PhotoURL = {};
+    var photo_IsPrimary = {};
+    var photo_DateUpdated = {};
+
+    var displayed_images = 1;
+	
+	var photo_length=0;
+
+    var timeStamp = "";
+	
+	var prependNumber = 0;
+
+	var oldfilename;	
+	var filecheck;
+
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -227,102 +240,171 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
+			
+        pictureSource = navigator.camera.PictureSourceType;
+        destinationType = Camera.DestinationType.NATIVE_URI;
 
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=Camera.DestinationType.NATIVE_URI;  
 
-    
         i_memberid = window.sessionStorage.getItem("memberid", i_memberid);
         i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber", i_PhoneNumber);
         i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
         i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
         i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
+		
+	  
+        loadphotoprofile();
+		
+        loadprofile();
+        otherphotos();
 
-    loadprofile();
     }
 
-  function saveprofile()
-  {
-      
-        firstname = $("#firstname").val();
-    occupation = $("#occupation").val();
-    area = $("#area").val();
-    headline = $("#headline").val();
-    image1 = document.getElementById("image1");
-    image2 = document.getElementById("image2");
-    image3 = document.getElementById("image3");
-    prime = document.getElementById("prime1").value;
-    
+    function saveprofile() {
 
-    //alert(firstname +  " - "  + occupation +  " - "  + area +  " - "  + headline +  " - "  + memberid);
-    
+        x = document.getElementById("firstname").value;
+        if (x == null || x == "") {
+            app.dialog.confirm('<br>First name must be filled out', function() {});
+            return false;
+        }
+
+        firstname = $("#firstname").val();
+        occupation = $("#occupation").val();
+        area = $("#area").val();
+        headline = $("#headline").val();
+
+
         $.ajax({
             url: "http://18.219.77.161/api/saveprofile.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"firstname":"' + firstname + '","occupation":"' + occupation + '","area":"' + area + '","headline":"' + headline + '","prime":"' + prime + '","memberid":"' + i_memberid + '"}',
+            data: '{"firstname":"' + firstname + '","occupation":"' + occupation + '","area":"' + area + '","headline":"' + headline + '","memberid":"' + i_memberid + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-        
+
                 var result;
 
                 for (i = 1; i < jsonobject.length; i++) {
                     result = jsonobject[i].result;
                 }
 
-                if (result == "PASS") 
-        {
-          //app.dialog.alert('<br>Profile has been updated!');
-          window.location.href = "myprofile.html";
-                } 
-        else 
-        {
-          //app.dialog.alert('<br>Profile not updated!');
-          window.location.href = "myprofile.html";
-        }
+                if (result == "PASS") {
+                    //app.dialog.alert('<br>Profile has been updated!');
+                    window.location.href = "myprofile.html";
+                } else {
+                    //app.dialog.alert('<br>Profile not updated!');
+                    window.location.href = "myprofile.html";
+                }
 
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+			
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 3000);
+  
+               // alert(error);
+               // alert(errorThrown);
             }
         });
 
-    
-    
-  }
 
 
-  function loadprofile()
-  { 
+    }
+
+
+    function loadphotoprofile() {
+
         $.ajax({
-            url: "http://18.219.77.161/api/loadprofile.php",
+            url: "http://18.219.77.161/api/loadphotoprofile.php",
             type: "POST",
             dataType: "JSON",
+            async: false,
             data: '{"memberid":"' + i_memberid + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-        
+
                 var result;
 
                 for (i = 1; i < jsonobject.length; i++) {
                     result = jsonobject[i].result;
                 }
 
-                if (result == "FAIL") 
-        {
-          
-          
-                } 
-        else 
-        {
+                if (result == "FAIL") {
+
+                } else {
+					
+					photo_length = jsonobject.length;
+					prependNumber = jsonobject.length;
+					
+                    for (i = 1; i < jsonobject.length; i++) {
+                        photo_id[i] = jsonobject[i].id;
+                        photo_MemberID[i] = jsonobject[i].MemberID;
+                        photo_PhotoSeq[i] = jsonobject[i].PhotoSeq;
+                        photo_IsBW[i] = jsonobject[i].IsBW;
+                        photo_PhotoURL[i] = jsonobject[i].PhotoURL;
+                        photo_IsPrimary[i] = jsonobject[i].IsPrimary;
+                        photo_DateUpdated[i] = jsonobject[i].DateUpdated;
+                    }
+                }
+            },
+            error: function(requestObject, error, errorThrown) {
+
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 3000);
+			  
+               // alert(error);
+               // alert(errorThrown);
+            }
+        });
+    }
+
+    function loadprofile() {
+	
+
+        for (var px = 2; px < photo_length; px++) {
+            
+            $(".swiper-wrapper").prepend('<div class="swiper-slide" id="img_container' + px + ' ">\
+                    <div class="c33">\
+                        <label class="uploaded-image">\
+                            <span id="delimg' + px + '" onclick="deleteimage(' + px + ');" class="img-delete">x</span>\
+                            <img id="image' + px + '" onclick="loadimage(this.id);" src="http://18.219.77.161/api/upload/' + photo_PhotoURL[px] + '" class="img-responsive">\
+                        </label>\
+                    </div>\
+            </div>');
+        }	
+	
+        $.ajax({
+            url: "http://18.219.77.161/api/loadprofile.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"memberid":"' + i_memberid + '"}',
+            async: true,
+            success: function(jsonStr) {
+                3
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                if (result == "FAIL") {
+
+
+                } else {
 
                     for (i = 1; i < jsonobject.length; i++) {
                         p_id = jsonobject[i].id;
@@ -330,175 +412,195 @@
                         p_Name = jsonobject[i].Name;
                         p_Neighborhood = jsonobject[i].Neighborhood;
                         p_Occupation = jsonobject[i].Occupation;
-                        p_Headline = jsonobject[i].Headline;            
-                        p_DateCreated = jsonobject[i].DateCreated;            
-                        p_DateUpdated = jsonobject[i].DateUpdated;    
+                        p_Headline = jsonobject[i].Headline;
+                        p_DateCreated = jsonobject[i].DateCreated;
+                        p_DateUpdated = jsonobject[i].DateUpdated;
 
 
-            document.getElementById('firstname').value = p_Name;  
-            document.getElementById('occupation').value = p_Occupation; 
-            document.getElementById('area').value = p_Neighborhood; 
-            document.getElementById('headline').value = p_Headline; 
-			
-		var abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
-			if (abc)
-			{
-			document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg";
-			}
+                        document.getElementById('firstname').value = p_Name;
+                        document.getElementById('occupation').value = p_Occupation;
+                        document.getElementById('area').value = p_Neighborhood;
+                        document.getElementById('headline').value = p_Headline;
 
-		abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
-			if (abc)
-			{			
-			document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg";
-			}
-			
-		abc=imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
-			if (abc)
-			{				
-			document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg";
-			}
-			
+                        var abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[1]);
+                        if (abc && photo_PhotoURL[1] != "") {
+                            document.getElementById("portraitimage").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
+                        }
+
                     }
 
-            
-            
-        }
+                }
 
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 3000);
+			  
+              //  alert(error);
+              //  alert(errorThrown);
             }
         });
 
-  }
-  
-  function loadimage(img)
-  {
-    // Vertical Buttons
-    
-    currentImageId = img;
-    
-      app.dialog.create({
-      title: 'Image Selection',
-      text: '',
-      buttons: [
-        {
-        text: 'Capture From Camera',
-        },
-        {
-        text: 'From Photo Library',
-        },
-      ],
-      verticalButtons: true,
-            onClick: function(dialog, index) {
-                
-        if (index == 0)
-        {
-          capturePhoto();
-        }     
-                else if (index == 1)
-        {
-          getPhotoFromLibrary();
-        }
-
-
-            }
-      }).open();
-
-  }
-
-  
-  function capturePhoto()
-  {
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
-  }
-  
-  function getPhotoFromLibrary()
-  {
-    getPhoto(pictureSource.PHOTOLIBRARY);
+		  setTimeout(function () {
+			app.dialog.close();
+		}, 3000);
     }
 
-  
+    function loadimage(img) {
+        // Vertical Buttons
+
+        currentImageId = img;
+
+		oldfilename = document.getElementById(currentImageId).src;
+		filecheck = oldfilename.search("addimage.png");
+		oldfilename = oldfilename.substr(32);
+	
+		
+		
+        app.dialog.create({
+            title: 'Image Selection',
+            text: '',
+            buttons: [{
+                    text: 'Capture From Camera',
+                },
+                {
+                    text: 'From Photo Library',
+                },
+                {
+                    text: 'Cancel',
+                },
+            ],
+            verticalButtons: true,
+            onClick: function(dialog, index) {
+
+                if (index == 0) {
+                    capturePhoto();
+                } else if (index == 1) {
+                    getPhotoFromLibrary();
+                } else if (index == 2) {
+                    app.dialog.close();
+                }
+
+            }
+        }).open();
+
+    }
+
+
+    function capturePhoto() {
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
+    }
+
+    function getPhotoFromLibrary() {
+        getPhoto(pictureSource.PHOTOLIBRARY);
+    }
+
+
     function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-        destinationType: destinationType.FILE_URI,
-        sourceType: source });
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+            quality: 50,
+            destinationType: destinationType.FILE_URI,
+            sourceType: source
+        });
     }
 
     function onPhotoURISuccess(imageURI) {
-  
-    currentImageURL = imageURI;
-    //alert(currentImageURL);
-    
-    var largeImage = document.getElementById(currentImageId);
+		
+		app.dialog.preloader("Uploading Image...");
+		
+        currentImageURL = imageURI;
+        //alert(currentImageURL);
 
-    largeImage.style.display = 'block';
+        var largeImage = document.getElementById(currentImageId);
 
-    largeImage.src = imageURI;    
+        largeImage.style.display = 'block';
 
-    uploadPhoto(imageURI);
-	
-		if (currentImageId == "image1")
-		{
-		  i_fileName = i_memberid + "_PhotoSeq_1_color.jpg";
-		  i_seq = 1;
-		  i_bw="NO";
+        largeImage.src = imageURI;
+
+        timeStamp = Math.floor(Date.now() / 1000);
+
+        uploadPhoto(imageURI);
+		
+		var i_primary;
+		
+        if (currentImageId == "portraitimage") {
+            i_fileName = i_memberid + "_portrait.jpg";
+            i_primary = "YES";
+        } else {
+            i_fileName = i_memberid + "_" + timeStamp + ".jpg";
+            i_primary = "NO";
 		}
-		else if (currentImageId == "image2")
+		
+		var i_updornew;
+
+//		alert(currentImageId);
+//		alert(filecheck);
+
+
+		
+		if (filecheck == "-1")
 		{
-		  i_fileName = i_memberid + "_PhotoSeq_2_color.jpg";
-		  i_seq = 2;
-		  i_bw="NO";
-		}
-		else if (currentImageId == "image3")
-		{
-		  i_fileName = i_memberid + "_PhotoSeq_3_color.jpg";
-		  i_seq = 3;
-		  i_bw="NO";
+			i_updornew = "UPDATE";
+			
+			if (currentImageId == "portraitimage")
+			{
+				i_oldfilename = i_memberid + "_portrait.jpg";
+			}
+			else
+			{
+				i_oldfilename = oldfilename;
+			}
 		}
 		else
 		{
-		  i_fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-		  i_seq = 4;
-		  i_bw="NO";
+			i_updornew = "NEW";
+			
+			if (currentImageId == "portraitimage")
+			{
+				i_oldfilename = i_memberid + "_portrait.jpg";
+			}
+			else
+			{
+				i_oldfilename = oldfilename;
+			}
 		}
-		
-	updateRecord(i_memberid, i_fileName, i_seq, i_bw);
+	
+			//i_updornew = "NEW";
+			//i_oldfilename = oldfilename;
+			
+        updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename);
+			
     }
-  
+
 
     function onFail(message) {
-      alert('Failed because: ' + message);
+		
+		  setTimeout(function () {
+			app.dialog.close();
+		}, 500);
+		
+        alert('Failed because: ' + message);
     }
 
-  
+
 
     function uploadPhoto(imageURI) {
         var options = new FileUploadOptions();
         options.fileKey = "file";
         //options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-    
-    if (currentImageId == "image1")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_1_color";
+
+        if (currentImageId == "portraitimage") {
+            options.fileName = i_memberid + "_portrait";
+        } else {
+            options.fileName = i_memberid + "_" + timeStamp;
         }
-    else if (currentImageId == "image2")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_2_color";
-        }
-    else if (currentImageId == "image3")
-    {
-      options.fileName = i_memberid + "_PhotoSeq_3_color";
-        }
-    else
-    {
-      options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-        }
-    
-    options.mimeType = "image/jpeg";
+
+        options.mimeType = "image/jpeg";
         console.log(options.fileName);
         var params = new Object();
         params.value1 = "test";
@@ -508,65 +610,221 @@
         options.chunkedMode = false;
 
         var ft = new FileTransfer();
-        ft.upload(imageURI, "http://18.219.77.161/api/upload.php", function(result){
+        ft.upload(imageURI, "http://18.219.77.161/api/upload.php", function(result) {
+		
+			setTimeout(function () {
+				app.dialog.close();
+			}, 500);
+		
             console.log(JSON.stringify(result));
-        }, function(error){
+        }, function(error) {
+		
+			setTimeout(function () {
+				app.dialog.close();
+			}, 500);
+			
             console.log(JSON.stringify(error));
         }, options);
     }
-	
-	function updateRecord(i_memberid, i_fileName, i_seq, i_bw)
-	{
 
+    function updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename) {
+		
+		//alert(i_memberid + " - " + i_fileName + " - " + i_primary + " - " + i_updornew + " - " + i_oldfilename);
+		
         $.ajax({
             url: "http://18.219.77.161/api/updatephoto.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"memberid":"' + i_memberid + '","photoseq":"' + i_seq + '","isbw":"' + i_bw + '","photourl":"' + i_fileName + '"}',
+            data: '{"memberid":"' + i_memberid + '","primary":"' + i_primary + '","neworupd":"' + i_updornew + '","photourl":"' + i_fileName + '","oldfilename":"' + i_oldfilename + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
-        
+
                 var result;
 
                 for (i = 1; i < jsonobject.length; i++) {
                     result = jsonobject[i].result;
                 }
 
-				console.log("Success photo update");
+                console.log("Success photo update");
+							
+            },
+            error: function(requestObject, error, errorThrown) {
+			
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 500);
+			  
+               // alert(error);
+               // alert(errorThrown);
+            }
+        });
+
+    }
+
+
+
+    function imageExists(image_url) {
+
+        var http = new XMLHttpRequest();
+
+        http.open('HEAD', image_url, false);
+        http.send();
+
+        return http.status != 404;
+
+    }
+
+    function updprimary(id) {
+        var seqid = 0;
+
+        if (id == "prime1") {
+            seqid = 1;
+        } else if (id == "prime2") {
+            seqid = 2;
+        } else if (id == "prime3") {
+            seqid = 3;
+        }
+
+        //alert(id + "  -  " + i_memberid + "  -  " + seqid);
+
+        $.ajax({
+            url: "http://18.219.77.161/api/updateprimary.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"memberid":"' + i_memberid + '","photoseq":"' + seqid + '"}',
+            success: function(jsonStr) {
+
+                var jsonstr = JSON.stringify(jsonStr);
+
+                var jsonobject = JSON.parse(jsonstr);
+
+                var result;
+
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
+
+                console.log("Success primary update");
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+			
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 500);
+			  
+              //  alert(error);
+              //  alert(errorThrown);
             }
         });
-	
-	}
+    }
 
+    function deleteimage(imageid) {
 
-
-	function imageExists(image_url){
+        var photourl = photo_PhotoURL[imageid];
 		
-		var http = new XMLHttpRequest();
+        $.ajax({
+            url: "http://18.219.77.161/api/deleteimage.php",
+            type: "POST",
+            dataType: "JSON",
+            data: '{"memberid":"' + i_memberid + '","photourl":"' + photourl + '"}',
+            success: function(jsonStr) {
+				
+                var jsonstr = JSON.stringify(jsonStr);
 
-		http.open('HEAD', image_url, false);
-		http.send();
+                var jsonobject = JSON.parse(jsonstr);
 
-		return http.status != 404;
+                var result;
 
-	}
+                for (i = 1; i < jsonobject.length; i++) {
+                    result = jsonobject[i].result;
+                }
 
-	function deleteimage(id)
-	{
-		alert(id);
-	}
+				var tempimage = "image" + imageid;
+				
+                document.getElementById(tempimage).src = "img/noimage.jpg";
+				
 
-    </script>    
-  
-  
+
+                console.log("Success image delete");
+
+            },
+            error: function(requestObject, error, errorThrown) {
+			
+			  app.dialog.preloader(error);
+			  setTimeout(function () {
+				app.dialog.close();
+			  }, 500);
+			  
+              //  alert(error);
+              //  alert(errorThrown);
+            }
+        });
+    }
+
+    function opencontainer() {
+
+        var largeImage = document.getElementById(cur_img);
+
+        largeImage.style.display = 'block';
+        var cur_img = "img_container" + displayed_images;
+
+        displayed_images++;
+
+        if (displayed_images >= 6) {
+            displayed_images = 5;
+        }
+    }
+    </script>
+    <script>
+    var swiper = new Swiper('.swiper-container.add-photo', {
+        // direction: 'horizontal',
+        slidesPerView: 3,
+        spaceBetween: 20,
+        freeMode: true,
+        // scrollbar: {
+        //     el: '.swiper-scrollbar'
+        // },
+    });
+
+
+    </script>
+    <script>
+    function otherphotos(){
+        //var prependNumber = 0;
+        var swiper = new Swiper('.swiper-container.add-photo', {
+            mousewheel: true,
+            slidesPerView: 3,
+            freeMode: true,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+    
+        });
+    
+        document.querySelector('.prepend-slide').addEventListener('click', function(e) {
+            e.preventDefault();
+            var prepend_Number = ++prependNumber;
+            swiper.prependSlide('\
+                <div class="swiper-slide swiper-slide-active" id="img_container' + (prepend_Number) + '">\
+                 <div class="c33">\
+                      <label class="uploaded-image">\
+                             <span id="delimg' + (prepend_Number) + '" onclick="deleteimage(this.id);" class="img-delete">x</span>\
+                             <img id="image' + (prepend_Number) + '" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">\
+                         </label>\
+                     </div>\
+                </div>');
+            swiper.slideTo(0,0);
+        });
+    }
+    </script>
 </body>
 
 </html>

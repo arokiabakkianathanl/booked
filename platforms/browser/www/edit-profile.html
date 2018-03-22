@@ -15,7 +15,7 @@
     <link rel="icon" href="img/f7-icon.png">
 </head>
 
-<body class="color-theme-red">
+<body class="color-theme-red" onload="init();">
     <div id="app">
         <div class="statusbar"></div>
         <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="right my-profile-navabar" onclick="goedit();">
                             <a href="#">
-                <img src="img/avatar2.jpg" class="img-circle">
+                <img src="img/avatar.jpg" class="img-circle">
               <span>Edit</span>
               </a>
                         </div>
@@ -91,22 +91,22 @@
                             </div>
                         </div>
                         <div class="block mt-xs mb-xs white-bg">
-                            <p class="f-16 text-black"><b>Edit: My Photos</b> </p>
+                            <p class="f-16 text-black"><b>Edit: Portrait Photo</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="block mt-sm mb-sm">
                                 <div class="row">
-                                    <div class="col-33">
+                                    <div class="col-35">
                                         <label class="uploaded-image">
-                                            <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                            <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
+                                            <!--<span onclick="deleteimage(this.id);" class="img-delete">x</span>-->
+                                            <img id="portraitimage" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
                                             <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
                                         </label>
                                     </div>
-                                    <div class="col-33">
-                                        <p class="lh-1"><small>Your Portrait is your most important photo. It will appear on your invites and RSVPs. The focus should be on your face.</small></p>
+                                    <div class="col-45">
+                                        <p class="lh-1"><small>Your Portrait is your most important photo. The focus should be on your face.</small></p>
                                     </div>
-                                    <div class="col-33">
+                                    <div class="col-20">
                                         <img src="img/avatar.jpg" class="img-responsive mt-lg">
                                     </div>
                                 </div>
@@ -122,46 +122,9 @@
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
                                                 <div class="c33">
-                                                    <label class="uploaded-image">
-                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="c33">
-                                                    <label class="uploaded-image">
-                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="c33">
-                                                    <label class="uploaded-image">
-                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="c33">
-                                                    <label class="uploaded-image">
-                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="c33">
                                                     <label class="uploaded-image add-image-button">
-                                                        <span id="delimg1" onclick="deleteimage(this.id);" class="img-delete">x</span>
-                                                        <img id="image1" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                                        <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                                        <span id="delimg5" onclick="deleteimage(this.id);" class="img-delete">x</span>
+                                                        <img id="addimage" src="img/addnew.png" class="prepend-slide img-responsive">
                                                     </label>
                                                 </div>
                                             </div>
@@ -170,8 +133,10 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" onclick="saveprofile();" class="col button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
-                        <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
+                        <div class="row">
+                            <a href="#" onclick="saveprofile();" class="col-85 button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
+                            <a href="#" onclick="logout();" class="col-85 button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
+                        </div>
                         <br>
                     </div>
                 </div>
@@ -191,6 +156,10 @@
     <script src="js/routes.js"></script>
     <script src="js/app.js"></script>
     <script type="text/javascript">
+    function init() {
+        app.dialog.preloader();
+    }
+
     $('.library-alert').on('click', function() {
         app.dialog.confirm('Allow "Booked" to access your photo library?');
     });
@@ -253,6 +222,17 @@
     var photo_IsPrimary = {};
     var photo_DateUpdated = {};
 
+    var displayed_images = 1;
+
+    var photo_length = 0;
+
+    var timeStamp = "";
+
+    var prependNumber = 0;
+
+    var oldfilename;
+    var filecheck;
+
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -260,7 +240,6 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
-        // app.preloader.show();
 
         pictureSource = navigator.camera.PictureSourceType;
         destinationType = Camera.DestinationType.NATIVE_URI;
@@ -272,10 +251,11 @@
         i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
         i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
 
-        loadphotoprofile();
 
+        loadphotoprofile();
         loadprofile();
 
+        otherphotos();
 
     }
 
@@ -291,19 +271,13 @@
         occupation = $("#occupation").val();
         area = $("#area").val();
         headline = $("#headline").val();
-        image1 = document.getElementById("image1");
-        image2 = document.getElementById("image2");
-        image3 = document.getElementById("image3");
-        prime = document.getElementById("prime1").value;
 
-
-        //alert(firstname +  " - "  + occupation +  " - "  + area +  " - "  + headline +  " - "  + memberid);
 
         $.ajax({
             url: "http://18.219.77.161/api/saveprofile.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"firstname":"' + firstname + '","occupation":"' + occupation + '","area":"' + area + '","headline":"' + headline + '","prime":"' + prime + '","memberid":"' + i_memberid + '"}',
+            data: '{"firstname":"' + firstname + '","occupation":"' + occupation + '","area":"' + area + '","headline":"' + headline + '","memberid":"' + i_memberid + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
@@ -327,8 +301,14 @@
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
 
@@ -361,6 +341,9 @@
 
                 } else {
 
+                    photo_length = jsonobject.length;
+                    prependNumber = jsonobject.length;
+
                     for (i = 1; i < jsonobject.length; i++) {
                         photo_id[i] = jsonobject[i].id;
                         photo_MemberID[i] = jsonobject[i].MemberID;
@@ -373,20 +356,51 @@
                 }
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
     }
 
     function loadprofile() {
+
+		var ip_cnt;
+		
+		if (photo_IsPrimary[1]=="YES")
+		{
+			ip_cnt = 2;
+		}
+		else
+		{
+			ip_cnt = 1;
+		}
+
+        for (var px = ip_cnt; px < photo_length; px++) {
+
+            $(".swiper-wrapper").prepend('<div class="swiper-slide" id="img_container' + px + ' ">\
+                    <div class="c33">\
+                        <label class="uploaded-image">\
+                            <span id="delimg' + px + '" onclick="deleteimage(' + px + ');" class="img-delete">x</span>\
+                            <img id="image' + px + '" onclick="load_prev_image(this.id);" src="http://18.219.77.161/api/upload/' + photo_PhotoURL[px] + '" class="img-responsive">\
+                        </label>\
+                    </div>\
+            </div>');
+        }
+
         $.ajax({
             url: "http://18.219.77.161/api/loadprofile.php",
             type: "POST",
             dataType: "JSON",
             data: '{"memberid":"' + i_memberid + '"}',
+            async: true,
             success: function(jsonStr) {
-
+                3
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
@@ -418,42 +432,44 @@
                         document.getElementById('area').value = p_Neighborhood;
                         document.getElementById('headline').value = p_Headline;
 
-                        var abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg");
-                        if (abc && photo_PhotoURL[1] != "") {
-                            document.getElementById("image1").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_1_color.jpg";
+                        var abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[1]);
+                        if (abc && photo_PhotoURL[1] != "" && photo_IsPrimary[1]=="YES") {
+                            document.getElementById("portraitimage").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];							
                         }
 
-                        abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg");
-                        if (abc && photo_PhotoURL[2] != "") {
-                            document.getElementById("image2").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_2_color.jpg";
-                        }
-
-                        abc = imageExists("http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg");
-                        if (abc && photo_PhotoURL[3] != "") {
-                            document.getElementById("image3").src = "http://18.219.77.161/api/upload/" + p_MemberID + "_PhotoSeq_3_color.jpg";
-                        }
 
                     }
 
-
-
                 }
-
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
-        app.preloader.hide();
 
+        setTimeout(function() {
+            app.dialog.close();
+        }, 3000);
     }
 
     function loadimage(img) {
         // Vertical Buttons
 
         currentImageId = img;
+
+        oldfilename = document.getElementById(currentImageId).src;
+        filecheck = oldfilename.search("addimage.png");
+        oldfilename = oldfilename.substr(32);
+		//alert(oldfilename);
+
 
         app.dialog.create({
             title: 'Image Selection',
@@ -464,6 +480,57 @@
                 {
                     text: 'From Photo Library',
                 },
+                {
+                    text: 'Cancel',
+                },
+            ],
+            verticalButtons: true,
+            onClick: function(dialog, index) {
+
+                if (index == 0) {
+                    capturePhoto();
+                    change_del_onclick_id(currentImageId);
+                } else if (index == 1) {
+                    getPhotoFromLibrary();
+                    change_del_onclick_id(currentImageId);
+                } else if (index == 2) {
+                    app.dialog.close();
+                    console.log(currentImageId);
+                    delete_slide(currentImageId);
+                }
+
+            }
+        }).open();
+
+    }
+
+    function change_del_onclick_id(currentImageId) {
+        console.log(currentImageId);
+        $("#" + currentImageId).attr({ onclick: "load_prev_image(this.id);" });
+    }
+
+    function load_prev_image(img) {
+        // Vertical Buttons
+
+        currentImageId = img;
+
+        oldfilename = document.getElementById(currentImageId).src;
+        filecheck = oldfilename.search("addimage.png");
+        oldfilename = oldfilename.substr(32);
+
+
+        app.dialog.create({
+            title: 'Image Selection',
+            text: '',
+            buttons: [{
+                    text: 'Capture From Camera',
+                },
+                {
+                    text: 'From Photo Library',
+                },
+                {
+                    text: 'Cancel',
+                },
             ],
             verticalButtons: true,
             onClick: function(dialog, index) {
@@ -472,17 +539,23 @@
                     capturePhoto();
                 } else if (index == 1) {
                     getPhotoFromLibrary();
+                } else if (index == 2) {
+                    app.dialog.close();
                 }
-
 
             }
         }).open();
+        swiper.slideTo(1, 0);
 
+    }
+
+    function delete_slide(del_img_id) {
+        $("#" + del_img_id).closest(".swiper-slide").remove();
     }
 
 
     function capturePhoto() {
-        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, allowEdit: true });
     }
 
     function getPhotoFromLibrary() {
@@ -495,11 +568,14 @@
         navigator.camera.getPicture(onPhotoURISuccess, onFail, {
             quality: 50,
             destinationType: destinationType.FILE_URI,
-            sourceType: source
+            sourceType: source,
+            allowEdit: true
         });
     }
 
     function onPhotoURISuccess(imageURI) {
+
+        app.dialog.preloader("Uploading Image...");
 
         currentImageURL = imageURI;
         //alert(currentImageURL);
@@ -510,31 +586,59 @@
 
         largeImage.src = imageURI;
 
+        timeStamp = Math.floor(Date.now() / 1000);
+
         uploadPhoto(imageURI);
 
-        if (currentImageId == "image1") {
-            i_fileName = i_memberid + "_PhotoSeq_1_color.jpg";
-            i_seq = 1;
-            i_bw = "NO";
-        } else if (currentImageId == "image2") {
-            i_fileName = i_memberid + "_PhotoSeq_2_color.jpg";
-            i_seq = 2;
-            i_bw = "NO";
-        } else if (currentImageId == "image3") {
-            i_fileName = i_memberid + "_PhotoSeq_3_color.jpg";
-            i_seq = 3;
-            i_bw = "NO";
+        var i_primary;
+
+        if (currentImageId == "portraitimage") {
+            i_fileName = i_memberid + "_portrait.jpg";
+            i_primary = "YES";
         } else {
-            i_fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-            i_seq = 4;
-            i_bw = "NO";
+            i_fileName = i_memberid + "_" + timeStamp + ".jpg";
+            i_primary = "NO";
         }
 
-        updateRecord(i_memberid, i_fileName, i_seq, i_bw);
+        var i_updornew;
+
+        //      alert(currentImageId);
+        //      alert(filecheck);
+
+
+
+        if (filecheck == "-1") {
+            i_updornew = "UPDATE";
+
+            if (currentImageId == "portraitimage") {
+                i_oldfilename = i_memberid + "_portrait.jpg";
+            } else {
+                i_oldfilename = oldfilename;
+            }
+        } else {
+
+            i_updornew = "NEW";
+
+            if (currentImageId == "portraitimage") {
+                i_oldfilename = i_memberid + "_portrait.jpg";
+            } else {
+                i_oldfilename = oldfilename;
+            }
+        }
+
+        //i_updornew = "NEW";
+        //i_oldfilename = oldfilename;
+
+        updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename);
     }
 
 
     function onFail(message) {
+
+        setTimeout(function() {
+            app.dialog.close();
+        }, 500);
+
         alert('Failed because: ' + message);
     }
 
@@ -545,14 +649,10 @@
         options.fileKey = "file";
         //options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
 
-        if (currentImageId == "image1") {
-            options.fileName = i_memberid + "_PhotoSeq_1_color";
-        } else if (currentImageId == "image2") {
-            options.fileName = i_memberid + "_PhotoSeq_2_color";
-        } else if (currentImageId == "image3") {
-            options.fileName = i_memberid + "_PhotoSeq_3_color";
+        if (currentImageId == "portraitimage") {
+            options.fileName = i_memberid + "_portrait";
         } else {
-            options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+            options.fileName = i_memberid + "_" + timeStamp;
         }
 
         options.mimeType = "image/jpeg";
@@ -566,19 +666,41 @@
 
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://18.219.77.161/api/upload.php", function(result) {
+
+            setTimeout(function() {
+                app.dialog.close();
+            }, 500);
+			
+
+			var largeImage = document.getElementById(currentImageId);
+			largeImage.style.display = 'block';
+			largeImage.src = "http://18.219.77.161/api/upload/" + i_fileName;
+			oldfilename = "http://18.219.77.161/api/upload/" + i_fileName;
+			//alert(oldfilename);
+			//alert("http://18.219.77.161/api/upload/" + i_fileName);
+
+				
             console.log(JSON.stringify(result));
         }, function(error) {
+
+            setTimeout(function() {
+                app.dialog.close();
+            }, 500);
+
             console.log(JSON.stringify(error));
         }, options);
     }
 
-    function updateRecord(i_memberid, i_fileName, i_seq, i_bw) {
+    function updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename) {
+
+       // alert(i_memberid + " - " + i_fileName + " - " + i_primary + " - " + i_updornew + " - " + i_oldfilename);
 
         $.ajax({
             url: "http://18.219.77.161/api/updatephoto.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"memberid":"' + i_memberid + '","photoseq":"' + i_seq + '","isbw":"' + i_bw + '","photourl":"' + i_fileName + '"}',
+            async: false,
+            data: '{"memberid":"' + i_memberid + '","primary":"' + i_primary + '","neworupd":"' + i_updornew + '","photourl":"' + i_fileName + '","oldfilename":"' + i_oldfilename + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
@@ -595,11 +717,16 @@
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
-
     }
 
 
@@ -649,30 +776,27 @@
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
     }
 
-    function deleteimage(id) {
-        var seqid = 0;
+    function deleteimage(imageid) {
 
-        if (id == "delimg1") {
-            seqid = 1;
-        } else if (id == "delimg2") {
-            seqid = 2;
-        } else if (id == "delimg3") {
-            seqid = 3;
-        }
-
-        //alert(id + "  -  " + i_memberid + "  -  " + seqid);
+        var photourl = photo_PhotoURL[imageid];
 
         $.ajax({
             url: "http://18.219.77.161/api/deleteimage.php",
             type: "POST",
             dataType: "JSON",
-            data: '{"memberid":"' + i_memberid + '","photoseq":"' + seqid + '"}',
+            data: '{"memberid":"' + i_memberid + '","photourl":"' + photourl + '"}',
             success: function(jsonStr) {
 
                 var jsonstr = JSON.stringify(jsonStr);
@@ -685,26 +809,42 @@
                     result = jsonobject[i].result;
                 }
 
-                if (id == "delimg1") {
-                    document.getElementById("image1").src = "img/noimage.jpg";
-                }
+                var tempimage = "image" + imageid;
 
-                if (id == "delimg2") {
-                    document.getElementById("image2").src = "img/noimage.jpg";
-                }
+                // document.getElementById(tempimage).src = "img/noimage.jpg";
+                console.log(imageid);
 
-                if (id == "delimg3") {
-                    document.getElementById("image3").src = "img/noimage.jpg";
-                }
+                delete_slide(imageid);
+                delete_slide(tempimage);
 
                 console.log("Success image delete");
 
             },
             error: function(requestObject, error, errorThrown) {
-                alert(error);
-                alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
+    }
+
+    function opencontainer() {
+
+        var largeImage = document.getElementById(cur_img);
+
+        largeImage.style.display = 'block';
+        var cur_img = "img_container" + displayed_images;
+
+        displayed_images++;
+
+        if (displayed_images >= 6) {
+            displayed_images = 5;
+        }
     }
     </script>
     <script>
@@ -716,8 +856,53 @@
         // scrollbar: {
         //     el: '.swiper-scrollbar'
         // },
-        mousewheel: true,
     });
+    </script>
+    <script>
+    function otherphotos() {
+        var swiper = new Swiper('.swiper-container.add-photo', {
+            mousewheel: true,
+            slidesPerView: 3,
+            freeMode: true,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+
+        });
+        //var prependNumber = 0;
+
+        document.querySelector('.prepend-slide').addEventListener('click', function(e) {
+            e.preventDefault();
+            var prepend_Number = ++prependNumber;
+            swiper.prependSlide('\
+                <div class="swiper-slide swiper-slide-active" id="img_container' + (prepend_Number) + '">\
+                 <div class="c33">\
+                      <label class="uploaded-image">\
+                             <span id="delimg' + (prepend_Number) + '" onclick="deleteimage(this.id);" class="img-delete">x</span>\
+                             <img id="image' + (prepend_Number) + '" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">\
+                         </label>\
+                     </div>\
+                </div>');
+            loadimage("image" + (prepend_Number));
+            // var source_slide = $(".swiper-wrapper > .swiper-slide:nth-child(1)");
+            // var destination_slide = $(".swiper-wrapper");
+            // $(source_slide).appendTo(destination_slide);
+            // var source_slide_last = $(".swiper-wrapper > .swiper-slide:nth-last-child(1)");
+            // var destination_slide_last = $(".swiper-wrapper");
+            // $(source_slide_last).appendTo(destination_slide_last);
+            var e = $(".swiper-wrapper > .swiper-slide:nth-child(1)");
+            var c = $(".swiper-wrapper").children();
+            if (c.length) {
+                var l = (c.length) - 1;
+                $('.swiper-wrapper>*:nth-child(' + l + ')').after(e);
+            } else {
+                $('.swiper-wrapper').append(e);
+            }
+            swiper.slideTo(5, 0);
+        });
+    }
     </script>
 </body>
 

@@ -50,7 +50,8 @@ if ($memberid == "")
 				$failres[] = $failrow;
 			} 
 
-$qry = "SELECT `id`, `MemberID`, `PhotoSeq`, `IsBW`, `PhotoURL`, `IsPrimary`, `DateUpdated` FROM `MemberPhotos` WHERE `MemberID`=$memberid order by `PhotoSeq`";
+$qry = "SELECT `id`, `MemberID`, `PhotoSeq`, `IsBW`, `PhotoURL`, `IsPrimary`, `DateUpdated` FROM `MemberPhotos` WHERE `MemberID`=$memberid order by `IsPrimary` desc, `PhotoURL`";
+
 
 
 $userresult = mysqli_query($link, $qry) or die(mysql_error());

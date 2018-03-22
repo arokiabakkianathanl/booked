@@ -11,10 +11,11 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 
 $memberid = $data['memberid'];
-$photoseq = $data['photoseq'];
-$isbw = $data['isbw'];
+$primary = $data['primary'];	
+$neworupd = $data['neworupd'];
 $photourl = $data['photourl'];
-			
+$oldfilename = $data['oldfilename'];	
+	
 			// Pass
 			$pass = "SELECT result FROM result where id=1";
 
@@ -51,43 +52,30 @@ $photourl = $data['photourl'];
 
 
 
-	$total=0;
+
+	if ($neworupd == "UPDATE")
+	{
+		
+//		if ($primary == "NO")
+//		{	
+			$sql_update = "delete from MemberPhotos where `MemberID`='$memberid' AND `PhotoURL`='$oldfilename'";
+			$result = mysqli_query($link ,$sql_update) or die (mysqli_error());
+//		}
+		unlink("upload/$oldfilename");	
+	}
 
 
-			$userresult = mysqli_query($link, "SELECT `id`, `MemberID`, `PhotoSeq`, `IsBW`, `PhotoURL`, `IsPrimary`, `DateUpdated` FROM `MemberPhotos` WHERE `MemberID`='$memberid' AND `PhotoSeq`=$photoseq AND `IsBW`='$isbw'") or die(mysql_error());
 
+	$sql_insert = "INSERT INTO `MemberPhotos`(`MemberID`,`PhotoURL`,`IsPrimary`) VALUES ($memberid,'$photourl', '$primary')";
 
-			$total = mysqli_num_rows($userresult);
-					
-			$userres[] = array();
-
-			while (($userrow = mysqli_fetch_assoc($userresult)) != false) 
-			{
-				$userres[] = $userrow;
-			}
-
-if ($total > 0)
-{
-	$sql_update = "update MemberPhotos set PhotoURL	 = '$photourl' WHERE `MemberID`='$memberid' AND `PhotoSeq`=$photoseq AND `IsBW`='$isbw'";
-
-	$result = mysqli_query($link ,$sql_update) 
-								or die (mysqli_error()); 		
-								
+	$result = mysqli_query($link ,$sql_insert) or die (mysqli_error()); 		
+									
 	$id = mysqli_insert_id($link);  
 
+
+	
+	
 	header('Content-Type: application/json');
 	echo json_encode($passres);		
-}
-else
-{
-	$sql_insert = "INSERT INTO `MemberPhotos`(`MemberID`, `PhotoSeq`, `IsBW`, `PhotoURL`) VALUES ($memberid ,'$photoseq','$isbw','$photourl')";
-
-	$result = mysqli_query($link ,$sql_insert) 
-								or die (mysqli_error()); 		
-								
-	$id = mysqli_insert_id($link);  
-
-	header('Content-Type: application/json');
-	echo json_encode($passres);		
-}
+	
 ?>
