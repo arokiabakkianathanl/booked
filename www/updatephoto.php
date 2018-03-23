@@ -55,26 +55,24 @@ $oldfilename = $data['oldfilename'];
 
 	if ($neworupd == "UPDATE")
 	{
-
-		$sql_update = "delete from MemberPhotos where `MemberID`='$memberid' AND `PhotoURL`='$oldfilename'";
-
-		$result = mysqli_query($link ,$sql_update) 
-								or die (mysqli_error()); 										
-
-		//rename("upload/$oldfilename", "upload/deleted/$oldfilename");	
+		
+//		if ($primary == "NO")
+//		{	
+			$sql_update = "delete from MemberPhotos where `MemberID`='$memberid' AND `PhotoURL`='$oldfilename'";
+			$result = mysqli_query($link ,$sql_update) or die (mysqli_error());
+//		}
 		unlink("upload/$oldfilename");	
 	}
-	else
-	{
 
-		$sql_insert = "INSERT INTO `MemberPhotos`(`MemberID`,`PhotoURL`,`IsPrimary`) VALUES ($memberid,'$photourl', '$primary')";
 
-		$result = mysqli_query($link ,$sql_insert) 
-									or die (mysqli_error()); 		
+
+	$sql_insert = "INSERT INTO `MemberPhotos`(`MemberID`,`PhotoURL`,`IsPrimary`) VALUES ($memberid,'$photourl', '$primary')";
+
+	$result = mysqli_query($link ,$sql_insert) or die (mysqli_error()); 		
 									
-		$id = mysqli_insert_id($link);  
+	$id = mysqli_insert_id($link);  
 
-	}
+
 	
 	
 	header('Content-Type: application/json');

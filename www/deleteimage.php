@@ -56,9 +56,8 @@ $photourl = $data['photourl'];
 								or die (mysqli_error()); 		
 			
 	
-	
-	rename("upload/$photourl", "upload/deleted/$photourl");
-    
+	unlink("upload/$photourl");	
+
 
 	header('Content-Type: application/json');
 	echo json_encode($passres);		
