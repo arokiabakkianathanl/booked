@@ -91,22 +91,24 @@
                             </div>
                         </div>
                         <div class="block mt-xs mb-xs white-bg">
-                            <p class="f-16 text-black"><b>Edit: My Photos</b> </p>
+                            <p class="f-16 text-black"><b>Edit: Portrait Photo</b> </p>
                         </div>
                         <div class="grey-bg" style="background:#f2f2f2; padding:5px;">
                             <div class="block mt-sm mb-sm">
                                 <div class="row">
-                                    <div class="col-33">
+                                    <div class="col-35">
                                         <label class="uploaded-image">
-                                            <span onclick="deleteimage(this.id);" class="img-delete" style="visibility: hidden;"></span>
-                                            <img id="portraitimage" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">
-                                            <!--<span><i class="icon material-icons">mode_edit</i>Edit</span>-->
+                                            <!--<span onclick="deleteimage(this.id);" class="img-delete">x</span>-->
+											<!--
+                                            <img id="portraitimage" onclick="loadimage(this.id);" src="img/addimage.png" class="img-responsive">-->
+											
+                                             <img id="portraitimage" onclick="loadimage(this.id);" src="img/noimage.png" class="img-responsive">                                           
                                         </label>
                                     </div>
-                                    <div class="col-33">
-                                        <p class="lh-1"><small>Your Portrait is your most important photo. It will appear on your invites and RSVPs. The focus should be on your face.</small></p>
+                                    <div class="col-45">
+                                        <p class="lh-1"><small>Your Portrait is your most important photo. The focus should be on your face.</small></p>
                                     </div>
-                                    <div class="col-33">
+                                    <div class="col-20">
                                         <img src="img/avatar.jpg" class="img-responsive mt-lg">
                                     </div>
                                 </div>
@@ -133,8 +135,10 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="#" onclick="saveprofile();" class="col button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
-                        <a href="#" onclick="logout();" class="col button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
+                        <div class="row">
+                            <a href="#" onclick="saveprofile();" class="col-85 button button-big button-fill red-bg-button button-block link external mt-lg">Save and View</a>
+                            <a href="#" onclick="logout();" class="col-85 button button-big button-fill grey-bg-button button-block link external mt-lg">Developer Only (Logout)</a>
+                        </div>
                         <br>
                     </div>
                 </div>
@@ -154,12 +158,10 @@
     <script src="js/routes.js"></script>
     <script src="js/app.js"></script>
     <script type="text/javascript">
-	
-	function init()
-	{		
-		app.dialog.preloader();
-	}
-	
+    function init() {
+        app.dialog.preloader();
+    }
+
     $('.library-alert').on('click', function() {
         app.dialog.confirm('Allow "Booked" to access your photo library?');
     });
@@ -223,15 +225,15 @@
     var photo_DateUpdated = {};
 
     var displayed_images = 1;
-	
-	var photo_length=0;
+
+    var photo_length = 0;
 
     var timeStamp = "";
-	
-	var prependNumber = 0;
 
-	var oldfilename;	
-	var filecheck;
+    var prependNumber = 0;
+
+    var oldfilename;
+    var filecheck;
 
     // Wait for Cordova to load
     //
@@ -240,7 +242,7 @@
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
-			
+
         pictureSource = navigator.camera.PictureSourceType;
         destinationType = Camera.DestinationType.NATIVE_URI;
 
@@ -250,11 +252,11 @@
         i_Gender = window.sessionStorage.getItem("Gender", i_Gender);
         i_SeekingGender = window.sessionStorage.getItem("SeekingGender", i_SeekingGender);
         i_DOB = window.sessionStorage.getItem("DOB", i_DOB);
-		
-	  
+
+
         loadphotoprofile();
-		
         loadprofile();
+
         otherphotos();
 
     }
@@ -301,14 +303,14 @@
 
             },
             error: function(requestObject, error, errorThrown) {
-			
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 3000);
-  
-               // alert(error);
-               // alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
 
@@ -340,10 +342,10 @@
                 if (result == "FAIL") {
 
                 } else {
-					
-					photo_length = jsonobject.length;
-					prependNumber = jsonobject.length;
-					
+
+                    photo_length = jsonobject.length;
+                    prependNumber = jsonobject.length;
+
                     for (i = 1; i < jsonobject.length; i++) {
                         photo_id[i] = jsonobject[i].id;
                         photo_MemberID[i] = jsonobject[i].MemberID;
@@ -357,32 +359,42 @@
             },
             error: function(requestObject, error, errorThrown) {
 
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 3000);
-			  
-               // alert(error);
-               // alert(errorThrown);
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
     }
 
     function loadprofile() {
-	
 
-        for (var px = 2; px < photo_length; px++) {
-            
+		var ip_cnt;
+		
+		if (photo_IsPrimary[1]=="YES")
+		{
+			ip_cnt = 2;
+		}
+		else
+		{
+			ip_cnt = 1;
+		}
+
+        for (var px = ip_cnt; px < photo_length; px++) {
+
             $(".swiper-wrapper").prepend('<div class="swiper-slide" id="img_container' + px + ' ">\
                     <div class="c33">\
                         <label class="uploaded-image">\
                             <span id="delimg' + px + '" onclick="deleteimage(' + px + ');" class="img-delete">x</span>\
-                            <img id="image' + px + '" onclick="loadimage(this.id);" src="http://18.219.77.161/api/upload/' + photo_PhotoURL[px] + '" class="img-responsive">\
+                            <img id="image' + px + '" onclick="load_prev_image(this.id);" src="http://18.219.77.161/api/upload/' + photo_PhotoURL[px] + '" class="img-responsive">\
                         </label>\
                     </div>\
             </div>');
-        }	
-	
+        }
+
         $.ajax({
             url: "http://18.219.77.161/api/loadprofile.php",
             type: "POST",
@@ -423,31 +435,31 @@
                         document.getElementById('headline').value = p_Headline;
 
                         var abc = imageExists("http://18.219.77.161/api/upload/" + photo_PhotoURL[1]);
-                        if (abc && photo_PhotoURL[1] != "") {
-                            document.getElementById("portraitimage").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];
+                        if (abc && photo_PhotoURL[1] != "" && photo_IsPrimary[1]=="YES") {
+                            document.getElementById("portraitimage").src = "http://18.219.77.161/api/upload/" + photo_PhotoURL[1];							
                         }
+
 
                     }
 
                 }
 
-
             },
             error: function(requestObject, error, errorThrown) {
 
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 3000);
-			  
-              //  alert(error);
-              //  alert(errorThrown);
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 3000);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
 
-		  setTimeout(function () {
-			app.dialog.close();
-		}, 3000);
+        setTimeout(function() {
+            app.dialog.close();
+        }, 3000);
     }
 
     function loadimage(img) {
@@ -455,12 +467,59 @@
 
         currentImageId = img;
 
-		oldfilename = document.getElementById(currentImageId).src;
-		filecheck = oldfilename.search("addimage.png");
-		oldfilename = oldfilename.substr(32);
-	
-		
-		
+        oldfilename = document.getElementById(currentImageId).src;
+        filecheck = oldfilename.search("addimage.png");
+        oldfilename = oldfilename.substr(32);
+		//alert(oldfilename);
+
+
+        app.dialog.create({
+            title: 'Image Selection',
+            text: '',
+            buttons: [{
+                    text: 'Capture From Camera',
+                },
+                {
+                    text: 'From Photo Library',
+                },
+                {
+                    text: 'Cancel',
+                },
+            ],
+            verticalButtons: true,
+            onClick: function(dialog, index) {
+
+                if (index == 0) {
+                    capturePhoto();
+                    //change_del_onclick_id(currentImageId);
+                } else if (index == 1) {
+                    getPhotoFromLibrary();
+                    //change_del_onclick_id(currentImageId);
+                } else if (index == 2) {
+                    app.dialog.close();
+                    delete_slide(currentImageId);
+                }
+
+            }
+        }).open();
+
+    }
+
+    function change_del_onclick_id(currentImageId) {
+        console.log(currentImageId);
+        $("#" + currentImageId).attr({ onclick: "load_prev_image(this.id);" });
+    }
+
+    function load_prev_image(img) {
+        // Vertical Buttons
+
+        currentImageId = img;
+
+        oldfilename = document.getElementById(currentImageId).src;
+        filecheck = oldfilename.search("addimage.png");
+        oldfilename = oldfilename.substr(32);
+
+
         app.dialog.create({
             title: 'Image Selection',
             text: '',
@@ -487,12 +546,17 @@
 
             }
         }).open();
+        swiper.slideTo(1, 0);
 
+    }
+
+    function delete_slide(del_img_id) {
+        $("#" + del_img_id).closest(".swiper-slide").remove();
     }
 
 
     function capturePhoto() {
-        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50 });
+        navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, allowEdit: true });
     }
 
     function getPhotoFromLibrary() {
@@ -505,14 +569,15 @@
         navigator.camera.getPicture(onPhotoURISuccess, onFail, {
             quality: 50,
             destinationType: destinationType.FILE_URI,
-            sourceType: source
+            sourceType: source,
+            allowEdit: true
         });
     }
 
     function onPhotoURISuccess(imageURI) {
-		
-		app.dialog.preloader("Uploading Image...");
-		
+
+        app.dialog.preloader("Uploading Image...");
+
         currentImageURL = imageURI;
         //alert(currentImageURL);
 
@@ -525,66 +590,59 @@
         timeStamp = Math.floor(Date.now() / 1000);
 
         uploadPhoto(imageURI);
-		
-		var i_primary;
-		
+
+        var i_primary;
+
         if (currentImageId == "portraitimage") {
             i_fileName = i_memberid + "_portrait.jpg";
             i_primary = "YES";
         } else {
             i_fileName = i_memberid + "_" + timeStamp + ".jpg";
             i_primary = "NO";
-		}
-		
-		var i_updornew;
+        }
 
-//		alert(currentImageId);
-//		alert(filecheck);
+        var i_updornew;
+
+        //      alert(currentImageId);
+        //      alert(filecheck);
 
 
-		
-		if (filecheck == "-1")
-		{
-			i_updornew = "UPDATE";
-			
-			if (currentImageId == "portraitimage")
-			{
-				i_oldfilename = i_memberid + "_portrait.jpg";
-			}
-			else
-			{
-				i_oldfilename = oldfilename;
-			}
-		}
-		else
-		{
-			i_updornew = "NEW";
-			
-			if (currentImageId == "portraitimage")
-			{
-				i_oldfilename = i_memberid + "_portrait.jpg";
-			}
-			else
-			{
-				i_oldfilename = oldfilename;
-			}
-		}
-	
-			//i_updornew = "NEW";
-			//i_oldfilename = oldfilename;
-			
+
+        if (filecheck == "-1") {
+            i_updornew = "UPDATE";
+
+            if (currentImageId == "portraitimage") {
+                i_oldfilename = i_memberid + "_portrait.jpg";
+            } else {
+                i_oldfilename = oldfilename;
+            }
+        } else {
+
+            i_updornew = "NEW";
+
+            if (currentImageId == "portraitimage") {
+                i_oldfilename = i_memberid + "_portrait.jpg";
+            } else {
+                i_oldfilename = oldfilename;
+            }
+        }
+
+        //i_updornew = "NEW";
+        //i_oldfilename = oldfilename;
+
         updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename);
-			
+		$("#" +currentImageId ).closest(".swiper-slide").css({"visibility":"visible"});
     }
 
 
     function onFail(message) {
-		
-		  setTimeout(function () {
-			app.dialog.close();
-		}, 500);
-		
-        alert('Failed because: ' + message);
+
+        setTimeout(function() {
+            app.dialog.close();
+        }, 500);
+
+		delete_slide(currentImageId);
+       // alert('Failed because: ' + message);
     }
 
 
@@ -611,30 +669,40 @@
 
         var ft = new FileTransfer();
         ft.upload(imageURI, "http://18.219.77.161/api/upload.php", function(result) {
-		
-			setTimeout(function () {
-				app.dialog.close();
-			}, 500);
-		
+
+            setTimeout(function() {
+                app.dialog.close();
+            }, 500);
+			
+
+			var largeImage = document.getElementById(currentImageId);
+			largeImage.style.display = 'block';
+			largeImage.src = "http://18.219.77.161/api/upload/" + i_fileName;
+			oldfilename = "http://18.219.77.161/api/upload/" + i_fileName;
+			//alert(oldfilename);
+			//alert("http://18.219.77.161/api/upload/" + i_fileName);
+
+				
             console.log(JSON.stringify(result));
         }, function(error) {
-		
-			setTimeout(function () {
-				app.dialog.close();
-			}, 500);
-			
+
+            setTimeout(function() {
+                app.dialog.close();
+            }, 500);
+
             console.log(JSON.stringify(error));
         }, options);
     }
 
     function updateRecord(i_memberid, i_fileName, i_primary, i_updornew, i_oldfilename) {
-		
-		//alert(i_memberid + " - " + i_fileName + " - " + i_primary + " - " + i_updornew + " - " + i_oldfilename);
-		
+
+       // alert(i_memberid + " - " + i_fileName + " - " + i_primary + " - " + i_updornew + " - " + i_oldfilename);
+
         $.ajax({
             url: "http://18.219.77.161/api/updatephoto.php",
             type: "POST",
             dataType: "JSON",
+            async: false,
             data: '{"memberid":"' + i_memberid + '","primary":"' + i_primary + '","neworupd":"' + i_updornew + '","photourl":"' + i_fileName + '","oldfilename":"' + i_oldfilename + '"}',
             success: function(jsonStr) {
 
@@ -649,20 +717,19 @@
                 }
 
                 console.log("Success photo update");
-							
+
             },
             error: function(requestObject, error, errorThrown) {
-			
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 500);
-			  
-               // alert(error);
-               // alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                // alert(error);
+                // alert(errorThrown);
             }
         });
-
     }
 
 
@@ -712,14 +779,14 @@
 
             },
             error: function(requestObject, error, errorThrown) {
-			
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 500);
-			  
-              //  alert(error);
-              //  alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
     }
@@ -727,6 +794,11 @@
     function deleteimage(imageid) {
 
         var photourl = photo_PhotoURL[imageid];
+
+		if (photourl == null || photourl == "") 
+		{
+			photourl = i_fileName;
+		}
 		
         $.ajax({
             url: "http://18.219.77.161/api/deleteimage.php",
@@ -734,7 +806,7 @@
             dataType: "JSON",
             data: '{"memberid":"' + i_memberid + '","photourl":"' + photourl + '"}',
             success: function(jsonStr) {
-				
+
                 var jsonstr = JSON.stringify(jsonStr);
 
                 var jsonobject = JSON.parse(jsonstr);
@@ -745,24 +817,26 @@
                     result = jsonobject[i].result;
                 }
 
-				var tempimage = "image" + imageid;
-				
-                document.getElementById(tempimage).src = "img/noimage.jpg";
-				
+                var tempimage = "image" + imageid;
 
+                // document.getElementById(tempimage).src = "img/noimage.jpg";
+                console.log(imageid);
+
+                delete_slide(imageid);
+                delete_slide(tempimage);
 
                 console.log("Success image delete");
 
             },
             error: function(requestObject, error, errorThrown) {
-			
-			  app.dialog.preloader(error);
-			  setTimeout(function () {
-				app.dialog.close();
-			  }, 500);
-			  
-              //  alert(error);
-              //  alert(errorThrown);
+
+                app.dialog.preloader(error);
+                setTimeout(function() {
+                    app.dialog.close();
+                }, 500);
+
+                //  alert(error);
+                //  alert(errorThrown);
             }
         });
     }
@@ -791,12 +865,9 @@
         //     el: '.swiper-scrollbar'
         // },
     });
-
-
     </script>
     <script>
-    function otherphotos(){
-        //var prependNumber = 0;
+    function otherphotos() {
         var swiper = new Swiper('.swiper-container.add-photo', {
             mousewheel: true,
             slidesPerView: 3,
@@ -806,12 +877,15 @@
                 el: '.swiper-pagination',
                 clickable: true,
             },
-    
+
         });
-    
+        //var prependNumber = 0;
+
         document.querySelector('.prepend-slide').addEventListener('click', function(e) {
             e.preventDefault();
             var prepend_Number = ++prependNumber;
+            
+
             swiper.prependSlide('\
                 <div class="swiper-slide swiper-slide-active" id="img_container' + (prepend_Number) + '">\
                  <div class="c33">\
@@ -821,9 +895,22 @@
                          </label>\
                      </div>\
                 </div>');
-            swiper.slideTo(0,0);
+	            $("#delimg" + (prepend_Number) + ".img-delete").closest(".swiper-slide").css({"visibility":"hidden"});
+
+            loadimage("image" + (prepend_Number));
+	
+            var e = $(".swiper-wrapper > .swiper-slide:nth-child(1)");
+            var c = $(".swiper-wrapper").children();
+            if (c.length) {
+                var l = (c.length) - 1;
+                $('.swiper-wrapper>*:nth-child(' + l + ')').after(e);
+            } else {
+                $('.swiper-wrapper').append(e);
+            }
+            swiper.slideTo(5, 0);
         });
     }
+	
     </script>
 </body>
 
