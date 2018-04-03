@@ -172,7 +172,7 @@
             <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
             <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
             <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">alarm</i><span class="tabbar-label">My Schedule</span></a>
-            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-4" onclick="gopostevent();" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
             <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
           </div>
         </div>
@@ -276,7 +276,7 @@
 
 	function finddates()
 	{
-		window.location.href = "empty-dashboard.html";
+		window.location.href = "search.html";
 	}
 	
 	function chat()
@@ -293,6 +293,11 @@
 	{
 		window.location.href = "dashboard.html";
 	}
+	
+	function gopostevent()
+	{
+		window.location.href = "postanevent.html";
+	}	
   	
   </script>
 </body>

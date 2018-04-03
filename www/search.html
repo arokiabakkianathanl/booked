@@ -15,22 +15,41 @@
   <link rel="icon" href="img/f7-icon.png">
 </head>
 
-<body class="color-theme-red">
+<body class="color-theme-red nav2">
   <div id="app">
     <div class="statusbar"></div>
     <div class="view view-main view-init ios-edges navbar-custom" data-url="/">
       <div class="page">
         <div class="navbar">
-          <div class="navbar-inner sliding ">
+          <div class="navbar-inner sliding  nav-filter">
             <div class="left header-section">
               <img src="img/booked_logo.jpg" class="navbar-logo">
-              <div><b>My Upcoming Schedule...</b></div>
+              <div><b>Show Invites...</b></div>
             </div>
             <div class="right my-profile-navabar" onclick="goedit();">
               <a href="#">
                 <img src="img/avatar.jpg" class="img-circle">
               <span>Edit</span>
               </a>
+            </div>
+            <div class="navbar-filter">
+              <span> 
+                <span>within</span>
+                <span>
+                  <select id="miles">
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </span>
+                <span>miles from</span>
+                <span>
+                  <select id="milesFrom">
+                    <option value="Home">Home</option>
+                    <option value="Work">Work</option>
+                  </select>
+                </span>
+              </span>
             </div>
           </div>
         </div>
@@ -43,22 +62,12 @@
                   <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
               </div>
               <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
+                <span class="treat center">His Treat</span>
                 <div class="row">
                   <div class="col-75">
                     <div class="row">
                       <div class="col-100">
-                        <img src="img/chosen.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>9 Min 32 Seconds to Confirm</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
+                        <img src="img/drinks.jpg" class="img-responsive mb-sm">
                       </div>
                     </div>
                   </div>
@@ -71,54 +80,10 @@
               <div class="card-footer">
                 <div class="row no-gap">
                   <div class="col-50">
-                    <a href="#" class="link"><b><span class="f-28">!</span> <span style="display: inline-block;position: relative;top: -5px;">Confirm and Book</span></b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">favorite</i> Interested</b></a>
                   </div>
                   <div class="col-50">
-                    <a href="#" class="link"><b>Cancel</b></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--End Of Profile List -->
-            <!-- Profile List -->
-            <div class="card pending ml-none mr-none mb-xlg">
-              <div class="card-header">
-                <p class="m-none lh-half"><b>Tonight 9:00PM - Drinks
-                  <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
-              </div>
-              <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
-                <div class="row">
-                  <div class="col-75">
-                    <div class="row">
-                      <div class="col-100">
-                        <img src="img/pending.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>Decision Due: Tonight 6:00PM</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-25">
-                    <img src="img/avatar.jpg" class="img-responsive round-img">
-                    <p class="m-none text-center">Jonathan</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="row no-gap">
-                  <div class="col-50">
-                    <span class="span-input">Auto-Confirm If Chosen <input type="checkbox" name=""></span>
-                  </div>
-                  <div class="col-50">
-                    <a href="#" class="link"><b>Withdraw</b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">delete</i> Hide from feed</b></a>
                   </div>
                 </div>
               </div>
@@ -131,22 +96,12 @@
                   <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
               </div>
               <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
+                <span class="treat center">His Treat</span>
                 <div class="row">
                   <div class="col-75">
                     <div class="row">
                       <div class="col-100">
-                        <img src="img/chosen.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>9 Min 32 Seconds to Confirm</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
+                        <img src="img/dinner.jpg" class="img-responsive mb-sm">
                       </div>
                     </div>
                   </div>
@@ -159,54 +114,10 @@
               <div class="card-footer">
                 <div class="row no-gap">
                   <div class="col-50">
-                    <a href="#" class="link"><b><span class="f-28">!</span> <span style="display: inline-block;position: relative;top: -5px;">Confirm and Book</span></b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">favorite</i> Interested</b></a>
                   </div>
                   <div class="col-50">
-                    <a href="#" class="link"><b>Cancel</b></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!--End Of Profile List -->
-            <!-- Profile List -->
-            <div class="card pending ml-none mr-none mb-xlg">
-              <div class="card-header">
-                <p class="m-none lh-half"><b>Tonight 9:00PM - Drinks
-                  <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
-              </div>
-              <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
-                <div class="row">
-                  <div class="col-75">
-                    <div class="row">
-                      <div class="col-100">
-                        <img src="img/pending.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>Decision Due: Tonight 6:00PM</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-25">
-                    <img src="img/avatar.jpg" class="img-responsive round-img">
-                    <p class="m-none text-center">Jonathan</p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="row no-gap">
-                  <div class="col-50">
-                    <span class="span-input">Auto-Confirm If Chosen <input type="checkbox" name=""></span>
-                  </div>
-                  <div class="col-50">
-                    <a href="#" class="link"><b>Withdraw</b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">delete</i> Hide from feed</b></a>
                   </div>
                 </div>
               </div>
@@ -219,22 +130,12 @@
                   <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
               </div>
               <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
+                <span class="treat center">His Treat</span>
                 <div class="row">
                   <div class="col-75">
                     <div class="row">
                       <div class="col-100">
-                        <img src="img/chosen.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>9 Min 32 Seconds to Confirm</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
+                        <img src="img/drinks.jpg" class="img-responsive mb-sm">
                       </div>
                     </div>
                   </div>
@@ -247,38 +148,28 @@
               <div class="card-footer">
                 <div class="row no-gap">
                   <div class="col-50">
-                    <a href="#" class="link"><b><span class="f-28">!</span> <span style="display: inline-block;position: relative;top: -5px;">Confirm and Book</span></b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">favorite</i> Interested</b></a>
                   </div>
                   <div class="col-50">
-                    <a href="#" class="link"><b>Cancel</b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">delete</i> Hide from feed</b></a>
                   </div>
                 </div>
               </div>
             </div>
             <!--End Of Profile List -->
             <!-- Profile List -->
-            <div class="card pending ml-none mr-none mb-xlg">
+            <div class="card chosen ml-none mr-none mb-xlg">
               <div class="card-header">
                 <p class="m-none lh-half"><b>Tonight 9:00PM - Drinks
                   <br>Fado - Atlanta, GA - 1.7 miles</b><i class="icon material-icons ios-only f-28">location_on</i></p>
               </div>
               <div class="card-content card-content-padding pt-sm pb-xs">
-                <span class="treat">His Treat</span>
+                <span class="treat center">His Treat</span>
                 <div class="row">
                   <div class="col-75">
                     <div class="row">
                       <div class="col-100">
-                        <img src="img/pending.jpg" class="img-responsive mb-sm">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-66">
-                          <p class="arial-narrow mb-xs"><b>Decision Due: Tonight 6:00PM</b></p>
-                      </div>
-                      <div class="col-33">
-                        <a href="#" class="external link"><i class="icon material-icons">question_answer<span class="badge color-red">New</span></i> <br> 
-                        </a>
-                        <div class="f-14 chat-text"> Chat</div>
+                        <img src="img/dinner.jpg" class="img-responsive mb-sm">
                       </div>
                     </div>
                   </div>
@@ -291,10 +182,10 @@
               <div class="card-footer">
                 <div class="row no-gap">
                   <div class="col-50">
-                    <span class="span-input">Auto-Confirm If Chosen <input type="checkbox" name=""></span>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">favorite</i> Interested</b></a>
                   </div>
                   <div class="col-50">
-                    <a href="#" class="link"><b>Withdraw</b></a>
+                    <a href="#" class="link"><b><i style="display: inline-block;" class="icon material-icons pr-xs">delete</i> Hide from feed</b></a>
                   </div>
                 </div>
               </div>
@@ -308,7 +199,7 @@
             <a href="#tab-1" class="tab-link tab-link-active"><i class="icon f7-icons ios-only">info_fill</i><span class="tabbar-label">Alerts</span></a>
             <a href="#tab-2" onclick="finddates();" class="tab-link"><i class="icon material-icons">my_location<span class="badge color-red">5</span></i><span class="tabbar-label">Find Dates</span></a>
             <a href="#tab-3" onclick="gosettings();" class="tab-link"><i class="icon f7-icons ios-only">gear_fill</i><span class="tabbar-label">Settings</span></a>
-            <a href="#tab-4" onclick="gopostevent();" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
+            <a href="#tab-4" class="tab-link"><i class="icon material-icons ios-only">open_in_new</i><span class="tabbar-label">Post a Date</span></a>
             <a href="#tab-5" onclick="chat();" class="tab-link"><i class="icon material-icons ios-only">question_answer</i><span class="tabbar-label">Chat</span></a>
           </div>
         </div>
@@ -364,10 +255,7 @@
     window.location.href = "settings.html";
   }
 
-	function gopostevent()
-	{
-		window.location.href = "postanevent.html";
-	}  
+
   jQuery.noConflict();
   jQuery(document).ready(function($) {
     $('#circle1').circleProgress({

@@ -45,7 +45,7 @@
                 <div class="list inline-labels no-hairlines-md mt-sm mb-xs">
                   <div class="activity">
                       <label><span>Activity:</span> <input type="text" class="round" id="activity" onkeyup="autocomplet(this.id)"></label>
-					  <div class="list links-list m-none">
+					  <div class="list links-list">
 					  <ul id="activity_name"></ul>
 					  </div>
                   </div>
@@ -130,7 +130,7 @@
                   <label class="search-location">
                     <input id="searchplace" type="text" class="round form-control" placeholder="Search for a place or address" name="" onkeyup="initService();">
                   </label>
-				  <div class="list links-list m-none">
+				  <div class="list links-list">
 					  <ul id="results"></ul>
 				  </div>
                 </form>
@@ -255,27 +255,6 @@ var lattitude=0;
 var longitude=0;
 
 var chartlength;
-
-
-
-    var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
-    };
-
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
-
-	navigator.geolocation.getCurrentPosition(onSuccess, onError);
-			
     // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -283,7 +262,7 @@ var chartlength;
     //
     function onDeviceReady() {
         console.log("On Device Ready is Called...................");
- 
+
         i_memberid = window.sessionStorage.getItem("memberid");
         i_PhoneNumber = window.sessionStorage.getItem("PhoneNumber");
         i_Gender = window.sessionStorage.getItem("Gender");
@@ -608,8 +587,7 @@ function saveevents()
 		else
 		{
 			var service = new google.maps.places.AutocompleteService();
-			//service.getQueryPredictions({ input: searchplace }, displaySuggestions);
-			service.getPlacePredictions({ input: searchplace, componentRestrictions: {country: 'IN'}, }, displaySuggestions);
+			service.getQueryPredictions({ input: searchplace }, displaySuggestions);
 		}
 
 
@@ -660,10 +638,7 @@ $("#results").on("click", "a", function(e){
 	
 
 })
-
-
-
-
+			
 </script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2frSwSgh8f3PPbdItLAFKmdoemrW75l4&libraries=places"
